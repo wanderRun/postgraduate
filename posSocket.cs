@@ -167,12 +167,11 @@ namespace Server
                     Type t = typeof(PosSocket);
                     int index = command.type.IndexOf(".");
                     MethodInfo method = t.GetMethod("on" + command.type.Remove(index, 1), BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.Public);
-                    method.Invoke(this, new object[] { memStream });
+                    method.Invoke(this, new object[] { memStream, currentSocket });
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("{0}", ex.Message);
-                    // server.UpdateMsg("程序发生异常,异常信息:" + ex.Message);
                 }
                 Thread.Sleep(200);
             }
@@ -193,16 +192,33 @@ namespace Server
             return obj;
         }
 
-        //回发消息给客户端
-        private void SendCmdToClient(Socket client, ProtoBuf.IExtensible msg)
+        public void sendProtoMsg(Socket client, object obj, string type)
         {
-            // Byte[] message = System.Text.Encoding.Default.GetBytes(msg.ToCharArray());
-            // client.Send(message, message.Length, 0);
+            string str;
+            MemoryStream memStream = new MemoryStream();
+            ProtoBuf.Serializer.Serialize<object>(memStream, obj);
+            StreamReader strReader = new StreamReader(memStream);
+            memStream.Position = 0;
+            str = strReader.ReadToEnd();
+
+            Command command;
+            command.data = str;
+            command.type = type;
+            command.size = str.Length;
+
+            int length = Marshal.SizeOf(command.GetType());
+            byte[] msg = new byte[length];
+            IntPtr structPtr = Marshal.AllocHGlobal(length);
+            Marshal.StructureToPtr(command, structPtr, false);
+            Marshal.Copy(structPtr, msg, 0, length);
+            Marshal.FreeHGlobal(structPtr);
+            client.Send(msg, length, 0);
         }
 
-        public void OnMessageLogin(MemoryStream memStream)
+        public void OnMessageLogin(MemoryStream memStream, Socket socket)
         {
             message.Login login = ProtoBuf.Serializer.Deserialize<message.Login>(memStream);
+            this.sendProtoMsg(socket, login, login.GetType().ToString());
         }
     }
 }
