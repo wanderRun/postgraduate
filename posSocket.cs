@@ -66,7 +66,7 @@ namespace Server
             }
             catch (Exception ex)
             {
-                // this.rbChatContent.AppendText(ex.Message + "\n");
+                Console.WriteLine("{0}", ex.Message);
                 return 1;
             }
         }
@@ -134,17 +134,14 @@ namespace Server
         //根据不同的请求命令,执行相应的操作,并将操作结果返回给客户端
         public void ReceiveCmdFromClient(Object socket)
         {
-            string[] acceptStr = null;//保存消息字符
             byte[] buff = new byte[1024];//缓冲区
             bool keepConnected = true;
-            string name;
             Socket currentSocket = (Socket)socket;
 
             //用循环不断地与客户端进行交互,直到其发出EXIT或者QUIT命令
             //将keepConnected设置为false,退出循环，关闭当前连接,中止当前线程
             while (keepConnected && serverFlag)
             {
-                acceptStr = null;
                 try
                 {
                     if (currentSocket == null || currentSocket.Available < 1)
