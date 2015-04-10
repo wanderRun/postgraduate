@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Net.Sockets;
+using System.Net;
+
 namespace Client
 {
     static class Program
@@ -16,7 +19,7 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmClientMain());
+            Application.Run(new ClientMain());
         }
     }
 }

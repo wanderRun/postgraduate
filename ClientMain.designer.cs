@@ -1,6 +1,6 @@
 ﻿namespace Client
 {
-    partial class FrmClientMain
+    partial class ClientMain
     {
         /// <summary>
         /// Required designer variable.

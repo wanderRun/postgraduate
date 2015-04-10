@@ -13,9 +13,12 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
+using System.IO;
+using message;
+
 namespace Client
 {
-    public partial class FrmClientMain : Form
+    public partial class ClientMain : Form
     {
         // 与服务器的连接
         private TcpClient tcpClient;
@@ -30,31 +33,37 @@ namespace Client
 
         private bool stopFlag;
 
-        public FrmClientMain()
+        public ClientMain()
         {
             InitializeComponent();
         }
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            if(clientState == CONNECTED)
-            {
-                return;
-            }
-
+            //if(clientState == CONNECTED)
+            //{
+            //    return;
+            //}
+            
+            PosSocket posSocket = new PosSocket();
+            posSocket.StartServer();
+            this.rbChatContent.AppendText("网络发生错误或者服务器已经退出！\n");
+            /*
             if(this.tbUserName.Text.Length == 0)
             {
                 MessageBox.Show("请输入您的用户名！", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 this.tbUserName.Focus();
                 return;
             }
+            */
+            /*
             try
             {
                 // 创建一个客户端套接字，它是Login的一个公共属性，
                 // 将被传递给FrmClientMain窗体
                 tcpClient = new TcpClient();
                 // 向指定的ip地址的服务器发出连接请求
-                tcpClient.Connect(IPAddress.Parse(tbServer.Text), Int32.Parse(tbServerPort.Text));
+                tcpClient.Connect(IPAddress.Parse("192.168.124.120"/*tbServer.Text*), Int32.Parse("1234"/*tbServerPort.Text*));
                 // 获得与服务器数据交互的流通道(NetworkStream)
                 nsStream = tcpClient.GetStream();
 
@@ -66,15 +75,26 @@ namespace Client
                 // 向服务器发送CONNECT请求命令，
                 // 此命令的格式与服务器端的定义格式一致，
                 // 命令格式为：命令标志符（CONNECT）|发送者的用户名|
-                string cmd = "CONNECT|" + this.tbUserName.Text + "|";
+                string cmd = "CONNECT|" + "wbb"/*this.tbUserName.Text* + "|";
                 // 将字符串转化为字符串数组
                 Byte[] bytes = System.Text.Encoding.Default.GetBytes(cmd.ToCharArray());
+
+                //hello my = new hello();
+                //my.cmd = "CONNECT|" + "wbb"/*this.tbUserName.Text* + "|";
+                rbSendMsg.Text = "";
+                rbSendMsg.Focus();
+
+                MemoryStream memStream = new MemoryStream();
+                //ProtoBuf.Serializer.Serialize<hello>(memStream, my);
+                bytes = memStream.ToArray();
+
                 nsStream.Write(bytes, 0, bytes.Length);
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+             */
         }
 
         // 用于接收从服务器发回的信息
@@ -203,10 +223,17 @@ namespace Client
                     // 此时命令的格式是：
                     // 命令标志符（CHAT）|发送者的用户名：发送内容|
                     string message = "CHAT|" + this.tbUserName.Text + ":" + rbSendMsg.Text + "|";
+                    
+                    // 将字符串转化为字符数组
+                    // hello my = new hello();
+                    // my.cmd = "CHAT|" + "wbb"/*this.tbUserName.Text*/ + ":" + rbSendMsg.Text + "|";
                     rbSendMsg.Text = "";
                     rbSendMsg.Focus();
-                    // 将字符串转化为字符数组
-                    Byte[] bytes = System.Text.Encoding.Default.GetBytes(message.ToCharArray());
+
+                    MemoryStream memStream = new MemoryStream();
+                    //ProtoBuf.Serializer.Serialize<hello>(memStream, my);
+
+                    byte[] bytes = memStream.ToArray();// System.Text.Encoding.Default.GetBytes(memStream.ToString().ToCharArray());
                     nsStream.Write(bytes, 0, bytes.Length);
                 }
                 else
