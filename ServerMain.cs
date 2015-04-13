@@ -21,6 +21,7 @@ namespace Server
         }
 
         PosSocket posSocket = new PosSocket();
+        RedisManager redisManager = new RedisManager();
 
         public delegate void AppendMsgEventHandler(RichTextBox rb, string msg);//定义在线程中操作不同线程创建的控件的委托
         public delegate void AppendUserEventHandler(ListBox lb, string username);
@@ -28,13 +29,6 @@ namespace Server
         //开启服务器
         private void btStartServer_Click(object sender, EventArgs e)
         {
-            //int iPort = this.returnValidPort(tbServerPort.Text.Trim());
-            //if (iPort < 0)
-            //{
-            //    MessageBox.Show("错误的端口信息！", "错误提示");
-            //    return;
-            //}
-
             posSocket.ServerFlag = true;
             posSocket.StartServer(1234);
             UpdateMsg("服务器开始监听1234.\n");
@@ -42,30 +36,6 @@ namespace Server
             //posSocket.ServerFlag = true;
             //btStartServer.Enabled = false;
             //btStopServer.Enabled = true;
-        }
-
-        //获取有效的端口号
-        private int returnValidPort(string strPort)
-        {
-            int port;
-            //测试端口号是否有效
-            try
-            {
-                if (tbServerPort.Text == "")
-                {
-                    throw new ArgumentException("端口号为空,不能启动服务器！");
-                }
-                else
-                {
-                    port = Convert.ToInt32(tbServerPort.Text.Trim());
-                }
-            }
-            catch (Exception ex)
-            {
-                this.rbChatContent.AppendText("无效的端口号：" + ex.Message + "\n");
-                return -1;
-            }
-            return port;
         }
 
         /// <summary>
@@ -87,7 +57,7 @@ namespace Server
             Invoke(new AppendMsgEventHandler(AppendMsgEvent), rbChatContent, str);  //AppendMsgEvent(rbChatContent,"【" + name + "】" + "已经加入聊天！\n");
             //将刚加入的用户添加进用户列表
 
-            Invoke(new AppendUserEventHandler(AppendUserEvent), lbOnlineUser, name);
+            // Invoke(new AppendUserEventHandler(AppendUserEvent), lbOnlineUser, name);
 
             // this.tslOnlineUserNum.Text = Convert.ToString(clients.Count);
         }
@@ -102,20 +72,6 @@ namespace Server
         }
 
         /// <summary>
-        /// 获取用户列表
-        /// </summary>
-        /// <returns></returns>
-        public string GetUserList()
-        {
-            string userList = "";
-            for (int i = 0; i < lbOnlineUser.Items.Count; i++)
-            {
-                userList = userList + lbOnlineUser.Items[i].ToString() + "|";
-            }
-            return userList;
-        }
-
-        /// <summary>
         /// 移出用户
         /// </summary>
         /// <param name="name"></param>
@@ -123,7 +79,7 @@ namespace Server
         {
             this.rbChatContent.AppendText(name + " 已经离开聊天室\n");
             //将刚连接的用户名加入到当前在线用户列表中
-            this.lbOnlineUser.Items.Remove(name);
+            // this.lbOnlineUser.Items.Remove(name);
             // this.tslOnlineUserNum.Text = System.Convert.ToString(clients.Count);
         }
 
@@ -143,12 +99,7 @@ namespace Server
             posSocket.ServerFlag = false;
         }
 
-        private void tbServerPort_TextChanged(object sender, EventArgs e)
-        {
-            this.btStartServer.Enabled = (this.tbServerPort.Text != "");
-        }
-
-        private void FrmServerMain_Load(object sender, EventArgs e)
+        private void ServerMain_Load(object sender, EventArgs e)
         {
 
         }
