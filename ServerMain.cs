@@ -18,6 +18,71 @@ namespace Server
         public ServerMain()
         {
             InitializeComponent();
+            this.InitializeListView();
+        }
+
+        private void InitializeListView()
+        {
+            ColumnHeader ch = new ColumnHeader();
+            ch.Text = "序号";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "考生编号";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "考生姓名";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "毕业学校名称";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "学校类型";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "外国语";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "政治";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "业务课一";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "业务课二名称";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "业务课二";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "初试总分";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "上机成绩百分制";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "听力";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "是否一志愿";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "本科院校";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "自我介绍";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "翻译";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "TOPIC";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "回答提问";
+            lvShowStudent.Columns.Add(ch);
+            ch = new ColumnHeader();
+            ch.Text = "面试(总评分)";
+            lvShowStudent.Columns.Add(ch);
         }
 
         PosSocket posSocket = new PosSocket();
