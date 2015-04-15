@@ -1,12 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
-using System.Collections;
-using System.Text;
-using System.Runtime.InteropServices;
 using System.Reflection;
-using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Server
 {
@@ -22,163 +19,78 @@ namespace Server
 
     class PosSocket
     {
-        // 该服务器默认的监听器
-        private TcpListener listener;
+        // 端口号
+        private const int PORT_NUMBER = 1234;
 
-        // clients 数组保存当前在线用户的client对象
-        internal static Hashtable clients = new Hashtable();
+        // 最大数据量
+        private const int MAX_BUFFER_SIZE = 1024;
 
-        // 默认最大支持的客户端连接数
-        static int MAX_USER = 100;
+        private Socket server;
 
-        private bool serverFlag = false;// 服务器开启标志 true-开启
-
-        public bool ServerFlag
-        {
-            get { return serverFlag; }
-            set { serverFlag = value; }
-        }
+        private Socket acceptClient;
 
         public int StartServer(int port)
         {
-            int iPort = port;
-            if (iPort < 0)
-            {
-                return -1;
-            }
+            // 初始化服务器端
+            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            // 绑定本地终结点
+            IPEndPoint myLocal = new IPEndPoint(IPAddress.Any, port);
+            server.Bind(myLocal);
+            // 开始监听
+            server.Listen(100);
+            // 开始异步接受客户端连接
+            server.BeginAccept(new AsyncCallback(this.StartListen), null);
+            return 0;
+        }
 
-            string ip = this.ReturnIpAddress();
-
+        private void StartListen(IAsyncResult iar)
+        {
             try
             {
-                IPAddress userIp = IPAddress.Parse(ip);
+                acceptClient = server.EndAccept(iar);
+                SocketAsyncEventArgs saea = new SocketAsyncEventArgs();
+                saea.SetBuffer(new byte[MAX_BUFFER_SIZE], 0, MAX_BUFFER_SIZE);
+                saea.Completed += (s, e) =>
+                {
+                    if (e.SocketError == SocketError.Success)
+                    {
+                        try
+                        {
+                            Command command = new Command();
+                            command = (Command)this.BytesToStruct(e.Buffer, command.GetType());
+                            // object obj = Activator.CreateInstance(t);
+                            MemoryStream memStream = new MemoryStream();
+                            StreamWriter strWriter = new StreamWriter(memStream);
+                            strWriter.Write(command.data);
+                            strWriter.Flush();
+                            memStream.Position = 0;
 
-                // 创建服务器套接字
-                listener = new TcpListener(userIp, iPort);
-                listener.Start();
-
-                // 以下方法启动一个新的线程，执行监听方法
-                // 以便在一个独立的进程中执行确认与客户端连接的操作
-                Thread thread = new Thread(StartListen);
-                thread.Start();
-
-                return 0;
+                            Type t = typeof(PosSocket);
+                            int index = command.type.IndexOf(".");
+                            MethodInfo method = t.GetMethod("on" + command.type.Remove(index, 1), BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.Public);
+                            method.Invoke(this, new object[] { memStream, acceptClient });
+                            e.SetBuffer(new byte[MAX_BUFFER_SIZE], 0, MAX_BUFFER_SIZE);
+                            acceptClient.ReceiveAsync(e);
+                        }
+                        catch(Exception ex)
+                        {
+                            Console.WriteLine("{0}", ex.Message);
+                        }
+                    }
+                };
+                acceptClient.ReceiveAsync(saea);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Console.WriteLine("{0}", ex.Message);
-                return 1;
             }
-        }
-
-        /// <summary>
-        /// 获取本机局域网ip地址
-        /// </summary>
-        /// <returns></returns>
-        private string ReturnIpAddress()
-        {
-            IPAddress[] addressList = Dns.GetHostByName(Dns.GetHostName()).AddressList;
-            if (addressList.Length < 1)
-            {
-                return "";
-            }
-            return addressList[0].ToString();
-        }
-
-        // 用于接收客户端的请求，确认与客户端的连接
-        // 并且启动一个新的线程处理客户端的请求
-        private void StartListen()
-        {
-            while (serverFlag)
-            {
-                try
-                {
-                    // 当接收到客户端请求时，确认与客户端的连接
-                    if (listener.Pending())
-                    {
-                        Socket socket = listener.AcceptSocket();
-                        if (clients.Count >= MAX_USER)
-                        {
-                            socket.Close();
-                        }
-                        else
-                        {
-                            // 启动一个新的线程，处理用户相应的请求
-                            Thread clientThread = new Thread(ReceiveCmdFromClient);
-                            clientThread.Start(socket);
-                        }
-                    }
-                    Thread.Sleep(200);
-                }
-                catch (Exception e)
-                {
-                }
-            }
-        }
-
-        /// <summary>
-        /// 获得拨号动态分配ip地址
-        /// </summary>
-        /// <returns></returns>
-        private static string GetDynamicIpAddress()
-        {
-            IPAddress[] addressList = Dns.GetHostByName(Dns.GetHostName()).AddressList;
-            if (addressList.Length < 2)
-            {
-                return "";
-            }
-            return addressList[1].ToString();
-        }
-
-        //和客户端进行数据通信,包括接收客户端的请求
-        //根据不同的请求命令,执行相应的操作,并将操作结果返回给客户端
-        public void ReceiveCmdFromClient(Object socket)
-        {
-            byte[] buff = new byte[1024];//缓冲区
-            bool keepConnected = true;
-            Socket currentSocket = (Socket)socket;
-
-            //用循环不断地与客户端进行交互,直到其发出EXIT或者QUIT命令
-            //将keepConnected设置为false,退出循环，关闭当前连接,中止当前线程
-            while (keepConnected && serverFlag)
-            {
-                try
-                {
-                    if (currentSocket == null || currentSocket.Available < 1)
-                    {
-                        Thread.Sleep(300);
-                        continue;
-                    }
-
-                    //接收信息存入buff数组中
-                    int length = currentSocket.Receive(buff);
-                    Command command = new Command();
-                    command = (Command)this.BytesToStruct(buff, command.GetType());
-                    // object obj = Activator.CreateInstance(t);
-                    MemoryStream memStream = new MemoryStream();
-                    StreamWriter strWriter = new StreamWriter(memStream);
-                    strWriter.Write(command.data);
-                    strWriter.Flush();
-                    memStream.Position = 0;
-
-                    Type t = typeof(PosSocket);
-                    int index = command.type.IndexOf(".");
-                    MethodInfo method = t.GetMethod("on" + command.type.Remove(index, 1), BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.Public);
-                    method.Invoke(this, new object[] { memStream, currentSocket });
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("{0}", ex.Message);
-                }
-                Thread.Sleep(200);
-            }
-
+            server.BeginAccept(new AsyncCallback(this.StartListen), null);
         }
 
         private object BytesToStruct(byte[] bytes, Type type)
         {
             int size = Marshal.SizeOf(type);
-            if(size > bytes.Length)
+            if (size > bytes.Length)
             {
                 return null;
             }

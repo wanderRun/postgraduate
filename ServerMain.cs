@@ -94,7 +94,7 @@ namespace Server
         //开启服务器
         private void btStartServer_Click(object sender, EventArgs e)
         {
-            posSocket.ServerFlag = true;
+            // posSocket.ServerFlag = true;
             posSocket.StartServer(1234);
             UpdateMsg("服务器开始监听1234.\n");
 
@@ -151,7 +151,7 @@ namespace Server
         //停止服务器
         private void btStopServer_Click(object sender, EventArgs e)
         {
-            posSocket.ServerFlag = false;
+            // posSocket.ServerFlag = false;
             //btStartServer.Enabled = true;
             //btStopServer.Enabled = false;
 
@@ -161,7 +161,7 @@ namespace Server
         //关闭窗体
         private void FrmServerMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            posSocket.ServerFlag = false;
+            // posSocket.ServerFlag = false;
         }
 
         private void ServerMain_Load(object sender, EventArgs e)
