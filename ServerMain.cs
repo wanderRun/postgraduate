@@ -6,10 +6,9 @@ using System.Drawing;
 using System.Collections;
 using System.Text;
 using System.Windows.Forms;
-
-using System.Net;
-using System.Net.Sockets;//引入Socket的命名空间
 using System.Threading;//引入线程的命名空间
+using System.Net.Sockets;
+using System.Net;
 
 namespace Server
 {
@@ -21,6 +20,9 @@ namespace Server
             this.InitializeListView();
         }
 
+        /// <summary>
+        /// 初始化列表
+        /// </summary>
         private void InitializeListView()
         {
             ColumnHeader ch = new ColumnHeader();
@@ -97,10 +99,6 @@ namespace Server
             // posSocket.ServerFlag = true;
             posSocket.StartServer(1234);
             UpdateMsg("服务器开始监听1234.\n");
-
-            //posSocket.ServerFlag = true;
-            //btStartServer.Enabled = false;
-            //btStopServer.Enabled = true;
         }
 
         /// <summary>
@@ -143,18 +141,11 @@ namespace Server
         public void RemoveUser(string name)
         {
             this.rbChatContent.AppendText(name + " 已经离开聊天室\n");
-            //将刚连接的用户名加入到当前在线用户列表中
-            // this.lbOnlineUser.Items.Remove(name);
-            // this.tslOnlineUserNum.Text = System.Convert.ToString(clients.Count);
         }
 
         //停止服务器
         private void btStopServer_Click(object sender, EventArgs e)
         {
-            // posSocket.ServerFlag = false;
-            //btStartServer.Enabled = true;
-            //btStopServer.Enabled = false;
-
             UpdateMsg("服务器已经停止监听.\n");
         }
 
@@ -175,7 +166,8 @@ namespace Server
             if(ofdOpenFile.ShowDialog() == DialogResult.OK)
             {
                 string name = ofdOpenFile.FileName;
-                Console.WriteLine("{0}", name);
+                ExcelManager excel = new ExcelManager();
+                excel.LoadWPSExcel(name);
             }
         }
 
