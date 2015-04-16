@@ -169,6 +169,16 @@ namespace Server
 
         }
 
+        private void OpenFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ofdOpenFile.Filter = "所有文件(*.*)|*.*|Excel 文件(*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xla;*.xlt;*.xlm;*.xlw;)|*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xla;*.xlt;*.xlm;*.xlw";
+            if(ofdOpenFile.ShowDialog() == DialogResult.OK)
+            {
+                string name = ofdOpenFile.FileName;
+                Console.WriteLine("{0}", name);
+            }
+        }
+
     }
 
     public class ChatClient
