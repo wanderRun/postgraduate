@@ -1,5 +1,6 @@
 ﻿using System;
-using Microsoft.Office.Interop.Excel;
+// using Microsoft.Office.Interop.Excel;
+using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -13,9 +14,8 @@ namespace Server
         private int ExcelInstalled()
         {
             int ret = 0;
-            RegistryKey rk = Registry.LocalMachine;
-            RegistryKey rkOffice = rk.OpenSubKey(@"SOFTWARE\Microsoft\Office\11.0\Common\InstallRoot\");
-            RegistryKey rkWps = rk.OpenSubKey(@"SOFTWARE\Kingsoft\Office\6.0\common\");
+            RegistryKey rkOffice = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Office\11.0\Common\InstallRoot\");
+            RegistryKey rkWps = Registry.CurrentUser.OpenSubKey(@"Software\Kingsoft\Office\6.0\common\");
             string file = null;
             if(rkOffice != null)
             {
@@ -25,24 +25,44 @@ namespace Server
                     ret += 1;
                 }
             }
+            else if(rkWps != null)
+            {
+                file = rkWps.GetValue("InstallRoot").ToString();
+                if(File.Exists(file + @"\office6\et.exe"))
+                {
+                    ret += 2;
+                }
+            }
             return ret;
         }
 
-        public void LoadExcel(string name)
+        public void Load(string name)
+        {
+            int ret = this.ExcelInstalled();
+            if((ret & 1) != 0)
+            {
+                this.LoadExcel(name);
+            }
+            else if((ret & 2) != 0)
+            {
+                this.LoadWPSExcel(name);
+            }
+        }
+
+        private void LoadExcel(string name)
         {
             try
             {
                 Workbook book = excel.Workbooks.Open(name);
                 Worksheet sheet = book.Worksheets.Item[1];
                 int count = book.Worksheets.Count;
-                sheet.Name = "wang";
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
                 excel.Quit();
                 Marshal.ReleaseComObject(excel);
                 Marshal.ReleaseComObject(book);
                 Marshal.ReleaseComObject(sheet);
                 GC.Collect();
-                Console.WriteLine("hell");
+                Console.WriteLine("load office");
             }
             catch (Exception ex)
             {
@@ -50,21 +70,29 @@ namespace Server
             }
         }
 
-        public void LoadWPSExcel(string name)
+        private void LoadWPSExcel(string name)
         {
             try
             {
                 Workbook book = excel.Workbooks.Open(name);
                 Worksheet sheet = book.Worksheets.Item[1];
-                int count = book.Worksheets.Count;
-                sheet.Name = "wang";
+                Range range = null;
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
+                int rowCount = sheet.UsedRange.Rows.Count;
+                int columnCount = sheet.UsedRange.Columns.Count;
+                for (int i = 1; i <= rowCount; ++i)
+                {
+                    for(int j = 1; j <= columnCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[i, j];
+                    }
+                }
                 excel.Quit();
                 Marshal.ReleaseComObject(excel);
                 Marshal.ReleaseComObject(book);
                 Marshal.ReleaseComObject(sheet);
                 GC.Collect();
-                Console.WriteLine("hell");
+                Console.WriteLine("load wps");
             }
             catch(Exception ex)
             {

@@ -167,7 +167,7 @@ namespace Server
             {
                 string name = ofdOpenFile.FileName;
                 ExcelManager excel = new ExcelManager();
-                excel.LoadWPSExcel(name);
+                excel.Load(name);
             }
         }
 
