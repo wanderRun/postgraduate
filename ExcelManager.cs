@@ -4,6 +4,7 @@ using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Server
 {
@@ -80,12 +81,26 @@ namespace Server
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
                 int rowCount = sheet.UsedRange.Rows.Count;
                 int columnCount = sheet.UsedRange.Columns.Count;
-                for (int i = 1; i <= rowCount; ++i)
+                message.Students students = new message.Students();
+                // for (int i = 1; i <= columnCount; ++i)
                 {
-                    for(int j = 1; j <= columnCount; ++j)
+                    range = (Range)sheet.Cells[1, 2];
+                    int index = 0;
+                    if(range.Text.ToString().Contains("考生姓名"))
                     {
-                        range = (Range)sheet.Cells[i, j];
+                        for (int j = 2; j <= rowCount; ++j)
+                        {
+                            message.StudentInfo studentInfo = new message.StudentInfo();
+                            range = (Range)sheet.Cells[j, 2];
+                            studentInfo.name = range.Value2;
+                            index++;
+                            students.student.Add(studentInfo);
+                        }
                     }
+                }
+                for(int i = 0; i < students.student.Count; ++i)
+                {
+                    Console.WriteLine("{0}", students.student[i].name);
                 }
                 excel.Quit();
                 Marshal.ReleaseComObject(excel);
