@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.Office.Interop.Excel;
-//using Excel;
+//using Microsoft.Office.Interop.Excel;
+using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -108,7 +108,7 @@ namespace Server
             {
                 range = (Range)sheet.Cells[1, i];
                 int index = 0;
-                if(range.Text.ToString().Contains("考生姓名"))
+                if(range.Text.ToString().Contains("序号"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -131,6 +131,69 @@ namespace Server
                     {
                         range = (Range)sheet.Cells[j, i];
                         students.student[index].school = range.Value2;
+                        index++;
+                    }
+                }
+                else if (range.Text.ToString().Contains("学校类型"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].type = range.Value2;
+                        index++;
+                    }
+                }
+                else if (range.Text.ToString().Contains("外国语"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].foreign = range.Value2;
+                        index++;
+                    }
+                }
+                else if (range.Text.ToString().Contains("政治"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].political = range.Value2;
+                        index++;
+                    }
+                }
+                else if (range.Text.ToString().Contains("业务课一"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].business_one = range.Value2;
+                        index++;
+                    }
+                }
+                else if (range.Text.ToString().Contains("业务课二名称"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].business_two_name = range.Value2;
+                        index++;
+                    }
+                }
+                else if (range.Text.ToString().Contains("业务课二成绩"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].business_two = range.Value2;
+                        index++;
+                    }
+                }
+                else if (range.Text.ToString().Contains("总分"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].score = range.Value2;
                         index++;
                     }
                 }

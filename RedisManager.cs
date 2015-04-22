@@ -30,7 +30,7 @@ namespace Server
         /// <param name="key"></param>
         /// <param name="t"></param>
         /// <returns></returns>
-        public bool Item_Set<T>(string key, T t)
+        public static bool Item_Set<T>(string key, T t)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace Server
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public T Item_Get<T>(string key)
+        public static T Item_Get<T>(string key)
         {
             using (IRedisClient redis = prcm.GetClient())
             {
@@ -65,7 +65,7 @@ namespace Server
         /// 移除单体
         /// </summary>
         /// <param name="key"></param>
-        public bool Item_Remove(string key)
+        public static bool Item_Remove(string key)
         {
             using (IRedisClient redis = prcm.GetClient())
             {
