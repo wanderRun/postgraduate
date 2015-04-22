@@ -1,6 +1,6 @@
 ﻿using System;
-// using Microsoft.Office.Interop.Excel;
-using Excel;
+using Microsoft.Office.Interop.Excel;
+//using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -11,11 +11,12 @@ namespace Server
     class ExcelManager
     {
         private Application excel = new Application();
+        private message.Students students = new message.Students();
         
         private int ExcelInstalled()
         {
             int ret = 0;
-            RegistryKey rkOffice = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Office\11.0\Common\InstallRoot\");
+            RegistryKey rkOffice = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Office\14.0\Common\InstallRoot\");
             RegistryKey rkWps = Registry.CurrentUser.OpenSubKey(@"Software\Kingsoft\Office\6.0\common\");
             string file = null;
             if(rkOffice != null)
@@ -48,6 +49,7 @@ namespace Server
             {
                 this.LoadWPSExcel(name);
             }
+            this.LoadWPSExcel(name);
         }
 
         private void LoadExcel(string name)
@@ -77,27 +79,9 @@ namespace Server
             {
                 Workbook book = excel.Workbooks.Open(name);
                 Worksheet sheet = book.Worksheets.Item[1];
-                Range range = null;
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
-                int rowCount = sheet.UsedRange.Rows.Count;
-                int columnCount = sheet.UsedRange.Columns.Count;
-                message.Students students = new message.Students();
-                // for (int i = 1; i <= columnCount; ++i)
-                {
-                    range = (Range)sheet.Cells[1, 2];
-                    int index = 0;
-                    if(range.Text.ToString().Contains("考生姓名"))
-                    {
-                        for (int j = 2; j <= rowCount; ++j)
-                        {
-                            message.StudentInfo studentInfo = new message.StudentInfo();
-                            range = (Range)sheet.Cells[j, 2];
-                            studentInfo.name = range.Value2;
-                            index++;
-                            students.student.Add(studentInfo);
-                        }
-                    }
-                }
+                this.loadDataFromExcel(sheet);
+                
                 for(int i = 0; i < students.student.Count; ++i)
                 {
                     Console.WriteLine("{0}", students.student[i].name);
@@ -112,6 +96,48 @@ namespace Server
             catch(Exception ex)
             {
                 Console.WriteLine("{0}", ex.Message);
+            }
+        }
+
+        private void loadDataFromExcel(Worksheet sheet)
+        {
+            int rowCount = sheet.UsedRange.Rows.Count;
+            int columnCount = sheet.UsedRange.Columns.Count;
+            Range range = null;
+            for (int i = 1; i <= columnCount; ++i)
+            {
+                range = (Range)sheet.Cells[1, i];
+                int index = 0;
+                if(range.Text.ToString().Contains("考生姓名"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        message.StudentInfo studentInfo = new message.StudentInfo();
+                        students.student.Add(studentInfo);
+                    }
+                }
+                else if (range.Text.ToString().Contains("考生姓名"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].name = range.Value2;
+                        index++;
+                    }
+                }
+                else if (range.Text.ToString().Contains("学校名称"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].school = range.Value2;
+                        index++;
+                    }
+                }
+            }
+            for (int i = 0; i < students.student.Count; ++i)
+            {
+                Console.WriteLine("{0}", students.student[i].name);
             }
         }
     }
