@@ -1,6 +1,6 @@
 ﻿using System;
-//using Microsoft.Office.Interop.Excel;
-using Excel;
+using Microsoft.Office.Interop.Excel;
+//using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -12,6 +12,11 @@ namespace Server
     {
         private Application excel = new Application();
         private message.Students students = new message.Students();
+
+        public message.Students Students
+        {
+            get { return students; }
+        }
         
         private int ExcelInstalled()
         {
@@ -148,7 +153,7 @@ namespace Server
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
-                        students.student[index].foreign = range.Value2;
+                        students.student[index].foreign = (int)range.Value2;
                         index++;
                     }
                 }
@@ -157,7 +162,7 @@ namespace Server
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
-                        students.student[index].political = range.Value2;
+                        students.student[index].political = (int)range.Value2;
                         index++;
                     }
                 }
@@ -166,7 +171,7 @@ namespace Server
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
-                        students.student[index].business_one = range.Value2;
+                        students.student[index].business_one = (int)range.Value2;
                         index++;
                     }
                 }
@@ -184,7 +189,7 @@ namespace Server
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
-                        students.student[index].business_two = range.Value2;
+                        students.student[index].business_two = (int)range.Value2;
                         index++;
                     }
                 }
@@ -193,14 +198,10 @@ namespace Server
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
-                        students.student[index].score = range.Value2;
+                        students.student[index].score = (int)range.Value2;
                         index++;
                     }
                 }
-            }
-            for (int i = 0; i < students.student.Count; ++i)
-            {
-                Console.WriteLine("{0}", students.student[i].name);
             }
         }
     }

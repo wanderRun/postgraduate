@@ -168,6 +168,16 @@ namespace Server
                 string name = ofdOpenFile.FileName;
                 ExcelManager excel = new ExcelManager();
                 excel.Load(name);
+                this.lvShowStudent.BeginUpdate();
+                for (int i = 0; i < excel.Students.student.Count; ++i)
+                {
+                    ListViewItem lvi = new ListViewItem();
+                    lvi.Text = (i + 1).ToString();
+                    lvi.SubItems.Add(i + 1);
+                    lvi.SubItems.Add(excel.Students.student[i].name);
+                    lvShowStudent.Items.Add(lvi);
+                }
+                this.lvShowStudent.EndUpdate();
             }
         }
 
