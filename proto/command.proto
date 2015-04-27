@@ -53,28 +53,59 @@ message StudentInfo
 	optional string graduate_number = 42;// 学位证书编号
 	optional string adjust_major_code = 43;// 调剂前报考专业代码
 	optional string adjust_major_name = 44;// 调剂前报考专业名称
-
+	optional string apply_place_code = 45;// 报考单位代码
+	optional string apply_faculty = 46;// 报考院系所码
+	optional string apply_faculty_name = 47;// 报考院系所名称
+	optional string apply_major_code = 48;// 报考专业代码
+	optional string apply_major_name = 49;// 报考专业名称
+	optional string apply_work_direction = 50;// 报考研究方向码
+	optional string apply_work_direction_name = 51;// 报考研究方向名称
+	optional string exam_type = 52;// 考试方式
+	optional string special_plan = 53;// 专项计划
+	optional string apply_type = 54;// 报考类别
+	optional string orientation_train_place_code = 55;// 定向委培单位所在地码
+	optional string orientation_train_place = 56;// 定向委培单位
+	optional string standby_information = 57;// 备用信息
+	optional string standby_information_one = 58;// 备用信息1
+	optional string standby_information_two = 59;// 备用信息2
+	optional string standby_information_three = 60;// 备用信息3
+	optional string political_code = 61;// 政治理论码
+	optional string political_name = 62;// 政治理论名称
+	optional string foreign_code = 63;// 外国语码
+	optional string foreign_name = 64;// 外国语名称
+	optional string business_one_code = 65;// 业务课一码
+	optional string business_one_name = 66;// 业务课一名称
+	optional string business_two_code = 67;// 业务课二码
+	optional string business_two_name = 68;// 业务课二名称
+	optional uint32 political_score = 69;// 政治理论成绩
+	optional uint32 foreign_score = 70;// 外国语成绩
+	optional uint32 business_one_score = 71;// 业务课一成绩
+	optional uint32 business_two_score = 72;// 业务课二成绩
+	optional uint32 total_score = 73;// 总分
+	optional string volunteer_type = 74;// 志愿类别
+	optional string tutor = 75;// 导师
+	optional string student_confirm_status = 76;// 考生确认状态
+	optional uint32 student_confirm_time = 77;// 考生确认时间
+	optional string student_reexamine = 78;// 复试科目
 	
-	
-	
-	optional string name = 3;// 考生姓名
-	optional string school = 4;// 毕业学校名称
-	optional string type = 5;// 学校类型
-	optional int32 foreign = 6;// 外国语
-	optional int32 political = 7;// 政治
-	optional int32 business_one = 8;// 业务课一
-	optional string business_two_name = 9;// 业务课二
-	optional int32 business_two = 10;// 业务课二
-	optional int32 score = 11;// 初试总分
-	optional float operation = 12;// 上机成绩百分制
-	optional float hear = 13;// 听力
-	optional bool is_first = 14;// 是否一志愿
-	optional int32 school_score = 15;// 本科院校 985或211院校30分 省重点院校20分 其他10分
-	optional int32 introduction_score = 16;// 自我介绍（本科阶段综合表现与申请材料）10分
-	optional int32 translation_score = 17;// 翻译10分
-	optional int32 topic_score = 18;// TOPIC20分
-	optional int32 answer_score = 19;// 回答提问30分
-	optional int32 result_score = 20;// 面试(总评分)
+//	optional string name = 3;// 考生姓名
+//	optional string school = 4;// 毕业学校名称
+//	optional string type = 5;// 学校类型
+//	optional int32 foreign = 6;// 外国语
+//	optional int32 political = 7;// 政治
+//	optional int32 business_one = 8;// 业务课一
+//	optional string business_two_name = 9;// 业务课二
+//	optional int32 business_two = 10;// 业务课二
+//	optional int32 score = 11;// 初试总分
+//	optional float operation = 12;// 上机成绩百分制
+//	optional float hear = 13;// 听力
+//	optional bool is_first = 14;// 是否一志愿
+//	optional int32 school_score = 15;// 本科院校 985或211院校30分 省重点院校20分 其他10分
+//	optional int32 introduction_score = 16;// 自我介绍（本科阶段综合表现与申请材料）10分
+//	optional int32 translation_score = 17;// 翻译10分
+//	optional int32 topic_score = 18;// TOPIC20分
+//	optional int32 answer_score = 19;// 回答提问30分
+//	optional int32 result_score = 20;// 面试(总评分)
 }
 
 message Students
