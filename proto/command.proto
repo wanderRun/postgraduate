@@ -117,3 +117,10 @@ message Students
 {
 	repeated StudentInfo student = 1;
 }
+
+// 查看学生信息
+// c --> s
+message ReqStudentInfo
+{
+	repeated string number = 1;
+}
