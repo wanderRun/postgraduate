@@ -1,6 +1,6 @@
 ﻿using System;
-//using Microsoft.Office.Interop.Excel;
-using Excel;
+using Microsoft.Office.Interop.Excel;
+//using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -136,21 +136,21 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("考生姓名"))
-                {
-                    for (int j = 2; j <= rowCount; ++j)
-                    {
-                        range = (Range)sheet.Cells[j, i];
-                        students.student[index].name = range.Value2;
-                        index++;
-                    }
-                }
                 else if (range.Text.ToString().Contains("考生姓名拼音"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
                         students.student[index].name_spell = range.Value2;
+                        index++;
+                    }
+                }
+                else if (range.Text.ToString().Contains("考生姓名"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].name = range.Value2;
                         index++;
                     }
                 }
@@ -280,12 +280,12 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("考生档案所在单位"))
+                else if (range.Text.ToString().Contains("考生档案所在单位邮政编码"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
-                        students.student[index].record_ministry = range.Value2;
+                        students.student[index].record_place_postcode = range.Value2;
                         index++;
                     }
                 }
@@ -298,12 +298,12 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("考生档案所在单位邮政编码"))
+                else if (range.Text.ToString().Contains("考生档案所在单位"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
-                        students.student[index].record_place_postcode = range.Value2;
+                        students.student[index].record_ministry = range.Value2;
                         index++;
                     }
                 }
@@ -343,21 +343,21 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("考生通讯地址"))
-                {
-                    for (int j = 2; j <= rowCount; ++j)
-                    {
-                        range = (Range)sheet.Cells[j, i];
-                        students.student[index].contact_address = range.Value2;
-                        index++;
-                    }
-                }
                 else if (range.Text.ToString().Contains("考生通讯地址邮政编码"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
                         students.student[index].contact_postcode = range.Value2;
+                        index++;
+                    }
+                }
+                else if (range.Text.ToString().Contains("考生通讯地址"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].contact_address = range.Value2;
                         index++;
                     }
                 }
@@ -442,6 +442,15 @@ namespace Server
                         index++;
                     }
                 }
+                else if (range.Text.ToString().Contains("获得最后学历毕业年月"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].graduate_date = range.Value2;
+                        index++;
+                    }
+                }
                 else if (range.Text.ToString().Contains("最后学历"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
@@ -457,15 +466,6 @@ namespace Server
                     {
                         range = (Range)sheet.Cells[j, i];
                         students.student[index].diploma_number = range.Value2;
-                        index++;
-                    }
-                }
-                else if (range.Text.ToString().Contains("获得最后学历毕业年月"))
-                {
-                    for (int j = 2; j <= rowCount; ++j)
-                    {
-                        range = (Range)sheet.Cells[j, i];
-                        students.student[index].graduate_date = range.Value2;
                         index++;
                     }
                 }
@@ -622,15 +622,6 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("备用信息"))
-                {
-                    for (int j = 2; j <= rowCount; ++j)
-                    {
-                        range = (Range)sheet.Cells[j, i];
-                        students.student[index].standby_information = range.Value2;
-                        index++;
-                    }
-                }
                 else if (range.Text.ToString().Contains("备用信息1"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
@@ -655,6 +646,15 @@ namespace Server
                     {
                         range = (Range)sheet.Cells[j, i];
                         students.student[index].standby_information_three = range.Value2;
+                        index++;
+                    }
+                }
+                else if (range.Text.ToString().Contains("备用信息"))
+                {
+                    for (int j = 2; j <= rowCount; ++j)
+                    {
+                        range = (Range)sheet.Cells[j, i];
+                        students.student[index].standby_information = range.Value2;
                         index++;
                     }
                 }
@@ -735,7 +735,7 @@ namespace Server
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
-                        students.student[index].political_score = range.Value2;
+                        students.student[index].political_score = Convert.ToUInt32(range.Value2);
                         index++;
                     }
                 }
@@ -744,7 +744,7 @@ namespace Server
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
-                        students.student[index].foreign_score = range.Value2;
+                        students.student[index].foreign_score = Convert.ToUInt32(range.Value2);
                         index++;
                     }
                 }
@@ -753,7 +753,7 @@ namespace Server
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
-                        students.student[index].business_one_score = range.Value2;
+                        students.student[index].business_one_score = Convert.ToUInt32(range.Value2);
                         index++;
                     }
                 }
@@ -762,7 +762,7 @@ namespace Server
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
-                        students.student[index].business_two_score = range.Value2;
+                        students.student[index].business_two_score = Convert.ToUInt32(range.Value2);
                         index++;
                     }
                 }
@@ -771,7 +771,7 @@ namespace Server
                     for (int j = 2; j <= rowCount; ++j)
                     {
                         range = (Range)sheet.Cells[j, i];
-                        students.student[index].total_score = range.Value2;
+                        students.student[index].total_score = Convert.ToUInt32(range.Value2);
                         index++;
                     }
                 }

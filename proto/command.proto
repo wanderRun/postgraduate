@@ -19,8 +19,8 @@ message StudentInfo
 	optional string birth = 8;// 出生日期
 	optional string nation = 9;// 民族
 	optional string gender = 10;// 性别
-	optional bool marriage = 11;// 婚否
-	optional bool soldier = 12;// 现役军人
+	optional string marriage = 11;// 婚否
+	optional string soldier = 12;// 现役军人
 	optional string politics_status = 13;// 政治面貌
 	optional string native_place = 14;// 籍贯所在地码
 	optional string birth_place = 15;// 出生地码
@@ -40,7 +40,7 @@ message StudentInfo
 	optional string mobile_phone = 29;// 移动电话
 	optional string email = 30;// 电子信箱
 	optional string source = 31;// 考生来源
-	optional bool same_education = 32;// 是否同等学历
+	optional string same_education = 32;// 是否同等学历
 	optional string school_code = 33;// 毕业学校代码
 	optional string school_name = 34;// 毕业学校名称
 	optional string major_name = 35;// 毕业专业名称
@@ -85,7 +85,7 @@ message StudentInfo
 	optional string volunteer_type = 74;// 志愿类别
 	optional string tutor = 75;// 导师
 	optional string student_confirm_status = 76;// 考生确认状态
-	optional uint32 student_confirm_time = 77;// 考生确认时间
+	optional string student_confirm_time = 77;// 考生确认时间
 	optional string student_reexamine = 78;// 复试科目
 	
 //	optional string name = 3;// 考生姓名

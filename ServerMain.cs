@@ -346,7 +346,7 @@ namespace Server
                 for (int i = 0; i < excel.Students.student.Count; ++i)
                 {
                     ListViewItem lvi = new ListViewItem();
-                    lvi.SubItems.Add(excel.Students.student[i].apply_place);
+                    lvi.Text = excel.Students.student[i].apply_place;
                     lvi.SubItems.Add(excel.Students.student[i].aplly_number);
                     lvi.SubItems.Add(excel.Students.student[i].name);
                     lvi.SubItems.Add(excel.Students.student[i].name_spell);
@@ -356,16 +356,17 @@ namespace Server
                     lvi.SubItems.Add(excel.Students.student[i].birth);
                     lvi.SubItems.Add(excel.Students.student[i].nation);
                     lvi.SubItems.Add(excel.Students.student[i].gender);
-                    lvi.SubItems.Add(excel.Students.student[i].marriage.ToString());
-                    lvi.SubItems.Add(excel.Students.student[i].soldier.ToString());
+                    lvi.SubItems.Add(excel.Students.student[i].marriage);
+                    lvi.SubItems.Add(excel.Students.student[i].soldier);
                     lvi.SubItems.Add(excel.Students.student[i].politics_status);
                     lvi.SubItems.Add(excel.Students.student[i].native_place);
                     lvi.SubItems.Add(excel.Students.student[i].birth_place);
                     lvi.SubItems.Add(excel.Students.student[i].register_place);
-                    lvi.SubItems.Add(excel.Students.student[i].record_place_postcode);
+                    lvi.SubItems.Add(excel.Students.student[i].register_address);
                     lvi.SubItems.Add(excel.Students.student[i].record_place);
                     lvi.SubItems.Add(excel.Students.student[i].record_ministry);
                     lvi.SubItems.Add(excel.Students.student[i].record_address);
+                    lvi.SubItems.Add(excel.Students.student[i].record_place_postcode);
                     lvi.SubItems.Add(excel.Students.student[i].work_place);
                     lvi.SubItems.Add(excel.Students.student[i].work_experience);
                     lvi.SubItems.Add(excel.Students.student[i].reward_punishment);

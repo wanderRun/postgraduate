@@ -121,18 +121,18 @@ namespace message
       get { return _gender; }
       set { _gender = value; }
     }
-    private bool _marriage = default(bool);
+    private string _marriage = "";
     [global::ProtoBuf.ProtoMember(11, IsRequired = false, Name=@"marriage", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    [global::System.ComponentModel.DefaultValue(default(bool))]
-    public bool marriage
+    [global::System.ComponentModel.DefaultValue("")]
+    public string marriage
     {
       get { return _marriage; }
       set { _marriage = value; }
     }
-    private bool _soldier = default(bool);
+    private string _soldier = "";
     [global::ProtoBuf.ProtoMember(12, IsRequired = false, Name=@"soldier", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    [global::System.ComponentModel.DefaultValue(default(bool))]
-    public bool soldier
+    [global::System.ComponentModel.DefaultValue("")]
+    public string soldier
     {
       get { return _soldier; }
       set { _soldier = value; }
@@ -289,10 +289,10 @@ namespace message
       get { return _source; }
       set { _source = value; }
     }
-    private bool _same_education = default(bool);
+    private string _same_education = "";
     [global::ProtoBuf.ProtoMember(32, IsRequired = false, Name=@"same_education", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    [global::System.ComponentModel.DefaultValue(default(bool))]
-    public bool same_education
+    [global::System.ComponentModel.DefaultValue("")]
+    public string same_education
     {
       get { return _same_education; }
       set { _same_education = value; }
@@ -649,10 +649,10 @@ namespace message
       get { return _student_confirm_status; }
       set { _student_confirm_status = value; }
     }
-    private uint _student_confirm_time = default(uint);
-    [global::ProtoBuf.ProtoMember(77, IsRequired = false, Name=@"student_confirm_time", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    [global::System.ComponentModel.DefaultValue(default(uint))]
-    public uint student_confirm_time
+    private string _student_confirm_time = "";
+    [global::ProtoBuf.ProtoMember(77, IsRequired = false, Name=@"student_confirm_time", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string student_confirm_time
     {
       get { return _student_confirm_time; }
       set { _student_confirm_time = value; }
