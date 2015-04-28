@@ -6,6 +6,11 @@ message Login
 	optional string password = 2;
 }
 
+message ResponseLogin
+{
+	optional uint32 ret = 1;
+}
+
 // 考生基本信息
 message StudentInfo
 {

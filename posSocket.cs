@@ -121,13 +121,17 @@ namespace Server
             Marshal.StructureToPtr(command, structPtr, false);
             Marshal.Copy(structPtr, msg, 0, length);
             Marshal.FreeHGlobal(structPtr);
-            client.Send(msg, length, 0);
+            SocketAsyncEventArgs asyArg = new SocketAsyncEventArgs();
+            asyArg.SetBuffer(msg, 0, msg.Length);
+            client.SendAsync(asyArg);
         }
 
         public void OnMessageLogin(MemoryStream memStream, Socket socket)
         {
             message.Login login = ProtoBuf.Serializer.Deserialize<message.Login>(memStream);
-            this.sendProtoMsg(socket, login, login.GetType().ToString());
+            message.ResponseLogin send = new message.ResponseLogin();
+            send.ret = 1;
+            sendProtoMsg(socket, send, send.GetType().ToString());
         }
     }
 }

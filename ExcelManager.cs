@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.Office.Interop.Excel;
-//using Excel;
+//using Microsoft.Office.Interop.Excel;
+using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -11,7 +11,7 @@ namespace Server
     class ExcelManager
     {
         private Application excel = new Application();
-        private message.Students students = new message.Students();
+        private static message.Students students = new message.Students();
 
         public message.Students Students
         {
@@ -85,7 +85,7 @@ namespace Server
                 Workbook book = excel.Workbooks.Open(name);
                 Worksheet sheet = book.Worksheets.Item[1];
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
-                this.loadDataFromExcel(sheet);
+                loadDataFromExcel(sheet);
                 
                 for(int i = 0; i < students.student.Count; ++i)
                 {
@@ -104,7 +104,7 @@ namespace Server
             }
         }
 
-        private void loadDataFromExcel(Worksheet sheet)
+        private static void loadDataFromExcel(Worksheet sheet)
         {
             int rowCount = sheet.UsedRange.Rows.Count;
             int columnCount = sheet.UsedRange.Columns.Count;
