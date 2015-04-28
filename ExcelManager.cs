@@ -10,15 +10,15 @@ namespace Server
 {
     class ExcelManager
     {
-        private Application excel = new Application();
+        private static Application excel = new Application();
         private static message.Students students = new message.Students();
 
-        public message.Students Students
+        public static message.Students Students
         {
             get { return students; }
         }
         
-        private int ExcelInstalled()
+        private static int ExcelInstalled()
         {
             int ret = 0;
             RegistryKey rkOffice = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Office\14.0\Common\InstallRoot\");
@@ -43,21 +43,21 @@ namespace Server
             return ret;
         }
 
-        public void Load(string name)
+        public static void Load(string name)
         {
-            int ret = this.ExcelInstalled();
+            int ret = ExcelInstalled();
             if((ret & 1) != 0)
             {
-                this.LoadExcel(name);
+                LoadExcel(name);
             }
             else if((ret & 2) != 0)
             {
-                this.LoadWPSExcel(name);
+                LoadWPSExcel(name);
             }
-            this.LoadWPSExcel(name);
+            LoadWPSExcel(name);
         }
 
-        private void LoadExcel(string name)
+        private static void LoadExcel(string name)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace Server
             }
         }
 
-        private void LoadWPSExcel(string name)
+        private static void LoadWPSExcel(string name)
         {
             try
             {

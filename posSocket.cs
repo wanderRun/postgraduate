@@ -101,7 +101,7 @@ namespace Server
             return obj;
         }
 
-        public void sendProtoMsg(Socket client, object obj, string type)
+        public void SendProtoMsg(Socket client, object obj, string type)
         {
             string str;
             MemoryStream memStream = new MemoryStream();
@@ -128,10 +128,35 @@ namespace Server
 
         public void OnMessageLogin(MemoryStream memStream, Socket socket)
         {
-            message.Login login = ProtoBuf.Serializer.Deserialize<message.Login>(memStream);
             message.ResponseLogin send = new message.ResponseLogin();
             send.ret = 1;
-            sendProtoMsg(socket, send, send.GetType().ToString());
+            SendProtoMsg(socket, send, send.GetType().ToString());
+        }
+        public void OnMessageReqStudentInfo(MemoryStream memStream, Socket socket)
+        {
+            message.ReqStudentInfo rec = ProtoBuf.Serializer.Deserialize<message.ReqStudentInfo>(memStream);
+            message.Students students = new message.Students();
+            if (rec.number.Count == 0)
+            {
+                for (int i = 0; i < ExcelManager.Students.student.Count; ++i)
+                {
+                    students.student.Add(ExcelManager.Students.student[i]);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < rec.number.Count; ++i)
+                {
+                    for (int j = 0; j < ExcelManager.Students.student.Count; ++j)
+                    {
+                        if (rec.number[i].Equals(ExcelManager.Students.student[j].number))
+                        {
+                            students.student.Add(ExcelManager.Students.student[j]);
+                        }
+                    }
+                }
+            }
+            SendProtoMsg(socket, students, students.GetType().ToString());
         }
     }
 }
