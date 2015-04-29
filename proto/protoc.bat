@@ -1,1 +1,1 @@
-D:\program\protobuf-net\ProtoGen\protogen.exe -i:command.proto -o:command.cs
+E:\program\c#\protobuf-net\ProtoGen\protogen.exe -i:command.proto -o:command.cs
