@@ -135,12 +135,13 @@ namespace Server
         public void OnMessageReqStudentInfo(MemoryStream memStream, Socket socket)
         {
             message.ReqStudentInfo rec = ProtoBuf.Serializer.Deserialize<message.ReqStudentInfo>(memStream);
-            message.Students students = new message.Students();
+            message.ResStudentInfo students = new message.ResStudentInfo();
             if (rec.number.Count == 0)
             {
                 for (int i = 0; i < ExcelManager.Students.student.Count; ++i)
                 {
-                    students.student.Add(ExcelManager.Students.student[i]);
+                    students.name.Add(ExcelManager.Students.student[i].name);
+                    students.number.Add(ExcelManager.Students.student[i].number);
                 }
             }
             else
@@ -151,7 +152,8 @@ namespace Server
                     {
                         if (rec.number[i].Equals(ExcelManager.Students.student[j].number))
                         {
-                            students.student.Add(ExcelManager.Students.student[j]);
+                            students.name.Add(ExcelManager.Students.student[i].name);
+                            students.number.Add(ExcelManager.Students.student[i].number);
                         }
                     }
                 }
