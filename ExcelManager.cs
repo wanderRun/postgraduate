@@ -1,6 +1,6 @@
 ﻿using System;
-//using Microsoft.Office.Interop.Excel;
-using Excel;
+using Microsoft.Office.Interop.Excel;
+//using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -145,7 +145,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("考生姓名") || range.Text.ToString().Contains("xm"))
+                else if (range.Text.ToString().Contains("考生姓名") || range.Text.ToString().Equals("xm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -271,7 +271,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("考生档案所在地码"))
+                else if (range.Text.ToString().Contains("考生档案所在地码") || range.Text.ToString().Contains("daszdm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -280,7 +280,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("考生档案所在单位邮政编码"))
+                else if (range.Text.ToString().Contains("考生档案所在单位邮政编码") || range.Text.ToString().Contains("daszdwyzbm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -289,7 +289,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("考生档案所在单位地址"))
+                else if (range.Text.ToString().Contains("考生档案所在单位地址") || range.Text.ToString().Contains("daszdwdz"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -298,7 +298,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("考生档案所在单位"))
+                else if (range.Text.ToString().Contains("考生档案所在单位") || range.Text.ToString().Contains("daszdw"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -316,7 +316,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("学习与工作经历"))
+                else if (range.Text.ToString().Contains("学习与工作经历") || range.Text.ToString().Contains("xxgzjl"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -325,7 +325,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("何时何地何原因受过何种奖励或处分"))
+                else if (range.Text.ToString().Contains("何时何地何原因受过何种奖励或处分") || range.Text.ToString().Contains("jlcf"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -334,7 +334,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("家庭主要成员"))
+                else if (range.Text.ToString().Contains("家庭主要成员") || range.Text.ToString().Contains("jtcy"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -370,7 +370,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("移动电话"))
+                else if (range.Text.ToString().Contains("移动电话") || range.Text.ToString().Contains("yddh"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -379,7 +379,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("电子信箱"))
+                else if (range.Text.ToString().Contains("电子信箱") || range.Text.ToString().Contains("dzxx"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -388,7 +388,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("考生来源"))
+                else if (range.Text.ToString().Contains("考生来源") || range.Text.ToString().Contains("kslym"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -406,7 +406,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("毕业学校代码"))
+                else if (range.Text.ToString().Contains("毕业学校代码") || range.Text.ToString().Contains("bydwm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -415,7 +415,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("毕业学校名称"))
+                else if (range.Text.ToString().Contains("毕业学校名称") || range.Text.ToString().Equals("bydw"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -424,7 +424,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("毕业专业名称"))
+                else if (range.Text.ToString().Contains("毕业专业名称") || range.Text.ToString().Contains("byzymc"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -433,7 +433,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("取得最后学历的学习形式"))
+                else if (range.Text.ToString().Contains("取得最后学历的学习形式") || range.Text.ToString().Contains("xxxs"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -442,7 +442,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("获得最后学历毕业年月"))
+                else if (range.Text.ToString().Contains("获得最后学历毕业年月") || range.Text.ToString().Contains("byny"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -451,7 +451,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("最后学历"))
+                else if (range.Text.ToString().Contains("最后学历") || range.Text.ToString().Contains("xlm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -460,7 +460,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("毕业证书编号"))
+                else if (range.Text.ToString().Contains("毕业证书编号") || range.Text.ToString().Contains("xlzsbh"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -469,7 +469,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("注册学号"))
+                else if (range.Text.ToString().Contains("注册学号") || range.Text.ToString().Contains("zcxh"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -478,7 +478,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("最后学位"))
+                else if (range.Text.ToString().Contains("最后学位") || range.Text.ToString().Contains("xwm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -487,7 +487,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("学位证书编号"))
+                else if (range.Text.ToString().Contains("学位证书编号") || range.Text.ToString().Contains("xwzsbh"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -496,7 +496,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("调剂前报考专业代码"))
+                else if (range.Text.ToString().Contains("调剂前报考专业代码") || range.Text.ToString().Contains("tj_zydm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -505,7 +505,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("调剂前报考专业名称"))
+                else if (range.Text.ToString().Contains("调剂前报考专业名称") || range.Text.ToString().Contains("tj_zymc"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -514,7 +514,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("报考单位代码"))
+                else if (range.Text.ToString().Contains("报考单位代码") || range.Text.ToString().Contains("bkdwdm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -523,7 +523,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("报考院系所码"))
+                else if (range.Text.ToString().Contains("报考院系所码") || range.Text.ToString().Contains("bkyxsm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -532,7 +532,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("报考院系所名称"))
+                else if (range.Text.ToString().Contains("报考院系所名称") || range.Text.ToString().Contains("bkyxsmc"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -541,7 +541,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("报考专业代码"))
+                else if (range.Text.ToString().Contains("报考专业代码") || range.Text.ToString().Contains("bkzydm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -550,7 +550,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("报考专业名称"))
+                else if (range.Text.ToString().Contains("报考专业名称") || range.Text.ToString().Contains("bkzymc"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -559,7 +559,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("报考研究方向码"))
+                else if (range.Text.ToString().Contains("报考研究方向码") || range.Text.ToString().Contains("yjfxm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -568,7 +568,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("报考研究方向名称"))
+                else if (range.Text.ToString().Contains("报考研究方向名称") || range.Text.ToString().Contains("yjfxmc"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -577,7 +577,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("考试方式"))
+                else if (range.Text.ToString().Contains("考试方式") || range.Text.ToString().Contains("ksfsm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -586,7 +586,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("专项计划"))
+                else if (range.Text.ToString().Contains("专项计划") || range.Text.ToString().Contains("zxjh"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -595,7 +595,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("报考类别"))
+                else if (range.Text.ToString().Contains("报考类别") || range.Text.ToString().Contains("bklbm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -604,7 +604,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("定向委培单位所在地码"))
+                else if (range.Text.ToString().Contains("定向委培单位所在地码") || range.Text.ToString().Contains("dxwpdwszdm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -613,7 +613,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("定向委培单位"))
+                else if (range.Text.ToString().Contains("定向委培单位") || range.Text.ToString().Contains("dxwpdw"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -622,7 +622,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("备用信息1"))
+                else if (range.Text.ToString().Contains("备用信息1") || range.Text.ToString().Contains("byxx1"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -631,7 +631,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("备用信息2"))
+                else if (range.Text.ToString().Contains("备用信息2") || range.Text.ToString().Contains("byxx2"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -640,7 +640,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("备用信息3"))
+                else if (range.Text.ToString().Contains("备用信息3") || range.Text.ToString().Contains("byxx3"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -649,7 +649,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("备用信息"))
+                else if (range.Text.ToString().Contains("备用信息") || range.Text.ToString().Contains("byxx"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -658,7 +658,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("政治理论码"))
+                else if (range.Text.ToString().Contains("政治理论码") || range.Text.ToString().Equals("zzllm"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -667,7 +667,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("政治理论名称"))
+                else if (range.Text.ToString().Contains("政治理论名称") || range.Text.ToString().Contains("zzllmc"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -676,7 +676,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("外国语码"))
+                else if (range.Text.ToString().Contains("外国语码") || range.Text.ToString().Equals("wgym"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -685,7 +685,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("外国语名称"))
+                else if (range.Text.ToString().Contains("外国语名称") || range.Text.ToString().Contains("wgymc"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -694,7 +694,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("业务课一码"))
+                else if (range.Text.ToString().Contains("业务课一码") || range.Text.ToString().Equals("ywk1m"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -703,7 +703,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("业务课一名称"))
+                else if (range.Text.ToString().Contains("业务课一名称") || range.Text.ToString().Contains("ywk1mc"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -712,7 +712,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("业务课二码"))
+                else if (range.Text.ToString().Contains("业务课二码") || range.Text.ToString().Equals("ywk2m"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -721,7 +721,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("业务课二名称"))
+                else if (range.Text.ToString().Contains("业务课二名称") || range.Text.ToString().Contains("ywk2mc"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -730,7 +730,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("政治理论成绩"))
+                else if (range.Text.ToString().Contains("政治理论成绩") || range.Text.ToString().Contains("zzll"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -739,7 +739,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("外国语成绩"))
+                else if (range.Text.ToString().Contains("外国语成绩") || range.Text.ToString().Contains("wgy"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -748,7 +748,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("业务课一成绩"))
+                else if (range.Text.ToString().Contains("业务课一成绩") || range.Text.ToString().Contains("ywk1"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -757,7 +757,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("业务课二成绩"))
+                else if (range.Text.ToString().Contains("业务课二成绩") || range.Text.ToString().Contains("ywk2"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
@@ -766,7 +766,7 @@ namespace Server
                         index++;
                     }
                 }
-                else if (range.Text.ToString().Contains("总分"))
+                else if (range.Text.ToString().Contains("总分") || range.Text.ToString().Contains("zf"))
                 {
                     for (int j = 2; j <= rowCount; ++j)
                     {
