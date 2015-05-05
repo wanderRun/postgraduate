@@ -10,7 +10,6 @@ namespace Server
 {
     class ExcelManager
     {
-        private static Application excel = new Application();
         private static message.Students students = new message.Students();
 
         public static message.Students Students
@@ -61,6 +60,7 @@ namespace Server
         {
             try
             {
+                Application excel = new Application();
                 Workbook book = excel.Workbooks.Open(name);
                 Worksheet sheet = book.Worksheets.Item[1];
                 int count = book.Worksheets.Count;
@@ -82,6 +82,7 @@ namespace Server
         {
             try
             {
+                Application excel = new Application();
                 Workbook book = excel.Workbooks.Open(name);
                 Worksheet sheet = book.Worksheets.Item[1];
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
@@ -91,6 +92,7 @@ namespace Server
                 {
                     Console.WriteLine("{0}", students.student[i].name);
                 }
+                book.Close();
                 excel.Quit();
                 Marshal.ReleaseComObject(excel);
                 Marshal.ReleaseComObject(book);
@@ -820,6 +822,32 @@ namespace Server
                         index++;
                     }
                 }
+            }
+        }
+
+        public static void saveDataFromExcel(string path)
+        {
+            try
+            {
+                Application excel = new Application();
+                Workbook book = excel.Workbooks.Add();
+                Worksheet sheet = book.ActiveSheet;
+                sheet.Visible = XlSheetVisibility.xlSheetVisible;
+                for (int i = 1; i <= students.student.Count; ++i)
+                {
+                    sheet.Cells[i, 1] = students.student[i].name;
+                }
+                book.SaveAs(path);
+                book.Close();
+                excel.Quit();
+                Marshal.ReleaseComObject(excel);
+                Marshal.ReleaseComObject(book);
+                Marshal.ReleaseComObject(sheet);
+                GC.Collect();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("{0}", ex.Message);
             }
         }
     }
