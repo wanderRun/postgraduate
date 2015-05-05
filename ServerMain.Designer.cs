@@ -148,9 +148,9 @@
             // 
             this.sfdSaveFile.DefaultExt = "xls";
             this.sfdSaveFile.FileName = "导出学生信息";
-            this.sfdSaveFile.Filter = "\"所有文件(*.*)|*.*|Excel 文件(*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.x" +
-    "la;*.xlt;*.xlm;*.xlw;)|*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.x" +
-    "la;*.xlt;*.xlm;*.xlw\"";
+            this.sfdSaveFile.Filter = "所有文件(*.*)|*.*|Excel 文件(*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xl" +
+    "a;*.xlt;*.xlm;*.xlw;)|*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xl" +
+    "a;*.xlt;*.xlm;*.xlw";
             this.sfdSaveFile.RestoreDirectory = true;
             // 
             // ServerMain

@@ -1,10 +1,11 @@
 ﻿using System;
-using Microsoft.Office.Interop.Excel;
-//using Excel;
+//using Microsoft.Office.Interop.Excel;
+using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Server
 {
@@ -829,9 +830,14 @@ namespace Server
         {
             try
             {
+                if(File.Exists(path))
+                {
+                    File.Delete(path);
+                }
                 Application excel = new Application();
-                Workbook book = excel.Workbooks.Add();
-                Worksheet sheet = book.ActiveSheet;
+                Workbook book = excel.Workbooks.Add(Missing.Value);
+                //Worksheet sheet = book.ActiveSheet;
+                Worksheet sheet = book.Sheets[1];
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
                 for (int i = 1; i <= students.student.Count; ++i)
                 {
