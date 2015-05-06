@@ -842,8 +842,8 @@ namespace Server
                 {
                     sheet.Cells[i, 1] = students.student[i - 1].apply_place;
                     sheet.Cells[i, 2] = students.student[i - 1].aplly_number;
-                    sheet.Cells[i, 3] = students.student[i - 1].name_spell;
-                    sheet.Cells[i, 4] = students.student[i - 1].name;
+                    sheet.Cells[i, 3] = students.student[i - 1].name;
+                    sheet.Cells[i, 4] = students.student[i - 1].name_spell;
                     sheet.Cells[i, 5] = students.student[i - 1].number;
                     sheet.Cells[i, 6] = students.student[i - 1].card_type;
                     sheet.Cells[i, 7] = students.student[i - 1].card_number;
@@ -858,15 +858,15 @@ namespace Server
                     sheet.Cells[i, 16] = students.student[i - 1].register_place;
                     sheet.Cells[i, 17] = students.student[i - 1].register_address;
                     sheet.Cells[i, 18] = students.student[i - 1].record_place;
-                    sheet.Cells[i, 19] = students.student[i - 1].record_place_postcode;
+                    sheet.Cells[i, 19] = students.student[i - 1].record_ministry;
                     sheet.Cells[i, 20] = students.student[i - 1].record_address;
-                    sheet.Cells[i, 21] = students.student[i - 1].record_ministry;
+                    sheet.Cells[i, 21] = students.student[i - 1].record_place_postcode;
                     sheet.Cells[i, 22] = students.student[i - 1].work_place;
                     sheet.Cells[i, 23] = students.student[i - 1].work_experience;
                     sheet.Cells[i, 24] = students.student[i - 1].reward_punishment;
                     sheet.Cells[i, 25] = students.student[i - 1].family;
-                    sheet.Cells[i, 26] = students.student[i - 1].contact_postcode;
-                    sheet.Cells[i, 27] = students.student[i - 1].contact_address;
+                    sheet.Cells[i, 26] = students.student[i - 1].contact_address;
+                    sheet.Cells[i, 27] = students.student[i - 1].contact_postcode;
                     sheet.Cells[i, 28] = students.student[i - 1].fixed_line_phone;
                     sheet.Cells[i, 29] = students.student[i - 1].mobile_phone;
                     sheet.Cells[i, 30] = students.student[i - 1].email;
@@ -876,9 +876,9 @@ namespace Server
                     sheet.Cells[i, 34] = students.student[i - 1].school_name;
                     sheet.Cells[i, 35] = students.student[i - 1].major_name;
                     sheet.Cells[i, 36] = students.student[i - 1].study_type;
-                    sheet.Cells[i, 37] = students.student[i - 1].graduate_date;
-                    sheet.Cells[i, 38] = students.student[i - 1].last_education;
-                    sheet.Cells[i, 39] = students.student[i - 1].diploma_number;
+                    sheet.Cells[i, 37] = students.student[i - 1].last_education;
+                    sheet.Cells[i, 38] = students.student[i - 1].diploma_number;
+                    sheet.Cells[i, 39] = students.student[i - 1].graduate_date;
                     sheet.Cells[i, 40] = students.student[i - 1].register_number;
                     sheet.Cells[i, 41] = students.student[i - 1].last_degree;
                     sheet.Cells[i, 42] = students.student[i - 1].graduate_number;
@@ -896,10 +896,10 @@ namespace Server
                     sheet.Cells[i, 54] = students.student[i - 1].apply_type;
                     sheet.Cells[i, 55] = students.student[i - 1].orientation_train_place_code;
                     sheet.Cells[i, 56] = students.student[i - 1].orientation_train_place;
-                    sheet.Cells[i, 57] = students.student[i - 1].standby_information_one;
-                    sheet.Cells[i, 58] = students.student[i - 1].standby_information_two;
-                    sheet.Cells[i, 59] = students.student[i - 1].standby_information_three;
-                    sheet.Cells[i, 60] = students.student[i - 1].standby_information;
+                    sheet.Cells[i, 57] = students.student[i - 1].standby_information;
+                    sheet.Cells[i, 58] = students.student[i - 1].standby_information_one;
+                    sheet.Cells[i, 59] = students.student[i - 1].standby_information_two;
+                    sheet.Cells[i, 60] = students.student[i - 1].standby_information_three;
                     sheet.Cells[i, 61] = students.student[i - 1].political_code;
                     sheet.Cells[i, 62] = students.student[i - 1].political_name;
                     sheet.Cells[i, 63] = students.student[i - 1].foreign_code;
@@ -926,7 +926,7 @@ namespace Server
                 Marshal.ReleaseComObject(book);
                 Marshal.ReleaseComObject(sheet);
                 GC.Collect();
-                Console.WriteLine("保存");
+                Console.WriteLine("保存到文件");
             }
             catch(Exception ex)
             {
