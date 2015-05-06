@@ -88,7 +88,6 @@ namespace Server
                 Worksheet sheet = book.Worksheets.Item[1];
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
                 loadDataFromExcel(sheet);
-                
                 for(int i = 0; i < students.student.Count; ++i)
                 {
                     Console.WriteLine("{0}", students.student[i].name);
@@ -841,7 +840,7 @@ namespace Server
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
                 for (int i = 1; i <= students.student.Count; ++i)
                 {
-                    sheet.Cells[i, 1] = students.student[i].name;
+                    sheet.Cells[i, 1] = students.student[i - 1].name;
                 }
                 book.SaveAs(path);
                 book.Close();
