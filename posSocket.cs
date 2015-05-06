@@ -4,18 +4,19 @@ using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 
 namespace Server
 {
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-    struct Command
-    {
-        public int size;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-        public string type;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
-        public string data;
-    }
+    //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
+    //struct Command
+    //{
+    //    public int size;
+    //    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+    //    public string type;
+    //    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+    //    public string data;
+    //}
 
     class PosSocket
     {
@@ -56,8 +57,9 @@ namespace Server
                     {
                         try
                         {
-                            Command command = new Command();
-                            command = (Command)this.BytesToStruct(e.Buffer, command.GetType());
+                            message.Command command = new message.Command();
+                            StructSerializer.BytesToStruct(e.Buffer, command);
+                            // command = (Command)this.BytesToStruct(e.Buffer, command.GetType());
                             // object obj = Activator.CreateInstance(t);
                             MemoryStream memStream = new MemoryStream();
                             StreamWriter strWriter = new StreamWriter(memStream);
@@ -110,17 +112,18 @@ namespace Server
             memStream.Position = 0;
             str = strReader.ReadToEnd();
 
-            Command command;
+            message.Command command = new message.Command();
             command.data = str;
             command.type = type;
-            command.size = str.Length;
+            command.size = (UInt32)str.Length;
 
-            int length = Marshal.SizeOf(command.GetType());
-            byte[] msg = new byte[length];
-            IntPtr structPtr = Marshal.AllocHGlobal(length);
-            Marshal.StructureToPtr(command, structPtr, false);
-            Marshal.Copy(structPtr, msg, 0, length);
-            Marshal.FreeHGlobal(structPtr);
+            //int length = Marshal.SizeOf(command.GetType());
+            //byte[] msg = new byte[length];
+            //IntPtr structPtr = Marshal.AllocHGlobal(length);
+            //Marshal.StructureToPtr(command, structPtr, false);
+            //Marshal.Copy(structPtr, msg, 0, length);
+            //Marshal.FreeHGlobal(structPtr);
+            byte[] msg = StructSerializer.StructToBytes(command);
             SocketAsyncEventArgs asyArg = new SocketAsyncEventArgs();
             asyArg.SetBuffer(msg, 0, msg.Length);
             client.SendAsync(asyArg);
