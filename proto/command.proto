@@ -1,5 +1,12 @@
 package message;
 
+message Command
+{
+	optional uint32 size = 1;
+	optional string type = 2;
+	optional string data = 3;
+}
+
 message Login
 {
 	optional string name = 1;
