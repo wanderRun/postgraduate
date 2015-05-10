@@ -9,15 +9,28 @@ using System.Reflection;
 
 namespace Server
 {
-    class ExcelManager
+    class DataManager
     {
         private static message.Students students = new message.Students();
+
+        private static List<message.StudentInfo> academicMaster = new List<message.StudentInfo>();// 学硕
+        private static List<message.StudentInfo> professionalMaster = new List<message.StudentInfo>();// 专硕
 
         public static message.Students Students
         {
             get { return students; }
         }
-        
+
+        public static List<message.StudentInfo> AcademicMaster
+        {
+            get { return academicMaster; }
+        }
+
+        public static List<message.StudentInfo> ProfessionalMaster
+        {
+            get { return professionalMaster; }
+        }
+
         private static int ExcelInstalled()
         {
             int ret = 0;
@@ -54,7 +67,7 @@ namespace Server
             {
                 LoadWPSExcel(name);
             }
-            LoadWPSExcel(name);
+            // LoadWPSExcel(name);
         }
 
         private static void LoadExcel(string name)
@@ -87,11 +100,8 @@ namespace Server
                 Workbook book = excel.Workbooks.Open(name);
                 Worksheet sheet = book.Worksheets.Item[1];
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
-                loadDataFromExcel(sheet);
-                for(int i = 0; i < students.student.Count; ++i)
-                {
-                    Console.WriteLine("{0}", students.student[i].name);
-                }
+                LoadDataFromExcel(sheet);
+                Console.WriteLine("total={0}", students.student.Count);
                 book.Close();
                 excel.Quit();
                 Marshal.ReleaseComObject(excel);
@@ -106,7 +116,7 @@ namespace Server
             }
         }
 
-        private static void loadDataFromExcel(Worksheet sheet)
+        private static void LoadDataFromExcel(Worksheet sheet)
         {
             int rowCount = sheet.UsedRange.Rows.Count;
             int columnCount = sheet.UsedRange.Columns.Count;
@@ -825,7 +835,7 @@ namespace Server
             }
         }
 
-        public static void saveDataFromExcel(string path)
+        public static void SaveDataFromExcel(string path)
         {
             try
             {
@@ -931,6 +941,30 @@ namespace Server
             catch(Exception ex)
             {
                 Console.WriteLine("{0}", ex.Message);
+            }
+        }
+
+        public static void DivideIntoGroups(int group)
+        {
+            List<bool> isSelectAcademic = new List<bool>();
+            List<bool> isSelectProfessional = new List<bool>();
+            foreach (message.StudentInfo student in students.student)
+            {
+                if(student.apply_major_code.Equals("081200") || student.apply_major_code.Equals("083500"))
+                {
+                    academicMaster.Add(student);
+                    isSelectAcademic.Add(false);
+                }
+                else if (student.apply_major_code.Equals("085211") || student.apply_major_code.Equals("085212"))
+                {
+                    professionalMaster.Add(student);
+                    isSelectProfessional.Add(false);
+                }
+            }
+            for(int i = 0; i < group - 1; ++i)
+            {
+                Random ran = new Random();
+                while (!isSelect[ran.Next(0, students.student.Count)]) ;
             }
         }
     }

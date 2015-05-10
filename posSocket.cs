@@ -141,22 +141,22 @@ namespace Server
             message.ResStudentInfo students = new message.ResStudentInfo();
             if (rec.number.Count == 0)
             {
-                for (int i = 0; i < ExcelManager.Students.student.Count; ++i)
+                for (int i = 0; i < DataManager.Students.student.Count; ++i)
                 {
-                    students.name.Add(ExcelManager.Students.student[i].name);
-                    students.number.Add(ExcelManager.Students.student[i].number);
+                    students.name.Add(DataManager.Students.student[i].name);
+                    students.number.Add(DataManager.Students.student[i].number);
                 }
             }
             else
             {
                 for (int i = 0; i < rec.number.Count; ++i)
                 {
-                    for (int j = 0; j < ExcelManager.Students.student.Count; ++j)
+                    for (int j = 0; j < DataManager.Students.student.Count; ++j)
                     {
-                        if (rec.number[i].Equals(ExcelManager.Students.student[j].number))
+                        if (rec.number[i].Equals(DataManager.Students.student[j].number))
                         {
-                            students.name.Add(ExcelManager.Students.student[i].name);
-                            students.number.Add(ExcelManager.Students.student[i].number);
+                            students.name.Add(DataManager.Students.student[i].name);
+                            students.number.Add(DataManager.Students.student[i].number);
                         }
                     }
                 }

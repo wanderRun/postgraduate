@@ -31,7 +31,7 @@
             this.btStartServer = new System.Windows.Forms.Button();
             this.btStopServer = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btDataFromDB = new System.Windows.Forms.Button();
+            this.btSeparate = new System.Windows.Forms.Button();
             this.rbChatContent = new System.Windows.Forms.RichTextBox();
             this.lvShowStudent = new System.Windows.Forms.ListView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -66,7 +66,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btDataFromDB);
+            this.groupBox1.Controls.Add(this.btSeparate);
             this.groupBox1.Controls.Add(this.rbChatContent);
             this.groupBox1.Controls.Add(this.lvShowStudent);
             this.groupBox1.Controls.Add(this.btStopServer);
@@ -78,14 +78,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "客户端连接监听";
             // 
-            // btDataFromDB
+            // btSeparate
             // 
-            this.btDataFromDB.Location = new System.Drawing.Point(346, 33);
-            this.btDataFromDB.Name = "btDataFromDB";
-            this.btDataFromDB.Size = new System.Drawing.Size(75, 23);
-            this.btDataFromDB.TabIndex = 9;
-            this.btDataFromDB.Text = "导出数据";
-            this.btDataFromDB.UseVisualStyleBackColor = true;
+            this.btSeparate.Location = new System.Drawing.Point(346, 33);
+            this.btSeparate.Name = "btSeparate";
+            this.btSeparate.Size = new System.Drawing.Size(75, 23);
+            this.btSeparate.TabIndex = 9;
+            this.btSeparate.Text = "随机分组";
+            this.btSeparate.UseVisualStyleBackColor = true;
+            this.btSeparate.Visible = false;
+            this.btSeparate.Click += new System.EventHandler(this.btSeparate_Click);
             // 
             // rbChatContent
             // 
@@ -104,6 +106,7 @@
             this.lvShowStudent.TabIndex = 20;
             this.lvShowStudent.UseCompatibleStateImageBehavior = false;
             this.lvShowStudent.View = System.Windows.Forms.View.Details;
+            this.lvShowStudent.Visible = false;
             // 
             // menuStrip1
             // 
@@ -181,14 +184,13 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListView lvShowStudent;
         private System.Windows.Forms.RichTextBox rbChatContent;
-        private System.Windows.Forms.Button btDataFromDB;
+        private System.Windows.Forms.Button btSeparate;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsmiFile;
         private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog ofdOpenFile;
         private System.Windows.Forms.ToolStripMenuItem saveFileToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog sfdSaveFile;
-
     }
 }
 
