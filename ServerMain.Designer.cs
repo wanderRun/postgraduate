@@ -31,22 +31,26 @@
             this.btStartServer = new System.Windows.Forms.Button();
             this.btStopServer = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbGroupNumber = new System.Windows.Forms.ComboBox();
+            this.tbGroupNumber = new System.Windows.Forms.TextBox();
+            this.cbStudentType = new System.Windows.Forms.ComboBox();
             this.btSeparate = new System.Windows.Forms.Button();
-            this.rbChatContent = new System.Windows.Forms.RichTextBox();
             this.lvShowStudent = new System.Windows.Forms.ListView();
+            this.rbChatContent = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
+            this.btAdjustGroups = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btStartServer
             // 
-            this.btStartServer.Location = new System.Drawing.Point(184, 33);
+            this.btStartServer.Location = new System.Drawing.Point(486, 28);
             this.btStartServer.Name = "btStartServer";
             this.btStartServer.Size = new System.Drawing.Size(75, 23);
             this.btStartServer.TabIndex = 2;
@@ -56,7 +60,7 @@
             // 
             // btStopServer
             // 
-            this.btStopServer.Location = new System.Drawing.Point(265, 33);
+            this.btStopServer.Location = new System.Drawing.Point(567, 28);
             this.btStopServer.Name = "btStopServer";
             this.btStopServer.Size = new System.Drawing.Size(75, 23);
             this.btStopServer.TabIndex = 3;
@@ -66,11 +70,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btAdjustGroups);
+            this.groupBox1.Controls.Add(this.cbGroupNumber);
+            this.groupBox1.Controls.Add(this.tbGroupNumber);
+            this.groupBox1.Controls.Add(this.cbStudentType);
             this.groupBox1.Controls.Add(this.btSeparate);
-            this.groupBox1.Controls.Add(this.rbChatContent);
             this.groupBox1.Controls.Add(this.lvShowStudent);
-            this.groupBox1.Controls.Add(this.btStopServer);
-            this.groupBox1.Controls.Add(this.btStartServer);
             this.groupBox1.Location = new System.Drawing.Point(12, 53);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(651, 359);
@@ -78,9 +83,39 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "客户端连接监听";
             // 
+            // cbGroupNumber
+            // 
+            this.cbGroupNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbGroupNumber.FormattingEnabled = true;
+            this.cbGroupNumber.Location = new System.Drawing.Point(87, 35);
+            this.cbGroupNumber.Name = "cbGroupNumber";
+            this.cbGroupNumber.Size = new System.Drawing.Size(72, 20);
+            this.cbGroupNumber.TabIndex = 23;
+            this.cbGroupNumber.Visible = false;
+            this.cbGroupNumber.SelectedIndexChanged += new System.EventHandler(this.cbGroupNumber_SelectedIndexChanged);
+            // 
+            // tbGroupNumber
+            // 
+            this.tbGroupNumber.Location = new System.Drawing.Point(165, 35);
+            this.tbGroupNumber.Name = "tbGroupNumber";
+            this.tbGroupNumber.Size = new System.Drawing.Size(56, 21);
+            this.tbGroupNumber.TabIndex = 22;
+            this.tbGroupNumber.Visible = false;
+            // 
+            // cbStudentType
+            // 
+            this.cbStudentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStudentType.FormattingEnabled = true;
+            this.cbStudentType.Location = new System.Drawing.Point(8, 35);
+            this.cbStudentType.Name = "cbStudentType";
+            this.cbStudentType.Size = new System.Drawing.Size(73, 20);
+            this.cbStudentType.TabIndex = 21;
+            this.cbStudentType.Visible = false;
+            this.cbStudentType.SelectedIndexChanged += new System.EventHandler(this.cbStudentType_SelectedIndexChanged);
+            // 
             // btSeparate
             // 
-            this.btSeparate.Location = new System.Drawing.Point(346, 33);
+            this.btSeparate.Location = new System.Drawing.Point(227, 33);
             this.btSeparate.Name = "btSeparate";
             this.btSeparate.Size = new System.Drawing.Size(75, 23);
             this.btSeparate.TabIndex = 9;
@@ -89,24 +124,24 @@
             this.btSeparate.Visible = false;
             this.btSeparate.Click += new System.EventHandler(this.btSeparate_Click);
             // 
-            // rbChatContent
-            // 
-            this.rbChatContent.Location = new System.Drawing.Point(8, 41);
-            this.rbChatContent.Name = "rbChatContent";
-            this.rbChatContent.Size = new System.Drawing.Size(152, 19);
-            this.rbChatContent.TabIndex = 0;
-            this.rbChatContent.Text = "";
-            // 
             // lvShowStudent
             // 
             this.lvShowStudent.GridLines = true;
             this.lvShowStudent.Location = new System.Drawing.Point(8, 66);
             this.lvShowStudent.Name = "lvShowStudent";
-            this.lvShowStudent.Size = new System.Drawing.Size(637, 226);
+            this.lvShowStudent.Size = new System.Drawing.Size(637, 287);
             this.lvShowStudent.TabIndex = 20;
             this.lvShowStudent.UseCompatibleStateImageBehavior = false;
             this.lvShowStudent.View = System.Windows.Forms.View.Details;
             this.lvShowStudent.Visible = false;
+            // 
+            // rbChatContent
+            // 
+            this.rbChatContent.Location = new System.Drawing.Point(408, 30);
+            this.rbChatContent.Name = "rbChatContent";
+            this.rbChatContent.Size = new System.Drawing.Size(72, 19);
+            this.rbChatContent.TabIndex = 0;
+            this.rbChatContent.Text = "";
             // 
             // menuStrip1
             // 
@@ -156,6 +191,16 @@
     "a;*.xlt;*.xlm;*.xlw";
             this.sfdSaveFile.RestoreDirectory = true;
             // 
+            // btAdjustGroups
+            // 
+            this.btAdjustGroups.Location = new System.Drawing.Point(310, 33);
+            this.btAdjustGroups.Name = "btAdjustGroups";
+            this.btAdjustGroups.Size = new System.Drawing.Size(75, 23);
+            this.btAdjustGroups.TabIndex = 24;
+            this.btAdjustGroups.Text = "调整分组";
+            this.btAdjustGroups.UseVisualStyleBackColor = true;
+            this.btAdjustGroups.Click += new System.EventHandler(this.btAdjustGroups_Click);
+            // 
             // ServerMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -163,6 +208,9 @@
             this.ClientSize = new System.Drawing.Size(675, 424);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.btStartServer);
+            this.Controls.Add(this.btStopServer);
+            this.Controls.Add(this.rbChatContent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ServerMain";
@@ -170,6 +218,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmServerMain_FormClosing);
             this.Load += new System.EventHandler(this.ServerMain_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -191,6 +240,10 @@
         private System.Windows.Forms.OpenFileDialog ofdOpenFile;
         private System.Windows.Forms.ToolStripMenuItem saveFileToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog sfdSaveFile;
+        private System.Windows.Forms.ComboBox cbStudentType;
+        private System.Windows.Forms.TextBox tbGroupNumber;
+        private System.Windows.Forms.ComboBox cbGroupNumber;
+        private System.Windows.Forms.Button btAdjustGroups;
     }
 }
 

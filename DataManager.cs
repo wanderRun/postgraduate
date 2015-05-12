@@ -1,6 +1,6 @@
 ﻿using System;
-//using Microsoft.Office.Interop.Excel;
-using Excel;
+using Microsoft.Office.Interop.Excel;
+//using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -15,6 +15,8 @@ namespace Server
 
         private static List<message.StudentInfo> academicMaster = new List<message.StudentInfo>();// 学硕
         private static List<message.StudentInfo> professionalMaster = new List<message.StudentInfo>();// 专硕
+        private static List<List<message.StudentInfo>> academicMasterGroup = new List<List<message.StudentInfo>>();// 学硕分组
+        private static List<List<message.StudentInfo>> professionalMasterGroup = new List<List<message.StudentInfo>>();// 专硕分组
 
         public static message.Students Students
         {
@@ -29,6 +31,15 @@ namespace Server
         public static List<message.StudentInfo> ProfessionalMaster
         {
             get { return professionalMaster; }
+        }
+
+        public static List<List<message.StudentInfo>> AcademicMasterGroup
+        {
+            get { return academicMasterGroup; }
+        }
+        public static List<List<message.StudentInfo>> ProfessionalMasterGroup
+        {
+            get { return professionalMasterGroup; }
         }
 
         private static int ExcelInstalled()
@@ -67,7 +78,7 @@ namespace Server
             {
                 LoadWPSExcel(name);
             }
-            // LoadWPSExcel(name);
+            LoadWPSExcel(name);
         }
 
         private static void LoadExcel(string name)
@@ -833,6 +844,17 @@ namespace Server
                     }
                 }
             }
+            foreach (message.StudentInfo student in students.student)
+            {
+                if (student.apply_major_code.Equals("081200") || student.apply_major_code.Equals("083500"))
+                {
+                    academicMaster.Add(student);
+                }
+                else if (student.apply_major_code.Equals("085211") || student.apply_major_code.Equals("085212"))
+                {
+                    professionalMaster.Add(student);
+                }
+            }
         }
 
         public static void SaveDataFromExcel(string path)
@@ -944,27 +966,87 @@ namespace Server
             }
         }
 
-        public static void DivideIntoGroups(int group)
+        public static void DivideIntoGroups(int type, int number)
         {
-            List<bool> isSelectAcademic = new List<bool>();
-            List<bool> isSelectProfessional = new List<bool>();
-            foreach (message.StudentInfo student in students.student)
+            List<bool> isSelect = new List<bool>();
+            if(type == 1)
             {
-                if(student.apply_major_code.Equals("081200") || student.apply_major_code.Equals("083500"))
+                professionalMasterGroup.Clear();
+                for (int i = 0; i < professionalMaster.Count; ++i)
                 {
-                    academicMaster.Add(student);
-                    isSelectAcademic.Add(false);
+                    isSelect.Add(false);
                 }
-                else if (student.apply_major_code.Equals("085211") || student.apply_major_code.Equals("085212"))
+            }// 专业硕士
+            else if(type == 2)
+            {
+                academicMasterGroup.Clear();
+                for (int i = 0; i < academicMaster.Count; ++i)
                 {
-                    professionalMaster.Add(student);
-                    isSelectProfessional.Add(false);
+                    isSelect.Add(false);
+                }
+            }// 学术硕士
+            else
+            {
+                return;
+            }
+            int groupNumber = isSelect.Count / number;
+            List<message.StudentInfo> master = new List<message.StudentInfo>();
+            for(int i = 0; i < number - 1; ++i)
+            {
+                master.Clear();
+                Random ran = new Random();
+                for (int j = 0; j < groupNumber; ++j)
+                {
+                    int index = ran.Next(isSelect.Count);
+                    while (isSelect[index])
+                    {
+                        index = ran.Next(isSelect.Count);
+                    }
+                    isSelect[index] = true;
+                    if (type == 1)
+                    {
+                        master.Add(professionalMaster[index]);
+                    }
+                    else
+                    {
+                        master.Add(academicMaster[index]);
+                    }
+                }
+                if(type == 1)
+                {
+                    professionalMasterGroup.Add(master);
+                }
+                else
+                {
+                    academicMasterGroup.Add(master);
                 }
             }
-            for(int i = 0; i < group - 1; ++i)
+            master.Clear();
+            for(int i = 0; i < isSelect.Count; ++i)
             {
-                Random ran = new Random();
-                while (!isSelect[ran.Next(0, students.student.Count)]) ;
+                if(!isSelect[i])
+                {
+                    isSelect[i] = true;
+                    if (type == 1)
+                    {
+                        master.Add(professionalMaster[i]);
+                    }
+                    else
+                    {
+                        master.Add(academicMaster[i]);
+                    }
+                }
+            }
+            if(master.Count != 0)
+            {
+                if (type == 1)
+                {
+                    professionalMasterGroup.Add(master);
+                }
+                else
+                {
+                    academicMasterGroup.Add(master);
+                }
             }
         }
     }

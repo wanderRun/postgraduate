@@ -17,7 +17,10 @@ namespace Server
         public ServerMain()
         {
             InitializeComponent();
-            this.InitializeListView();
+            cbStudentType.Items.Add("全部学生");
+            cbStudentType.Items.Add("专业硕士");
+            cbStudentType.Items.Add("学术硕士");
+            cbGroupNumber.Items.Add("全部学生");
         }
 
         /// <summary>
@@ -340,7 +343,71 @@ namespace Server
             {
                 string name = ofdOpenFile.FileName;
                 DataManager.Load(name);
-                this.lvShowStudent.BeginUpdate();
+                this.lvShowStudent.Visible = true;
+                this.btSeparate.Visible = true;
+                this.tbGroupNumber.Visible = true;
+                this.cbGroupNumber.Visible = true;
+                this.cbStudentType.Visible = true;
+                this.cbStudentType.SelectedIndex = 0;
+            }
+        }
+
+        private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(sfdSaveFile.ShowDialog() == DialogResult.OK)
+            {
+                string name = sfdSaveFile.FileName;
+                DataManager.SaveDataFromExcel(name);
+            }
+        }
+
+        private void btSeparate_Click(object sender, EventArgs e)
+        {
+            if(tbGroupNumber.Text == "" || tbGroupNumber.Text == "0")
+            {
+                MessageBox.Show("分组不能为零或空");
+                return;
+            }
+            if(cbStudentType.SelectedIndex == 0)
+            {
+                MessageBox.Show("全部学生不能分组");
+                return;
+            }
+            int number = Convert.ToInt32(tbGroupNumber.Text);
+            DataManager.DivideIntoGroups(cbStudentType.SelectedIndex, number);
+            if(cbStudentType.SelectedIndex == 1)
+            {
+                cbGroupNumber.Items.Clear();
+                cbGroupNumber.Items.Add("全部学生");
+                for(int i = 1; i <= DataManager.ProfessionalMasterGroup.Count; ++i)
+                {
+                    cbGroupNumber.Items.Add("第" + i + "组");
+                }
+                cbGroupNumber.SelectedIndex = 0;
+            }
+            else if (cbStudentType.SelectedIndex == 2)
+            {
+                cbGroupNumber.Items.Clear();
+                cbGroupNumber.Items.Add("全部学生");
+                for (int i = 1; i <= DataManager.AcademicMasterGroup.Count; ++i)
+                {
+                    cbGroupNumber.Items.Add("第" + i + "组");
+                }
+                cbGroupNumber.SelectedIndex = 0;
+            }
+            tbGroupNumber.Text = "";
+        }
+
+        private void cbStudentType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("大类选择的序号是{0}", cbStudentType.SelectedIndex);
+            this.lvShowStudent.Clear();
+            this.lvShowStudent.BeginUpdate();
+            this.InitializeListView();
+            cbGroupNumber.Items.Clear();
+            cbGroupNumber.Items.Add("全部学生");
+            if (cbStudentType.SelectedIndex == 0)
+            {
                 for (int i = 0; i < DataManager.Students.student.Count; ++i)
                 {
                     ListViewItem lvi = new ListViewItem();
@@ -424,31 +491,463 @@ namespace Server
                     lvi.SubItems.Add(DataManager.Students.student[i].student_reexamine);
                     lvShowStudent.Items.Add(lvi);
                 }
-                this.lvShowStudent.EndUpdate();
-                this.lvShowStudent.Visible = true;
-                this.btSeparate.Visible = true;
-                this.tbGroupNumber.Visible = true;
             }
+            else if (cbStudentType.SelectedIndex == 1)
+            {
+                for (int i = 1; i <= DataManager.ProfessionalMasterGroup.Count; ++i)
+                {
+                    cbGroupNumber.Items.Add("第" + i + "组");
+                }
+                for (int i = 0; i < DataManager.ProfessionalMaster.Count; ++i)
+                {
+                    ListViewItem lvi = new ListViewItem();
+                    lvi.Text = DataManager.ProfessionalMaster[i].apply_place;
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].aplly_number);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].name);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].name_spell);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].number);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].card_type);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].card_number);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].birth);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].nation);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].gender);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].marriage);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].soldier);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].politics_status);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].native_place);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].birth_place);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].register_place);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].register_address);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].record_place);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].record_ministry);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].record_address);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].record_place_postcode);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].work_place);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].work_experience);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].reward_punishment);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].family);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].contact_address);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].contact_postcode);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].fixed_line_phone);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].mobile_phone);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].email);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].source);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].same_education.ToString());
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].school_code);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].school_name);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].major_name);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].study_type);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].last_education);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].diploma_number);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].graduate_date);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].register_number);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].last_degree);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].graduate_number);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].adjust_major_code);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].adjust_major_name);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_place_code);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_faculty);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_faculty_name);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_major_code);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_major_name);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_work_direction);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_work_direction_name);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].exam_type);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].special_plan);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_type);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].orientation_train_place_code);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].orientation_train_place);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].standby_information);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].standby_information_one);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].standby_information_two);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].standby_information_three);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].political_code);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].political_name);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].foreign_code);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].foreign_name);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].business_one_code);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].business_one_name);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].business_two_code);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].business_two_name);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].political_score.ToString());
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].foreign_score.ToString());
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].business_one_score.ToString());
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].business_two_score.ToString());
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].total_score.ToString());
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].volunteer_type);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].tutor);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].student_confirm_status);
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].student_confirm_time.ToString());
+                    lvi.SubItems.Add(DataManager.ProfessionalMaster[i].student_reexamine);
+                    lvShowStudent.Items.Add(lvi);
+                }
+            }
+            else if (cbStudentType.SelectedIndex == 2)
+            {
+                for (int i = 1; i <= DataManager.AcademicMasterGroup.Count; ++i)
+                {
+                    cbGroupNumber.Items.Add("第" + i + "组");
+                }
+                for (int i = 0; i < DataManager.AcademicMaster.Count; ++i)
+                {
+                    ListViewItem lvi = new ListViewItem();
+                    lvi.Text = DataManager.AcademicMaster[i].apply_place;
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].aplly_number);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].name);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].name_spell);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].number);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].card_type);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].card_number);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].birth);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].nation);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].gender);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].marriage);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].soldier);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].politics_status);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].native_place);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].birth_place);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].register_place);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].register_address);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].record_place);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].record_ministry);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].record_address);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].record_place_postcode);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].work_place);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].work_experience);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].reward_punishment);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].family);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].contact_address);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].contact_postcode);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].fixed_line_phone);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].mobile_phone);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].email);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].source);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].same_education.ToString());
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].school_code);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].school_name);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].major_name);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].study_type);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].last_education);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].diploma_number);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].graduate_date);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].register_number);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].last_degree);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].graduate_number);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].adjust_major_code);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].adjust_major_name);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_place_code);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_faculty);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_faculty_name);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_major_code);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_major_name);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_work_direction);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_work_direction_name);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].exam_type);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].special_plan);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_type);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].orientation_train_place_code);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].orientation_train_place);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].standby_information);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].standby_information_one);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].standby_information_two);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].standby_information_three);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].political_code);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].political_name);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].foreign_code);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].foreign_name);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].business_one_code);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].business_one_name);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].business_two_code);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].business_two_name);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].political_score.ToString());
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].foreign_score.ToString());
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].business_one_score.ToString());
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].business_two_score.ToString());
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].total_score.ToString());
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].volunteer_type);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].tutor);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].student_confirm_status);
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].student_confirm_time.ToString());
+                    lvi.SubItems.Add(DataManager.AcademicMaster[i].student_reexamine);
+                    lvShowStudent.Items.Add(lvi);
+                }
+            }
+            this.lvShowStudent.EndUpdate();
+            cbGroupNumber.SelectedIndex = 0;
         }
 
-        private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void cbGroupNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(sfdSaveFile.ShowDialog() == DialogResult.OK)
+            Console.WriteLine("小类选择的序号是{0}", cbGroupNumber.SelectedIndex);
+            this.lvShowStudent.Clear();
+            this.lvShowStudent.BeginUpdate();
+            this.InitializeListView();
+            if (cbGroupNumber.SelectedIndex == 0)
             {
-                string name = sfdSaveFile.FileName;
-                DataManager.SaveDataFromExcel(name);
+                if (cbStudentType.SelectedIndex == 0)
+                {
+                    for (int i = 0; i < DataManager.Students.student.Count; ++i)
+                    {
+                        ListViewItem lvi = new ListViewItem();
+                        lvi.Text = DataManager.Students.student[i].apply_place;
+                        lvi.SubItems.Add(DataManager.Students.student[i].aplly_number);
+                        lvi.SubItems.Add(DataManager.Students.student[i].name);
+                        lvi.SubItems.Add(DataManager.Students.student[i].name_spell);
+                        lvi.SubItems.Add(DataManager.Students.student[i].number);
+                        lvi.SubItems.Add(DataManager.Students.student[i].card_type);
+                        lvi.SubItems.Add(DataManager.Students.student[i].card_number);
+                        lvi.SubItems.Add(DataManager.Students.student[i].birth);
+                        lvi.SubItems.Add(DataManager.Students.student[i].nation);
+                        lvi.SubItems.Add(DataManager.Students.student[i].gender);
+                        lvi.SubItems.Add(DataManager.Students.student[i].marriage);
+                        lvi.SubItems.Add(DataManager.Students.student[i].soldier);
+                        lvi.SubItems.Add(DataManager.Students.student[i].politics_status);
+                        lvi.SubItems.Add(DataManager.Students.student[i].native_place);
+                        lvi.SubItems.Add(DataManager.Students.student[i].birth_place);
+                        lvi.SubItems.Add(DataManager.Students.student[i].register_place);
+                        lvi.SubItems.Add(DataManager.Students.student[i].register_address);
+                        lvi.SubItems.Add(DataManager.Students.student[i].record_place);
+                        lvi.SubItems.Add(DataManager.Students.student[i].record_ministry);
+                        lvi.SubItems.Add(DataManager.Students.student[i].record_address);
+                        lvi.SubItems.Add(DataManager.Students.student[i].record_place_postcode);
+                        lvi.SubItems.Add(DataManager.Students.student[i].work_place);
+                        lvi.SubItems.Add(DataManager.Students.student[i].work_experience);
+                        lvi.SubItems.Add(DataManager.Students.student[i].reward_punishment);
+                        lvi.SubItems.Add(DataManager.Students.student[i].family);
+                        lvi.SubItems.Add(DataManager.Students.student[i].contact_address);
+                        lvi.SubItems.Add(DataManager.Students.student[i].contact_postcode);
+                        lvi.SubItems.Add(DataManager.Students.student[i].fixed_line_phone);
+                        lvi.SubItems.Add(DataManager.Students.student[i].mobile_phone);
+                        lvi.SubItems.Add(DataManager.Students.student[i].email);
+                        lvi.SubItems.Add(DataManager.Students.student[i].source);
+                        lvi.SubItems.Add(DataManager.Students.student[i].same_education.ToString());
+                        lvi.SubItems.Add(DataManager.Students.student[i].school_code);
+                        lvi.SubItems.Add(DataManager.Students.student[i].school_name);
+                        lvi.SubItems.Add(DataManager.Students.student[i].major_name);
+                        lvi.SubItems.Add(DataManager.Students.student[i].study_type);
+                        lvi.SubItems.Add(DataManager.Students.student[i].last_education);
+                        lvi.SubItems.Add(DataManager.Students.student[i].diploma_number);
+                        lvi.SubItems.Add(DataManager.Students.student[i].graduate_date);
+                        lvi.SubItems.Add(DataManager.Students.student[i].register_number);
+                        lvi.SubItems.Add(DataManager.Students.student[i].last_degree);
+                        lvi.SubItems.Add(DataManager.Students.student[i].graduate_number);
+                        lvi.SubItems.Add(DataManager.Students.student[i].adjust_major_code);
+                        lvi.SubItems.Add(DataManager.Students.student[i].adjust_major_name);
+                        lvi.SubItems.Add(DataManager.Students.student[i].apply_place_code);
+                        lvi.SubItems.Add(DataManager.Students.student[i].apply_faculty);
+                        lvi.SubItems.Add(DataManager.Students.student[i].apply_faculty_name);
+                        lvi.SubItems.Add(DataManager.Students.student[i].apply_major_code);
+                        lvi.SubItems.Add(DataManager.Students.student[i].apply_major_name);
+                        lvi.SubItems.Add(DataManager.Students.student[i].apply_work_direction);
+                        lvi.SubItems.Add(DataManager.Students.student[i].apply_work_direction_name);
+                        lvi.SubItems.Add(DataManager.Students.student[i].exam_type);
+                        lvi.SubItems.Add(DataManager.Students.student[i].special_plan);
+                        lvi.SubItems.Add(DataManager.Students.student[i].apply_type);
+                        lvi.SubItems.Add(DataManager.Students.student[i].orientation_train_place_code);
+                        lvi.SubItems.Add(DataManager.Students.student[i].orientation_train_place);
+                        lvi.SubItems.Add(DataManager.Students.student[i].standby_information);
+                        lvi.SubItems.Add(DataManager.Students.student[i].standby_information_one);
+                        lvi.SubItems.Add(DataManager.Students.student[i].standby_information_two);
+                        lvi.SubItems.Add(DataManager.Students.student[i].standby_information_three);
+                        lvi.SubItems.Add(DataManager.Students.student[i].political_code);
+                        lvi.SubItems.Add(DataManager.Students.student[i].political_name);
+                        lvi.SubItems.Add(DataManager.Students.student[i].foreign_code);
+                        lvi.SubItems.Add(DataManager.Students.student[i].foreign_name);
+                        lvi.SubItems.Add(DataManager.Students.student[i].business_one_code);
+                        lvi.SubItems.Add(DataManager.Students.student[i].business_one_name);
+                        lvi.SubItems.Add(DataManager.Students.student[i].business_two_code);
+                        lvi.SubItems.Add(DataManager.Students.student[i].business_two_name);
+                        lvi.SubItems.Add(DataManager.Students.student[i].political_score.ToString());
+                        lvi.SubItems.Add(DataManager.Students.student[i].foreign_score.ToString());
+                        lvi.SubItems.Add(DataManager.Students.student[i].business_one_score.ToString());
+                        lvi.SubItems.Add(DataManager.Students.student[i].business_two_score.ToString());
+                        lvi.SubItems.Add(DataManager.Students.student[i].total_score.ToString());
+                        lvi.SubItems.Add(DataManager.Students.student[i].volunteer_type);
+                        lvi.SubItems.Add(DataManager.Students.student[i].tutor);
+                        lvi.SubItems.Add(DataManager.Students.student[i].student_confirm_status);
+                        lvi.SubItems.Add(DataManager.Students.student[i].student_confirm_time.ToString());
+                        lvi.SubItems.Add(DataManager.Students.student[i].student_reexamine);
+                        lvShowStudent.Items.Add(lvi);
+                    }
+                }
+                else if (cbStudentType.SelectedIndex == 1)
+                {
+                    for (int i = 0; i < DataManager.ProfessionalMaster.Count; ++i)
+                    {
+                        ListViewItem lvi = new ListViewItem();
+                        lvi.Text = DataManager.ProfessionalMaster[i].apply_place;
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].aplly_number);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].name);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].name_spell);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].number);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].card_type);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].card_number);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].birth);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].nation);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].gender);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].marriage);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].soldier);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].politics_status);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].native_place);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].birth_place);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].register_place);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].register_address);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].record_place);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].record_ministry);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].record_address);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].record_place_postcode);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].work_place);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].work_experience);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].reward_punishment);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].family);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].contact_address);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].contact_postcode);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].fixed_line_phone);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].mobile_phone);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].email);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].source);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].same_education.ToString());
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].school_code);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].school_name);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].major_name);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].study_type);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].last_education);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].diploma_number);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].graduate_date);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].register_number);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].last_degree);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].graduate_number);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].adjust_major_code);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].adjust_major_name);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_place_code);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_faculty);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_faculty_name);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_major_code);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_major_name);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_work_direction);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_work_direction_name);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].exam_type);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].special_plan);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].apply_type);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].orientation_train_place_code);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].orientation_train_place);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].standby_information);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].standby_information_one);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].standby_information_two);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].standby_information_three);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].political_code);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].political_name);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].foreign_code);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].foreign_name);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].business_one_code);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].business_one_name);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].business_two_code);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].business_two_name);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].political_score.ToString());
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].foreign_score.ToString());
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].business_one_score.ToString());
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].business_two_score.ToString());
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].total_score.ToString());
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].volunteer_type);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].tutor);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].student_confirm_status);
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].student_confirm_time.ToString());
+                        lvi.SubItems.Add(DataManager.ProfessionalMaster[i].student_reexamine);
+                        lvShowStudent.Items.Add(lvi);
+                    }
+                }
+                else if (cbStudentType.SelectedIndex == 2)
+                {
+                    for (int i = 0; i < DataManager.AcademicMaster.Count; ++i)
+                    {
+                        ListViewItem lvi = new ListViewItem();
+                        lvi.Text = DataManager.AcademicMaster[i].apply_place;
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].aplly_number);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].name);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].name_spell);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].number);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].card_type);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].card_number);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].birth);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].nation);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].gender);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].marriage);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].soldier);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].politics_status);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].native_place);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].birth_place);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].register_place);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].register_address);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].record_place);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].record_ministry);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].record_address);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].record_place_postcode);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].work_place);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].work_experience);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].reward_punishment);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].family);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].contact_address);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].contact_postcode);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].fixed_line_phone);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].mobile_phone);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].email);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].source);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].same_education.ToString());
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].school_code);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].school_name);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].major_name);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].study_type);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].last_education);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].diploma_number);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].graduate_date);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].register_number);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].last_degree);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].graduate_number);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].adjust_major_code);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].adjust_major_name);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_place_code);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_faculty);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_faculty_name);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_major_code);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_major_name);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_work_direction);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_work_direction_name);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].exam_type);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].special_plan);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].apply_type);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].orientation_train_place_code);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].orientation_train_place);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].standby_information);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].standby_information_one);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].standby_information_two);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].standby_information_three);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].political_code);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].political_name);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].foreign_code);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].foreign_name);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].business_one_code);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].business_one_name);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].business_two_code);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].business_two_name);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].political_score.ToString());
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].foreign_score.ToString());
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].business_one_score.ToString());
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].business_two_score.ToString());
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].total_score.ToString());
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].volunteer_type);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].tutor);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].student_confirm_status);
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].student_confirm_time.ToString());
+                        lvi.SubItems.Add(DataManager.AcademicMaster[i].student_reexamine);
+                        lvShowStudent.Items.Add(lvi);
+                    }
+                }
             }
+            this.lvShowStudent.EndUpdate();
         }
 
-        private void btSeparate_Click(object sender, EventArgs e)
+        private void btAdjustGroups_Click(object sender, EventArgs e)
         {
-            if(tbGroupNumber.Text == "" || tbGroupNumber.Text == "0")
-            {
-                MessageBox.Show("分组数量不能为空或为0！");
-                return;
-            }
-            int number = Convert.ToInt32(tbGroupNumber.Text);
-            DataManager.DivideIntoGroups(number);
         }
     }
 }
