@@ -129,7 +129,7 @@ message Students
 // c --> s
 message ReqStudentInfo
 {
-	repeated string number = 1;
+	optional string number = 1;
 }
 
 // 返回学生信息
@@ -138,4 +138,29 @@ message ResStudentInfo
 {
 	repeated string name = 1;// 考生姓名
 	repeated string number = 2;// 考生编号
+	repeated string school_name = 3;// 毕业学校名称
+	repeated uint32 political_score = 4;// 政治理论成绩
+	repeated uint32 foreign_score = 5;// 外国语成绩
+	repeated uint32 business_one_score = 6;// 业务课一成绩
+	repeated uint32 business_two_score = 7;// 业务课二成绩
 }
+
+// 教师打分
+// c --> s
+message ReqTeacherScore
+{
+	optional string number = 1;
+	optional int32 introduction_score = 2;// 自我介绍（本科阶段综合表现与申请材料）10分
+	optional int32 translation_score = 3;// 翻译10分
+	optional int32 topic_score = 4;// TOPIC20分
+	optional int32 answer_score = 5;// 回答提问30分
+	optional int32 result_score = 6;// 面试(总评分)
+}
+
+// 返回教师打分
+// s --> c
+message ResTeacherScore
+{
+	optional bool result = 1;// true-成功
+}
+

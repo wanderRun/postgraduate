@@ -163,5 +163,13 @@ namespace Server
             }
             SendProtoMsg(socket, students, students.GetType().ToString());
         }
+
+        public void OnMessageReqTeacherScore(MemoryStream memStream, Socket socket)
+        {
+            message.ReqTeacherScore rec = ProtoBuf.Serializer.Deserialize<message.ReqTeacherScore>(memStream);
+            message.ResTeacherScore send = new message.ResTeacherScore();
+            send.result = true;
+            SendProtoMsg(socket, send, send.GetType().ToString());
+        }
     }
 }

@@ -946,8 +946,9 @@ namespace Server
             this.lvShowStudent.EndUpdate();
         }
 
-        private void btAdjustGroups_Click(object sender, EventArgs e)
+        private void btDispatchTeacher_Click(object sender, EventArgs e)
         {
+
         }
     }
 }
