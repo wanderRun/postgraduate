@@ -1,6 +1,6 @@
 ﻿using System;
-//using Microsoft.Office.Interop.Excel;
-using Excel;
+using Microsoft.Office.Interop.Excel;
+//using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -969,7 +969,7 @@ namespace Server
         public static void DivideIntoGroups(int type, int number)
         {
             List<bool> isSelect = new List<bool>();
-            if(type == 1)
+            if (type == 1)
             {
                 professionalMasterGroup.Clear();
                 for (int i = 0; i < professionalMaster.Count; ++i)
@@ -977,7 +977,7 @@ namespace Server
                     isSelect.Add(false);
                 }
             }// 专业硕士
-            else if(type == 2)
+            else if (type == 2)
             {
                 academicMasterGroup.Clear();
                 for (int i = 0; i < academicMaster.Count; ++i)
@@ -990,10 +990,9 @@ namespace Server
                 return;
             }
             int groupNumber = isSelect.Count / number;
-            List<message.StudentInfo> master = new List<message.StudentInfo>();
-            for(int i = 0; i < number - 1; ++i)
+            for (int i = 0; i < number - 1; ++i)
             {
-                master.Clear();
+                List<message.StudentInfo> master = new List<message.StudentInfo>();
                 Random ran = new Random();
                 for (int j = 0; j < groupNumber; ++j)
                 {
@@ -1012,33 +1011,6 @@ namespace Server
                         master.Add(academicMaster[index]);
                     }
                 }
-                if(type == 1)
-                {
-                    professionalMasterGroup.Add(master);
-                }
-                else
-                {
-                    academicMasterGroup.Add(master);
-                }
-            }
-            master.Clear();
-            for(int i = 0; i < isSelect.Count; ++i)
-            {
-                if(!isSelect[i])
-                {
-                    isSelect[i] = true;
-                    if (type == 1)
-                    {
-                        master.Add(professionalMaster[i]);
-                    }
-                    else
-                    {
-                        master.Add(academicMaster[i]);
-                    }
-                }
-            }
-            if(master.Count != 0)
-            {
                 if (type == 1)
                 {
                     professionalMasterGroup.Add(master);
@@ -1046,6 +1018,93 @@ namespace Server
                 else
                 {
                     academicMasterGroup.Add(master);
+                }
+            }
+            {
+                List<message.StudentInfo> master = new List<message.StudentInfo>();
+                for (int i = 0; i < isSelect.Count; ++i)
+                {
+                    if (!isSelect[i])
+                    {
+                        isSelect[i] = true;
+                        if (type == 1)
+                        {
+                            master.Add(professionalMaster[i]);
+                        }
+                        else
+                        {
+                            master.Add(academicMaster[i]);
+                        }
+                    }
+                }
+                if (master.Count != 0)
+                {
+                    if (type == 1)
+                    {
+                        professionalMasterGroup.Add(master);
+                    }
+                    else
+                    {
+                        academicMasterGroup.Add(master);
+                    }
+                }
+            }
+        }
+
+        public static void DispatchTeacher(int type, int group, string teacherId, string teacherName)
+        {
+            if (type == 1)
+            {
+                for (int i = 0; i < professionalMasterGroup[group].Count; ++i)
+                {
+                    professionalMasterGroup[group][i].teacher_id.Add(teacherId);
+                    professionalMasterGroup[group][i].teacher_name.Add(teacherName);
+                }
+            }
+            else if(type == 2)
+            {
+                for (int i = 0; i < academicMasterGroup[group].Count; ++i)
+                {
+                    academicMasterGroup[group][i].teacher_id.Add(teacherId);
+                    academicMasterGroup[group][i].teacher_name.Add(teacherName);
+                }
+            }
+        }
+
+        public static void RemoveTeacher(int type, int group, string teacherId)
+        {
+            if (type == 1)
+            {
+                int index = 0;
+                for(int i = 0; i < professionalMasterGroup[group][0].teacher_id.Count; ++i)
+                {
+                    if(professionalMasterGroup[group][0].teacher_id[i] == teacherId)
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+                for (int i = 0; i < professionalMasterGroup[group].Count; ++i)
+                {
+                    professionalMasterGroup[group][i].teacher_id.RemoveAt(index);
+                    professionalMasterGroup[group][i].teacher_name.RemoveAt(index);
+                }
+            }
+            else if (type == 2)
+            {
+                int index = 0;
+                for (int i = 0; i < academicMasterGroup[group][0].teacher_id.Count; ++i)
+                {
+                    if (academicMasterGroup[group][0].teacher_id[i] == teacherId)
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+                for (int i = 0; i < academicMasterGroup[group].Count; ++i)
+                {
+                    academicMasterGroup[group][i].teacher_id.RemoveAt(index);
+                    academicMasterGroup[group][i].teacher_name.RemoveAt(index);
                 }
             }
         }

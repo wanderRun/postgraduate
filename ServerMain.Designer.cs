@@ -101,6 +101,7 @@
             this.btDispatchTeacher.TabIndex = 24;
             this.btDispatchTeacher.Text = "分配老师";
             this.btDispatchTeacher.UseVisualStyleBackColor = true;
+            this.btDispatchTeacher.Visible = false;
             this.btDispatchTeacher.Click += new System.EventHandler(this.btDispatchTeacher_Click);
             // 
             // cbGroupNumber

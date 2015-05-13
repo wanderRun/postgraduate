@@ -100,6 +100,9 @@ message StudentInfo
 	optional string student_confirm_time = 77;// 考生确认时间
 	optional string student_reexamine = 78;// 复试科目
 	
+	repeated string teacher_id = 79;// 打分老师工号
+	repeated string teacher_name = 80;// 打分老师姓名
+	
 //	optional string name = 3;// 考生姓名
 //	optional string school = 4;// 毕业学校名称
 //	optional string type = 5;// 学校类型
