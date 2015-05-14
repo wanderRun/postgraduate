@@ -1108,5 +1108,25 @@ namespace Server
                 }
             }
         }
+
+        public static void AdjustStudent(int type, int from, int to, string number)
+        {
+            if(from == to)
+            {
+                return;
+            }
+            if(type == 1)
+            {
+                int index = professionalMasterGroup[from].FindIndex(p => p.number == number);
+                professionalMasterGroup[to].Add(professionalMasterGroup[from][index]);
+                professionalMasterGroup[from].RemoveAt(index);
+            }
+            else if(type == 2)
+            {
+                int index = academicMasterGroup[from].FindIndex(a => a.number == number);
+                academicMasterGroup[to].Add(academicMasterGroup[from][index]);
+                academicMasterGroup[from].RemoveAt(index);
+            }
+        }
     }
 }

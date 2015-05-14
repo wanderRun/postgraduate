@@ -326,6 +326,7 @@ namespace Server
                 this.cbStudentType.Visible = true;
                 this.cbStudentType.SelectedIndex = 0;
                 this.btDispatchTeacher.Visible = true;
+                this.btAdjustStudent.Visible = true;
             }
         }
 
@@ -926,8 +927,20 @@ namespace Server
         private void btDispatchTeacher_Click(object sender, EventArgs e)
         {
             DispatchTeacher dispatchTeacher = new DispatchTeacher();
-            dispatchTeacher.ShowDialog(this);
-            Console.WriteLine("hello");
+            dispatchTeacher.ShowDialog();
+            Console.WriteLine("分配老师结束");
+        }
+
+        private void btAdjustStudent_Click(object sender, EventArgs e)
+        {
+            if(DataManager.ProfessionalMasterGroup.Count == 0 && DataManager.AcademicMasterGroup.Count == 0)
+            {
+                MessageBox.Show("学生还没有分组，无法调整");
+                return;
+            }
+            AdjustStudent adjustStudent = new AdjustStudent();
+            adjustStudent.ShowDialog();
+            Console.WriteLine("调整学生分组结束");
         }
     }
 }

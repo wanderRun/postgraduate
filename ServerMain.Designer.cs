@@ -31,7 +31,6 @@
             this.btStartServer = new System.Windows.Forms.Button();
             this.btStopServer = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tbTeacher = new System.Windows.Forms.TextBox();
             this.btDispatchTeacher = new System.Windows.Forms.Button();
             this.cbGroupNumber = new System.Windows.Forms.ComboBox();
             this.tbGroupNumber = new System.Windows.Forms.TextBox();
@@ -45,6 +44,7 @@
             this.saveFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
+            this.btAdjustStudent = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +71,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tbTeacher);
+            this.groupBox1.Controls.Add(this.btAdjustStudent);
             this.groupBox1.Controls.Add(this.btDispatchTeacher);
             this.groupBox1.Controls.Add(this.cbGroupNumber);
             this.groupBox1.Controls.Add(this.tbGroupNumber);
@@ -85,17 +85,9 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "客户端连接监听";
             // 
-            // tbTeacher
-            // 
-            this.tbTeacher.Location = new System.Drawing.Point(308, 35);
-            this.tbTeacher.Name = "tbTeacher";
-            this.tbTeacher.Size = new System.Drawing.Size(56, 21);
-            this.tbTeacher.TabIndex = 25;
-            this.tbTeacher.Visible = false;
-            // 
             // btDispatchTeacher
             // 
-            this.btDispatchTeacher.Location = new System.Drawing.Point(370, 33);
+            this.btDispatchTeacher.Location = new System.Drawing.Point(389, 33);
             this.btDispatchTeacher.Name = "btDispatchTeacher";
             this.btDispatchTeacher.Size = new System.Drawing.Size(75, 23);
             this.btDispatchTeacher.TabIndex = 24;
@@ -212,6 +204,17 @@
     "a;*.xlt;*.xlm;*.xlw";
             this.sfdSaveFile.RestoreDirectory = true;
             // 
+            // btAdjustStudent
+            // 
+            this.btAdjustStudent.Location = new System.Drawing.Point(308, 33);
+            this.btAdjustStudent.Name = "btAdjustStudent";
+            this.btAdjustStudent.Size = new System.Drawing.Size(75, 23);
+            this.btAdjustStudent.TabIndex = 25;
+            this.btAdjustStudent.Text = "调整学生";
+            this.btAdjustStudent.UseVisualStyleBackColor = true;
+            this.btAdjustStudent.Visible = false;
+            this.btAdjustStudent.Click += new System.EventHandler(this.btAdjustStudent_Click);
+            // 
             // ServerMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -255,7 +258,7 @@
         private System.Windows.Forms.TextBox tbGroupNumber;
         private System.Windows.Forms.ComboBox cbGroupNumber;
         private System.Windows.Forms.Button btDispatchTeacher;
-        private System.Windows.Forms.TextBox tbTeacher;
+        private System.Windows.Forms.Button btAdjustStudent;
     }
 }
 
