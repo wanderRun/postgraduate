@@ -12,7 +12,6 @@ namespace Server
     class DataManager
     {
         private static message.Students students = new message.Students();
-
         private static List<message.StudentInfo> academicMaster = new List<message.StudentInfo>();// 学硕
         private static List<message.StudentInfo> professionalMaster = new List<message.StudentInfo>();// 专硕
         private static List<List<message.StudentInfo>> academicMasterGroup = new List<List<message.StudentInfo>>();// 学硕分组
@@ -91,9 +90,9 @@ namespace Server
                 int count = book.Worksheets.Count;
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
                 excel.Quit();
-                Marshal.ReleaseComObject(excel);
-                Marshal.ReleaseComObject(book);
                 Marshal.ReleaseComObject(sheet);
+                Marshal.ReleaseComObject(book);
+                Marshal.ReleaseComObject(excel);
                 GC.Collect();
                 Console.WriteLine("load office");
             }
@@ -115,9 +114,9 @@ namespace Server
                 Console.WriteLine("total={0}", students.student.Count);
                 book.Close();
                 excel.Quit();
-                Marshal.ReleaseComObject(excel);
-                Marshal.ReleaseComObject(book);
                 Marshal.ReleaseComObject(sheet);
+                Marshal.ReleaseComObject(book);
+                Marshal.ReleaseComObject(excel);
                 GC.Collect();
                 Console.WriteLine("load wps");
             }
@@ -1127,6 +1126,15 @@ namespace Server
                 academicMasterGroup[to].Add(academicMasterGroup[from][index]);
                 academicMasterGroup[from].RemoveAt(index);
             }
+        }
+
+        public static void ClearData()
+        {
+            students.student.Clear();
+            academicMaster.Clear();
+            professionalMaster.Clear();
+            academicMasterGroup.Clear();
+            professionalMasterGroup.Clear();
         }
     }
 }
