@@ -45,12 +45,14 @@
             this.openServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
+            this.btAddTeacher = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btAddTeacher);
             this.groupBox1.Controls.Add(this.btAdjustStudent);
             this.groupBox1.Controls.Add(this.btDispatchTeacher);
             this.groupBox1.Controls.Add(this.cbGroupNumber);
@@ -214,6 +216,16 @@
     "a;*.xlt;*.xlm;*.xlw";
             this.sfdSaveFile.RestoreDirectory = true;
             // 
+            // btAddTeacher
+            // 
+            this.btAddTeacher.Location = new System.Drawing.Point(470, 33);
+            this.btAddTeacher.Name = "btAddTeacher";
+            this.btAddTeacher.Size = new System.Drawing.Size(75, 23);
+            this.btAddTeacher.TabIndex = 26;
+            this.btAddTeacher.Text = "增加老师";
+            this.btAddTeacher.UseVisualStyleBackColor = true;
+            this.btAddTeacher.Click += new System.EventHandler(this.btAddTeacher_Click);
+            // 
             // ServerMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -255,6 +267,7 @@
         private System.Windows.Forms.ToolStripMenuItem clearFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openServerToolStripMenuItem;
+        private System.Windows.Forms.Button btAddTeacher;
     }
 }
 

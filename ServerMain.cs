@@ -633,5 +633,11 @@ namespace Server
             }
         }
 
+        private void btAddTeacher_Click(object sender, EventArgs e)
+        {
+            AddTeacher addTeacher = new AddTeacher();
+            addTeacher.ShowDialog();
+            Console.WriteLine("添加老师结束");
+        }
     }
 }

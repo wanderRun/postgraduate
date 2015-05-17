@@ -132,6 +132,20 @@ namespace Server
         public void OnMessageLogin(MemoryStream memStream, Socket socket)
         {
             message.ResponseLogin send = new message.ResponseLogin();
+            message.Login rec = ProtoBuf.Serializer.Deserialize<message.Login>(memStream);
+            int index = DataManager.Teachers.teacher.FindIndex(t => t.id == rec.name);
+            if(index == -1)
+            {
+                send.ret = 2;
+                SendProtoMsg(socket, send, send.GetType().ToString());
+                return;
+            }
+            if(DataManager.Teachers.teacher[index].password != rec.password)
+            {
+                send.ret = 3;
+                SendProtoMsg(socket, send, send.GetType().ToString());
+                return;
+            }
             send.ret = 1;
             SendProtoMsg(socket, send, send.GetType().ToString());
         }
@@ -147,6 +161,14 @@ namespace Server
             message.ReqTeacherScore rec = ProtoBuf.Serializer.Deserialize<message.ReqTeacherScore>(memStream);
             message.ResTeacherScore send = new message.ResTeacherScore();
             send.result = true;
+            SendProtoMsg(socket, send, send.GetType().ToString());
+        }
+
+        public void OnMessageReqChangePassword(MemoryStream memStream, Socket socket)
+        {
+            message.ReqChangePassword rec = ProtoBuf.Serializer.Deserialize<message.ReqChangePassword>(memStream);
+            message.ResChangePassword send = new message.ResChangePassword();
+            send.ret = (UInt32)DataManager.ChangeTeacherPassword(rec.id, rec.old_password, rec.new_password);
             SendProtoMsg(socket, send, send.GetType().ToString());
         }
     }

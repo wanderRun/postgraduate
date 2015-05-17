@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.Office.Interop.Excel;
-//using Excel;
+//using Microsoft.Office.Interop.Excel;
+using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -16,6 +16,7 @@ namespace Server
         private static List<message.StudentInfo> professionalMaster = new List<message.StudentInfo>();// 专硕
         private static List<List<message.StudentInfo>> academicMasterGroup = new List<List<message.StudentInfo>>();// 学硕分组
         private static List<List<message.StudentInfo>> professionalMasterGroup = new List<List<message.StudentInfo>>();// 专硕分组
+        private static message.Teachers teachers = new message.Teachers();
 
         public static message.Students Students
         {
@@ -39,6 +40,11 @@ namespace Server
         public static List<List<message.StudentInfo>> ProfessionalMasterGroup
         {
             get { return professionalMasterGroup; }
+        }
+
+        public static message.Teachers Teachers
+        {
+            get { return teachers; }
         }
 
         private static int ExcelInstalled()
@@ -77,7 +83,7 @@ namespace Server
             {
                 LoadWPSExcel(name);
             }
-            LoadWPSExcel(name);
+            //LoadWPSExcel(name);
         }
 
         private static void LoadExcel(string name)
@@ -1135,6 +1141,31 @@ namespace Server
             professionalMaster.Clear();
             academicMasterGroup.Clear();
             professionalMasterGroup.Clear();
+            teachers.teacher.Clear();
+        }
+
+        public static void AddTeacher(string id, string name, string password="dhu@123")
+        {
+            message.TeacherInfo teacherInfo = new message.TeacherInfo();
+            teacherInfo.id = id;
+            teacherInfo.name = name;
+            teacherInfo.password = password;
+            teachers.teacher.Add(teacherInfo);
+        }
+
+        public static int ChangeTeacherPassword(string id, string oldPassword, string newPassword)
+        {
+            int index = teachers.teacher.FindIndex(t => t.id == id);
+            if(index == -1)
+            {
+                return 2;
+            }
+            if(teachers.teacher[index].password != oldPassword)
+            {
+                return 3;
+            }
+            teachers.teacher[index].password = newPassword;
+            return 1;
         }
     }
 }
