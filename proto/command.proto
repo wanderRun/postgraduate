@@ -15,7 +15,7 @@ message Login
 
 message ResponseLogin
 {
-	optional uint32 ret = 1;
+	optional uint32 ret = 1;// 1-成功 2-用户名不存在 3-密码错误
 }
 
 // 考生基本信息
@@ -167,3 +167,32 @@ message ResTeacherScore
 	optional bool result = 1;// true-成功
 }
 
+// 老师信息
+message TeacherInfo
+{
+	optional string id = 1;
+	optional string name = 2;
+	optional string password = 3;
+}
+
+// 所有老师
+message Teachers
+{
+	repeated TeacherInfo teacher = 1;
+}
+
+// 请求修改老师密码
+// c --> s
+message ReqChangePassword
+{
+	optional string id = 1;
+	optional string old_password = 2;
+	optional string new_password = 3;
+}
+
+// 返回修改老师密码
+// s --> c
+message ResChangePassword
+{
+	optional uint32 ret = 1;// 1-成功 0-失败
+}
