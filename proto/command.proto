@@ -142,10 +142,15 @@ message ResStudentInfo
 	repeated string name = 1;// 考生姓名
 	repeated string number = 2;// 考生编号
 	repeated string school_name = 3;// 毕业学校名称
-	repeated uint32 political_score = 4;// 政治理论成绩
-	repeated uint32 foreign_score = 5;// 外国语成绩
-	repeated uint32 business_one_score = 6;// 业务课一成绩
-	repeated uint32 business_two_score = 7;// 业务课二成绩
+	repeated string school_type = 4;// 毕业学校类型
+	repeated uint32 political_score = 5;// 政治理论成绩
+	repeated uint32 foreign_score = 6;// 外国语成绩
+	repeated uint32 business_one_score = 7;// 业务课一成绩
+	repeated string business_two_name = 8;// 业务课二名称
+	repeated uint32 business_two_score = 9;// 业务课二成绩
+	repeated uint32 total_score = 10;// 总分
+	repeated uint32 computer_score = 11;// 上机成绩
+	repeated uint32 listen_score = 12;// 听力成绩
 }
 
 // 教师打分
