@@ -1,6 +1,6 @@
 ﻿using System;
-//using Microsoft.Office.Interop.Excel;
-using Excel;
+using Microsoft.Office.Interop.Excel;
+//using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -79,11 +79,14 @@ namespace Server
             {
                 LoadExcel(name);
             }
-            else if((ret & 2) != 0)
+            else if ((ret & 2) != 0)
             {
                 LoadWPSExcel(name);
             }
-            //LoadWPSExcel(name);
+            else
+            {
+                LoadWPSExcel(name);
+            }
         }
 
         private static void LoadExcel(string name)

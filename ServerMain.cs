@@ -639,5 +639,9 @@ namespace Server
             addTeacher.ShowDialog();
             Console.WriteLine("添加老师结束");
         }
+
+        private void btTest_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

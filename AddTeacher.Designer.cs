@@ -35,6 +35,9 @@
             this.btAddTeacher = new System.Windows.Forms.Button();
             this.tbTeacherPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.dgvTeacherInformation = new System.Windows.Forms.DataGridView();
+            this.btGetTeacher = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTeacherInformation)).BeginInit();
             this.SuspendLayout();
             // 
             // tbTeacherId
@@ -71,7 +74,7 @@
             // 
             // btAddTeacher
             // 
-            this.btAddTeacher.Location = new System.Drawing.Point(90, 116);
+            this.btAddTeacher.Location = new System.Drawing.Point(131, 468);
             this.btAddTeacher.Name = "btAddTeacher";
             this.btAddTeacher.Size = new System.Drawing.Size(121, 23);
             this.btAddTeacher.TabIndex = 34;
@@ -95,11 +98,34 @@
             this.label2.TabIndex = 35;
             this.label2.Text = "老师密码";
             // 
+            // dgvTeacherInformation
+            // 
+            this.dgvTeacherInformation.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgvTeacherInformation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTeacherInformation.Location = new System.Drawing.Point(12, 151);
+            this.dgvTeacherInformation.Name = "dgvTeacherInformation";
+            this.dgvTeacherInformation.RowTemplate.Height = 23;
+            this.dgvTeacherInformation.Size = new System.Drawing.Size(290, 150);
+            this.dgvTeacherInformation.TabIndex = 37;
+            this.dgvTeacherInformation.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvTeacherInformation_RowsAdded);
+            // 
+            // btGetTeacher
+            // 
+            this.btGetTeacher.Location = new System.Drawing.Point(13, 308);
+            this.btGetTeacher.Name = "btGetTeacher";
+            this.btGetTeacher.Size = new System.Drawing.Size(75, 23);
+            this.btGetTeacher.TabIndex = 38;
+            this.btGetTeacher.Text = "导入老师";
+            this.btGetTeacher.UseVisualStyleBackColor = true;
+            this.btGetTeacher.Click += new System.EventHandler(this.btGetTeacher_Click);
+            // 
             // AddTeacher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(314, 494);
+            this.Controls.Add(this.btGetTeacher);
+            this.Controls.Add(this.dgvTeacherInformation);
             this.Controls.Add(this.tbTeacherPassword);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btAddTeacher);
@@ -107,8 +133,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbTeacherId);
             this.Controls.Add(this.label5);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "AddTeacher";
             this.Text = "AddTeacher";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTeacherInformation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,5 +151,7 @@
         private System.Windows.Forms.Button btAddTeacher;
         private System.Windows.Forms.TextBox tbTeacherPassword;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView dgvTeacherInformation;
+        private System.Windows.Forms.Button btGetTeacher;
     }
 }
