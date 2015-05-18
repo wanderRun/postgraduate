@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.Office.Interop.Excel;
-//using Excel;
+//using Microsoft.Office.Interop.Excel;
+using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -1067,6 +1067,9 @@ namespace Server
                 {
                     professionalMasterGroup[group][i].teacher_id.Add(teacherId);
                     professionalMasterGroup[group][i].teacher_name.Add(teacherName);
+                    int index = students.student.FindIndex(s => s.number == professionalMasterGroup[group][i].number);
+                    students.student[index].teacher_id.Add(teacherId);
+                    students.student[index].teacher_name.Add(teacherName);
                 }
             }
             else if(type == 2)
@@ -1075,6 +1078,9 @@ namespace Server
                 {
                     academicMasterGroup[group][i].teacher_id.Add(teacherId);
                     academicMasterGroup[group][i].teacher_name.Add(teacherName);
+                    int index = students.student.FindIndex(s => s.number == academicMasterGroup[group][i].number);
+                    students.student[index].teacher_id.Add(teacherId);
+                    students.student[index].teacher_name.Add(teacherName);
                 }
             }
         }
@@ -1084,7 +1090,7 @@ namespace Server
             if (type == 1)
             {
                 int index = 0;
-                for(int i = 0; i < professionalMasterGroup[group][0].teacher_id.Count; ++i)
+                for (int i = 0; i < professionalMasterGroup[group][0].teacher_id.Count; ++i)
                 {
                     if(professionalMasterGroup[group][0].teacher_id[i] == teacherId)
                     {
@@ -1094,6 +1100,10 @@ namespace Server
                 }
                 for (int i = 0; i < professionalMasterGroup[group].Count; ++i)
                 {
+                    int tmp = students.student.FindIndex(s => s.number == professionalMasterGroup[group][i].number);
+                    int tmp1 = students.student[tmp].teacher_id.FindIndex(t => t == professionalMasterGroup[group][i].teacher_id[index]);
+                    students.student[tmp].teacher_id.RemoveAt(tmp1);
+                    students.student[tmp].teacher_name.RemoveAt(tmp1);
                     professionalMasterGroup[group][i].teacher_id.RemoveAt(index);
                     professionalMasterGroup[group][i].teacher_name.RemoveAt(index);
                 }
@@ -1111,6 +1121,10 @@ namespace Server
                 }
                 for (int i = 0; i < academicMasterGroup[group].Count; ++i)
                 {
+                    int tmp = students.student.FindIndex(s => s.number == academicMasterGroup[group][i].number);
+                    int tmp1 = students.student[tmp].teacher_id.FindIndex(t => t == academicMasterGroup[group][i].teacher_id[index]);
+                    students.student[tmp].teacher_id.RemoveAt(tmp1);
+                    students.student[tmp].teacher_name.RemoveAt(tmp1);
                     academicMasterGroup[group][i].teacher_id.RemoveAt(index);
                     academicMasterGroup[group][i].teacher_name.RemoveAt(index);
                 }

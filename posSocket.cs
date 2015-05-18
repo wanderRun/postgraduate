@@ -153,6 +153,25 @@ namespace Server
         {
             message.ReqStudentInfo rec = ProtoBuf.Serializer.Deserialize<message.ReqStudentInfo>(memStream);
             message.ResStudentInfo students = new message.ResStudentInfo();
+            for(int i = 0; i < DataManager.Students.student.Count; ++i)
+            {
+                int index = DataManager.Students.student[i].teacher_id.FindIndex(t => t == rec.number);
+                if(index != -1)
+                {
+                    students.name.Add(DataManager.Students.student[i].name);
+                    students.number.Add(DataManager.Students.student[i].number);
+                    students.school_name.Add(DataManager.Students.student[i].school_name);
+                    students.school_type.Add("");
+                    students.political_score.Add(DataManager.Students.student[i].political_score);
+                    students.foreign_score.Add(DataManager.Students.student[i].foreign_score);
+                    students.business_one_score.Add(DataManager.Students.student[i].business_one_score);
+                    students.business_two_name.Add(DataManager.Students.student[i].business_two_name);
+                    students.business_two_score.Add(DataManager.Students.student[i].business_two_score);
+                    students.total_score.Add(DataManager.Students.student[i].total_score);
+                    students.computer_score.Add(0);
+                    students.listen_score.Add(0);
+                }
+            }
             SendProtoMsg(socket, students, students.GetType().ToString());
         }
 
