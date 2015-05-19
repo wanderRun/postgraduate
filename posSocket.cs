@@ -175,12 +175,24 @@ namespace Server
             SendProtoMsg(socket, students, students.GetType().ToString());
         }
 
-        public void OnMessageReqTeacherScore(MemoryStream memStream, Socket socket)
+        public void OnMessageTeacherScore(MemoryStream memStream, Socket socket)
         {
-            message.ReqTeacherScore rec = ProtoBuf.Serializer.Deserialize<message.ReqTeacherScore>(memStream);
+            message.TeacherScore rec = ProtoBuf.Serializer.Deserialize<message.TeacherScore>(memStream);
+            int index = DataManager.Students.student.FindIndex(s => s.number == rec.number);
             message.ResTeacherScore send = new message.ResTeacherScore();
-
-            send.result = true;
+            if(index == -1)
+            {
+                send.result = false;
+            }
+            else
+            {
+                send.result = true;
+                DataManager.Students.student[index].introduction_score = rec.introduction_score;
+                DataManager.Students.student[index].translation_score = rec.translation_score;
+                DataManager.Students.student[index].topic_score = rec.topic_score;
+                DataManager.Students.student[index].answer_score = rec.answer_score;
+                DataManager.Students.student[index].result_score = rec.result_score;
+            }
             SendProtoMsg(socket, send, send.GetType().ToString());
         }
 
@@ -190,6 +202,23 @@ namespace Server
             message.ResChangePassword send = new message.ResChangePassword();
             send.ret = (UInt32)DataManager.ChangeTeacherPassword(rec.id, rec.old_password, rec.new_password);
             SendProtoMsg(socket, send, send.GetType().ToString());
+        }
+
+        public void OnMessageReqModifyTeacherScore(MemoryStream memStream, Socket socket)
+        {
+            message.ReqModifyTeacherScore rec = ProtoBuf.Serializer.Deserialize<message.ReqModifyTeacherScore>(memStream);
+            int index = DataManager.Students.student.FindIndex(s => s.number == rec.number);
+            if (index != -1)
+            {
+                message.TeacherScore send = new message.TeacherScore();
+                send.number = DataManager.Students.student[index].number;
+                send.introduction_score = DataManager.Students.student[index].introduction_score;
+                send.translation_score = DataManager.Students.student[index].translation_score;
+                send.topic_score = DataManager.Students.student[index].topic_score;
+                send.answer_score = DataManager.Students.student[index].answer_score;
+                send.result_score = DataManager.Students.student[index].result_score;
+                SendProtoMsg(socket, send, send.GetType().ToString());
+            }
         }
     }
 }
