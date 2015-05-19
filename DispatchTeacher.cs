@@ -19,6 +19,15 @@ namespace Server
             cbStudentType.Items.Add("专业硕士");
             cbStudentType.Items.Add("学术硕士");
             cbStudentType.SelectedIndex = 0;
+            cbAssignId.Items.Add("全部工号");
+            cbAssignName.Items.Add("全部姓名");
+            for (int i = 0; i < DataManager.Teachers.teacher.Count; ++i)
+            {
+                cbAssignId.Items.Add(DataManager.Teachers.teacher[i].id);
+                cbAssignName.Items.Add(DataManager.Teachers.teacher[i].name);
+            }
+            cbAssignId.SelectedIndex = 0;
+            cbAssignName.SelectedIndex = 0;
         }
 
         private void cbStudentType_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,17 +87,17 @@ namespace Server
                 MessageBox.Show("学生分组为全部学生无法分配老师");
                 return;
             }
-            if(tbTeacherId.Text.Equals(""))
+            if(cbAssignId.SelectedIndex == 0)
             {
                 MessageBox.Show("老师工号为空无法分配老师");
                 return;
             }
-            if(tbTeacherName.Text.Equals(""))
+            if(cbAssignName.SelectedIndex == 0)
             {
                 MessageBox.Show("老师姓名为空无法分配老师");
                 return;
             }
-            DataManager.DispatchTeacher(cbStudentType.SelectedIndex, cbStudentGroups.SelectedIndex - 1, tbTeacherId.Text, tbTeacherName.Text);
+            DataManager.DispatchTeacher(cbStudentType.SelectedIndex, cbStudentGroups.SelectedIndex - 1, cbAssignId.SelectedIndex.ToString(), cbAssignName.SelectedItem.ToString());
             if (cbStudentType.SelectedIndex == 1)
             {
                 cbTeacherId.Items.Clear();
@@ -114,8 +123,6 @@ namespace Server
                 }
             }
             cbTeacherId.SelectedIndex = 0;
-            tbTeacherId.Text = "";
-            tbTeacherName.Text = "";
             MessageBox.Show("分配老师成功");
         }
 
@@ -200,6 +207,16 @@ namespace Server
         private void cbTeacherName_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbTeacherId.SelectedIndex = cbTeacherName.SelectedIndex;
+        }
+
+        private void cbAssignId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbAssignName.SelectedIndex = cbAssignId.SelectedIndex;
+        }
+
+        private void cbAssignName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbAssignId.SelectedIndex = cbAssignName.SelectedIndex;
         }
     }
 }

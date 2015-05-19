@@ -35,13 +35,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cbTeacherId = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tbTeacherId = new System.Windows.Forms.TextBox();
-            this.tbTeacherName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btDispatchTeacher = new System.Windows.Forms.Button();
             this.btRemoveTeacher = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.cbTeacherName = new System.Windows.Forms.ComboBox();
+            this.cbAssignId = new System.Windows.Forms.ComboBox();
+            this.cbAssignName = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cbStudentType
@@ -104,30 +104,16 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 140);
+            this.label4.Location = new System.Drawing.Point(12, 169);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 6;
             this.label4.Text = "分配工号";
             // 
-            // tbTeacherId
-            // 
-            this.tbTeacherId.Location = new System.Drawing.Point(71, 137);
-            this.tbTeacherId.Name = "tbTeacherId";
-            this.tbTeacherId.Size = new System.Drawing.Size(121, 21);
-            this.tbTeacherId.TabIndex = 26;
-            // 
-            // tbTeacherName
-            // 
-            this.tbTeacherName.Location = new System.Drawing.Point(71, 164);
-            this.tbTeacherName.Name = "tbTeacherName";
-            this.tbTeacherName.Size = new System.Drawing.Size(121, 21);
-            this.tbTeacherName.TabIndex = 28;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 167);
+            this.label5.Location = new System.Drawing.Point(12, 195);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 27;
@@ -135,9 +121,9 @@
             // 
             // btDispatchTeacher
             // 
-            this.btDispatchTeacher.Location = new System.Drawing.Point(14, 191);
+            this.btDispatchTeacher.Location = new System.Drawing.Point(71, 220);
             this.btDispatchTeacher.Name = "btDispatchTeacher";
-            this.btDispatchTeacher.Size = new System.Drawing.Size(75, 23);
+            this.btDispatchTeacher.Size = new System.Drawing.Size(121, 23);
             this.btDispatchTeacher.TabIndex = 29;
             this.btDispatchTeacher.Text = "分配老师";
             this.btDispatchTeacher.UseVisualStyleBackColor = true;
@@ -145,9 +131,9 @@
             // 
             // btRemoveTeacher
             // 
-            this.btRemoveTeacher.Location = new System.Drawing.Point(117, 191);
+            this.btRemoveTeacher.Location = new System.Drawing.Point(71, 137);
             this.btRemoveTeacher.Name = "btRemoveTeacher";
-            this.btRemoveTeacher.Size = new System.Drawing.Size(75, 23);
+            this.btRemoveTeacher.Size = new System.Drawing.Size(121, 23);
             this.btRemoveTeacher.TabIndex = 30;
             this.btRemoveTeacher.Text = "移除老师";
             this.btRemoveTeacher.UseVisualStyleBackColor = true;
@@ -172,18 +158,38 @@
             this.cbTeacherName.TabIndex = 31;
             this.cbTeacherName.SelectedIndexChanged += new System.EventHandler(this.cbTeacherName_SelectedIndexChanged);
             // 
+            // cbAssignId
+            // 
+            this.cbAssignId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAssignId.FormattingEnabled = true;
+            this.cbAssignId.Location = new System.Drawing.Point(71, 166);
+            this.cbAssignId.Name = "cbAssignId";
+            this.cbAssignId.Size = new System.Drawing.Size(121, 20);
+            this.cbAssignId.TabIndex = 33;
+            this.cbAssignId.SelectedIndexChanged += new System.EventHandler(this.cbAssignId_SelectedIndexChanged);
+            // 
+            // cbAssignName
+            // 
+            this.cbAssignName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAssignName.FormattingEnabled = true;
+            this.cbAssignName.Location = new System.Drawing.Point(71, 192);
+            this.cbAssignName.Name = "cbAssignName";
+            this.cbAssignName.Size = new System.Drawing.Size(121, 20);
+            this.cbAssignName.TabIndex = 34;
+            this.cbAssignName.SelectedIndexChanged += new System.EventHandler(this.cbAssignName_SelectedIndexChanged);
+            // 
             // DispatchTeacher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(215, 270);
+            this.Controls.Add(this.cbAssignName);
+            this.Controls.Add(this.cbAssignId);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cbTeacherName);
             this.Controls.Add(this.btRemoveTeacher);
             this.Controls.Add(this.btDispatchTeacher);
-            this.Controls.Add(this.tbTeacherName);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.tbTeacherId);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbTeacherId);
@@ -208,12 +214,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbTeacherId;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbTeacherId;
-        private System.Windows.Forms.TextBox tbTeacherName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btDispatchTeacher;
         private System.Windows.Forms.Button btRemoveTeacher;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbTeacherName;
+        private System.Windows.Forms.ComboBox cbAssignId;
+        private System.Windows.Forms.ComboBox cbAssignName;
     }
 }

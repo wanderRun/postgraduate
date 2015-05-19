@@ -636,8 +636,8 @@ namespace Server
 
         private void btManagerTeacher_Click(object sender, EventArgs e)
         {
-            AddTeacher addTeacher = new AddTeacher();
-            addTeacher.ShowDialog();
+            TeacherManager teacherManager = new TeacherManager();
+            teacherManager.ShowDialog();
             Console.WriteLine("管理老师结束");
         }
     }

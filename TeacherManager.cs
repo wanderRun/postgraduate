@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Server
 {
-    public partial class AddTeacher : Form
+    public partial class TeacherManager : Form
     {
-        public AddTeacher()
+        public TeacherManager()
         {
             InitializeComponent();
         }
@@ -78,6 +78,7 @@ namespace Server
                     dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
                     dgvTeacherInformation.Rows.Add(dataGridViewRow);
                 }
+                MessageBox.Show("老师导入完成");
             }
         }
 

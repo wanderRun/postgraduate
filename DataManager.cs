@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.Office.Interop.Excel;
-//using Excel;
+//using Microsoft.Office.Interop.Excel;
+using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -1237,5 +1237,7 @@ namespace Server
         {
             teachers.teacher.Clear();
         }
+
+        //public static void 
     }
 }

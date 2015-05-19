@@ -1,6 +1,6 @@
 ﻿namespace Server
 {
-    partial class AddTeacher
+    partial class TeacherManager
     {
         /// <summary>
         /// Required designer variable.

@@ -167,7 +167,7 @@ namespace Server
                     students.business_one_score.Add(DataManager.Students.student[i].business_one_score);
                     students.business_two_name.Add(DataManager.Students.student[i].business_two_name);
                     students.business_two_score.Add(DataManager.Students.student[i].business_two_score);
-                    students.total_score.Add(DataManager.Students.student[i].total_score);
+                    students.result_score.Add(DataManager.Students.student[i].result_score);
                     students.computer_score.Add(0);
                     students.listen_score.Add(0);
                 }
@@ -179,6 +179,7 @@ namespace Server
         {
             message.ReqTeacherScore rec = ProtoBuf.Serializer.Deserialize<message.ReqTeacherScore>(memStream);
             message.ResTeacherScore send = new message.ResTeacherScore();
+
             send.result = true;
             SendProtoMsg(socket, send, send.GetType().ToString());
         }
