@@ -102,7 +102,15 @@ message StudentInfo
 	
 	repeated string teacher_id = 79;// 打分老师工号
 	repeated string teacher_name = 80;// 打分老师姓名
-	optional uint32 result_score = 81;// 面试(总评分)
+	optional float operation = 81;// 上机成绩百分制
+	optional float hear = 82;// 听力
+	optional bool is_first = 83;// 是否一志愿
+	optional uint32 school_score = 84;// 本科院校 985或211院校30分 省重点院校20分 其他10分
+	optional uint32 introduction_score = 85;// 自我介绍（本科阶段综合表现与申请材料）10分
+	optional uint32 translation_score = 86;// 翻译10分
+	optional uint32 topic_score = 87;// TOPIC20分
+	optional uint32 answer_score = 88;// 回答提问30分
+	optional uint32 result_score = 89;// 面试(总评分)
 	
 //	optional string name = 3;// 考生姓名
 //	optional string school = 4;// 毕业学校名称
@@ -159,11 +167,11 @@ message ResStudentInfo
 message TeacherScore
 {
 	optional string number = 1;
-	optional int32 introduction_score = 2;// 自我介绍（本科阶段综合表现与申请材料）10分
-	optional int32 translation_score = 3;// 翻译10分
-	optional int32 topic_score = 4;// TOPIC20分
-	optional int32 answer_score = 5;// 回答提问30分
-	optional int32 result_score = 6;// 面试(总评分)
+	optional uint32 introduction_score = 2;// 自我介绍（本科阶段综合表现与申请材料）10分
+	optional uint32 translation_score = 3;// 翻译10分
+	optional uint32 topic_score = 4;// TOPIC20分
+	optional uint32 answer_score = 5;// 回答提问30分
+	optional uint32 result_score = 6;// 面试(总评分)
 }
 
 // 返回教师打分
