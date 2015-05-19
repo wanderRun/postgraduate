@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btAddTeacher = new System.Windows.Forms.Button();
+            this.btManagerTeacher = new System.Windows.Forms.Button();
             this.btAdjustStudent = new System.Windows.Forms.Button();
             this.btDispatchTeacher = new System.Windows.Forms.Button();
             this.cbGroupNumber = new System.Windows.Forms.ComboBox();
@@ -46,15 +46,13 @@
             this.openServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
-            this.btTest = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btTest);
-            this.groupBox1.Controls.Add(this.btAddTeacher);
+            this.groupBox1.Controls.Add(this.btManagerTeacher);
             this.groupBox1.Controls.Add(this.btAdjustStudent);
             this.groupBox1.Controls.Add(this.btDispatchTeacher);
             this.groupBox1.Controls.Add(this.cbGroupNumber);
@@ -69,15 +67,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "客户端连接监听";
             // 
-            // btAddTeacher
+            // btManagerTeacher
             // 
-            this.btAddTeacher.Location = new System.Drawing.Point(470, 33);
-            this.btAddTeacher.Name = "btAddTeacher";
-            this.btAddTeacher.Size = new System.Drawing.Size(75, 23);
-            this.btAddTeacher.TabIndex = 26;
-            this.btAddTeacher.Text = "增加老师";
-            this.btAddTeacher.UseVisualStyleBackColor = true;
-            this.btAddTeacher.Click += new System.EventHandler(this.btAddTeacher_Click);
+            this.btManagerTeacher.Location = new System.Drawing.Point(470, 33);
+            this.btManagerTeacher.Name = "btManagerTeacher";
+            this.btManagerTeacher.Size = new System.Drawing.Size(75, 23);
+            this.btManagerTeacher.TabIndex = 26;
+            this.btManagerTeacher.Text = "管理老师";
+            this.btManagerTeacher.UseVisualStyleBackColor = true;
+            this.btManagerTeacher.Visible = false;
+            this.btManagerTeacher.Click += new System.EventHandler(this.btManagerTeacher_Click);
             // 
             // btAdjustStudent
             // 
@@ -180,21 +179,21 @@
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openFileToolStripMenuItem.Text = "打开文件";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
             // 
             // saveFileToolStripMenuItem
             // 
             this.saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
-            this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveFileToolStripMenuItem.Text = "保存文件";
             this.saveFileToolStripMenuItem.Click += new System.EventHandler(this.saveFileToolStripMenuItem_Click);
             // 
             // clearFileToolStripMenuItem
             // 
             this.clearFileToolStripMenuItem.Name = "clearFileToolStripMenuItem";
-            this.clearFileToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.clearFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clearFileToolStripMenuItem.Text = "清空文件";
             this.clearFileToolStripMenuItem.Click += new System.EventHandler(this.clearFileToolStripMenuItem_Click);
             // 
@@ -227,16 +226,6 @@
     "a;*.xlt;*.xlm;*.xlw;)|*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xl" +
     "a;*.xlt;*.xlm;*.xlw";
             this.sfdSaveFile.RestoreDirectory = true;
-            // 
-            // btTest
-            // 
-            this.btTest.Location = new System.Drawing.Point(551, 35);
-            this.btTest.Name = "btTest";
-            this.btTest.Size = new System.Drawing.Size(75, 23);
-            this.btTest.TabIndex = 27;
-            this.btTest.Text = "测试连接数据库";
-            this.btTest.UseVisualStyleBackColor = true;
-            this.btTest.Click += new System.EventHandler(this.btTest_Click);
             // 
             // ServerMain
             // 
@@ -279,8 +268,7 @@
         private System.Windows.Forms.ToolStripMenuItem clearFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openServerToolStripMenuItem;
-        private System.Windows.Forms.Button btAddTeacher;
-        private System.Windows.Forms.Button btTest;
+        private System.Windows.Forms.Button btManagerTeacher;
     }
 }
 

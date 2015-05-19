@@ -1,12 +1,13 @@
 ﻿using System;
-//using Microsoft.Office.Interop.Excel;
-using Excel;
+using Microsoft.Office.Interop.Excel;
+//using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
 using System.Collections.Generic;
 using System.Reflection;
 
+using System.Data;
 namespace Server
 {
     class DataManager
@@ -1161,6 +1162,53 @@ namespace Server
             teachers.teacher.Clear();
         }
 
+        public static void LoadTeacherFromExcel(string path)
+        {
+            try
+            {
+                Application excel = new Application();
+                Workbook book = excel.Workbooks.Open(path);
+                Worksheet sheet = book.Worksheets.Item[1];
+                int count = book.Worksheets.Count;
+                sheet.Visible = XlSheetVisibility.xlSheetVisible;
+                message.TeacherInfo teacherInfo;
+                for (int i = 2; i <= sheet.UsedRange.Rows.Count; ++i )
+                {
+                    teacherInfo = new message.TeacherInfo();
+                    Range range = (Range)sheet.Cells[i, 2];
+                    teacherInfo.id = range.Text;
+                    range = (Range)sheet.Cells[i, 3];
+                    teacherInfo.name = range.Text;
+                    range = (Range)sheet.Cells[i, 4];
+                    teacherInfo.password = range.Text;
+                    teachers.teacher.Add(teacherInfo);
+                }
+                excel.Quit();
+                Marshal.ReleaseComObject(sheet);
+                Marshal.ReleaseComObject(book);
+                Marshal.ReleaseComObject(excel);
+                GC.Collect();
+                Console.WriteLine("load teacher from excel compelete");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("{0}", ex.Message);
+            }
+        }
+
+        public static void LoadTeacherFromSQL(System.Data.DataTable dataTable)
+        {
+            message.TeacherInfo teacherInfo;
+            for(int i = 0; i < dataTable.Rows.Count; ++i)
+            {
+                teacherInfo = new message.TeacherInfo();
+                teacherInfo.id = dataTable.Rows[i]["teacher_id"].ToString();
+                teacherInfo.name = dataTable.Rows[i]["teacher_name"].ToString();
+                teacherInfo.password = dataTable.Rows[i]["teacher_password"].ToString();
+                teachers.teacher.Add(teacherInfo);
+            }
+        }
+
         public static void AddTeacher(string id, string name, string password="dhu@123")
         {
             message.TeacherInfo teacherInfo = new message.TeacherInfo();
@@ -1183,6 +1231,11 @@ namespace Server
             }
             teachers.teacher[index].password = newPassword;
             return 1;
+        }
+
+        public static void ClearTeacher()
+        {
+            teachers.teacher.Clear();
         }
     }
 }

@@ -37,12 +37,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dgvTeacherInformation = new System.Windows.Forms.DataGridView();
             this.btGetTeacher = new System.Windows.Forms.Button();
+            this.btExcelTeacher = new System.Windows.Forms.Button();
+            this.ofdLoadTeacher = new System.Windows.Forms.OpenFileDialog();
+            this.btClearTeacher = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeacherInformation)).BeginInit();
             this.SuspendLayout();
             // 
             // tbTeacherId
             // 
-            this.tbTeacherId.Location = new System.Drawing.Point(90, 35);
+            this.tbTeacherId.Location = new System.Drawing.Point(107, 21);
             this.tbTeacherId.Name = "tbTeacherId";
             this.tbTeacherId.Size = new System.Drawing.Size(121, 21);
             this.tbTeacherId.TabIndex = 31;
@@ -50,7 +53,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 38);
+            this.label5.Location = new System.Drawing.Point(48, 24);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 30;
@@ -58,7 +61,7 @@
             // 
             // tbTeacherName
             // 
-            this.tbTeacherName.Location = new System.Drawing.Point(90, 62);
+            this.tbTeacherName.Location = new System.Drawing.Point(107, 48);
             this.tbTeacherName.Name = "tbTeacherName";
             this.tbTeacherName.Size = new System.Drawing.Size(121, 21);
             this.tbTeacherName.TabIndex = 33;
@@ -66,7 +69,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 65);
+            this.label1.Location = new System.Drawing.Point(48, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 32;
@@ -74,7 +77,7 @@
             // 
             // btAddTeacher
             // 
-            this.btAddTeacher.Location = new System.Drawing.Point(131, 468);
+            this.btAddTeacher.Location = new System.Drawing.Point(107, 102);
             this.btAddTeacher.Name = "btAddTeacher";
             this.btAddTeacher.Size = new System.Drawing.Size(121, 23);
             this.btAddTeacher.TabIndex = 34;
@@ -84,7 +87,7 @@
             // 
             // tbTeacherPassword
             // 
-            this.tbTeacherPassword.Location = new System.Drawing.Point(90, 89);
+            this.tbTeacherPassword.Location = new System.Drawing.Point(107, 75);
             this.tbTeacherPassword.Name = "tbTeacherPassword";
             this.tbTeacherPassword.Size = new System.Drawing.Size(121, 21);
             this.tbTeacherPassword.TabIndex = 36;
@@ -92,7 +95,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 92);
+            this.label2.Location = new System.Drawing.Point(48, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 35;
@@ -100,6 +103,7 @@
             // 
             // dgvTeacherInformation
             // 
+            this.dgvTeacherInformation.AllowUserToAddRows = false;
             this.dgvTeacherInformation.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvTeacherInformation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTeacherInformation.Location = new System.Drawing.Point(12, 151);
@@ -107,7 +111,6 @@
             this.dgvTeacherInformation.RowTemplate.Height = 23;
             this.dgvTeacherInformation.Size = new System.Drawing.Size(290, 150);
             this.dgvTeacherInformation.TabIndex = 37;
-            this.dgvTeacherInformation.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvTeacherInformation_RowsAdded);
             // 
             // btGetTeacher
             // 
@@ -115,15 +118,43 @@
             this.btGetTeacher.Name = "btGetTeacher";
             this.btGetTeacher.Size = new System.Drawing.Size(75, 23);
             this.btGetTeacher.TabIndex = 38;
-            this.btGetTeacher.Text = "导入老师";
+            this.btGetTeacher.Text = "数据库导入";
             this.btGetTeacher.UseVisualStyleBackColor = true;
             this.btGetTeacher.Click += new System.EventHandler(this.btGetTeacher_Click);
+            // 
+            // btExcelTeacher
+            // 
+            this.btExcelTeacher.Location = new System.Drawing.Point(94, 308);
+            this.btExcelTeacher.Name = "btExcelTeacher";
+            this.btExcelTeacher.Size = new System.Drawing.Size(75, 23);
+            this.btExcelTeacher.TabIndex = 39;
+            this.btExcelTeacher.Text = "表格导入";
+            this.btExcelTeacher.UseVisualStyleBackColor = true;
+            this.btExcelTeacher.Click += new System.EventHandler(this.btExcelTeacher_Click);
+            // 
+            // ofdLoadTeacher
+            // 
+            this.ofdLoadTeacher.Filter = "所有文件(*.*)|*.*|Excel 文件(*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xl" +
+    "a;*.xlt;*.xlm;*.xlw;)|*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xl" +
+    "a;*.xlt;*.xlm;*.xlw";
+            // 
+            // btClearTeacher
+            // 
+            this.btClearTeacher.Location = new System.Drawing.Point(175, 308);
+            this.btClearTeacher.Name = "btClearTeacher";
+            this.btClearTeacher.Size = new System.Drawing.Size(75, 23);
+            this.btClearTeacher.TabIndex = 40;
+            this.btClearTeacher.Text = "清空老师";
+            this.btClearTeacher.UseVisualStyleBackColor = true;
+            this.btClearTeacher.Click += new System.EventHandler(this.btClearTeacher_Click);
             // 
             // AddTeacher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 494);
+            this.ClientSize = new System.Drawing.Size(314, 351);
+            this.Controls.Add(this.btClearTeacher);
+            this.Controls.Add(this.btExcelTeacher);
             this.Controls.Add(this.btGetTeacher);
             this.Controls.Add(this.dgvTeacherInformation);
             this.Controls.Add(this.tbTeacherPassword);
@@ -153,5 +184,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvTeacherInformation;
         private System.Windows.Forms.Button btGetTeacher;
+        private System.Windows.Forms.Button btExcelTeacher;
+        private System.Windows.Forms.OpenFileDialog ofdLoadTeacher;
+        private System.Windows.Forms.Button btClearTeacher;
     }
 }

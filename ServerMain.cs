@@ -291,6 +291,7 @@ namespace Server
                 this.cbStudentType.SelectedIndex = 0;
                 this.btDispatchTeacher.Visible = true;
                 this.btAdjustStudent.Visible = true;
+                this.btManagerTeacher.Visible = true;
                 MessageBox.Show("数据加载成功");
             }
         }
@@ -633,15 +634,11 @@ namespace Server
             }
         }
 
-        private void btAddTeacher_Click(object sender, EventArgs e)
+        private void btManagerTeacher_Click(object sender, EventArgs e)
         {
             AddTeacher addTeacher = new AddTeacher();
             addTeacher.ShowDialog();
-            Console.WriteLine("添加老师结束");
-        }
-
-        private void btTest_Click(object sender, EventArgs e)
-        {
+            Console.WriteLine("管理老师结束");
         }
     }
 }

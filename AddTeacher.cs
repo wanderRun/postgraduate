@@ -38,28 +38,53 @@ namespace Server
             dgvTeacherInformation.Columns.Add("teacherName", "老师姓名");
             dgvTeacherInformation.Columns.Add("teacherPassword", "老师密码");
             DataTable dataTable = MysqlManager.SelectData("teacher_information");
-            for (int i = 0; i < dataTable.Rows.Count; ++i)
+            DataManager.LoadTeacherFromSQL(dataTable);
+            for (int i = 0; i < DataManager.Teachers.teacher.Count; ++i)
             {
                 DataGridViewRow dataGridViewRow = new DataGridViewRow();
                 DataGridViewTextBoxCell dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                dataGridViewTextBoxCell.Value = dataTable.Rows[i]["teacher_id"];
+                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].id;
                 dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
                 dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                dataGridViewTextBoxCell.Value = dataTable.Rows[i]["teacher_name"];
+                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].name;
                 dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
                 dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                dataGridViewTextBoxCell.Value = dataTable.Rows[i]["teacher_password"];
+                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].password;
                 dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
                 dgvTeacherInformation.Rows.Add(dataGridViewRow);
             }
         }
 
-        private void dgvTeacherInformation_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void btExcelTeacher_Click(object sender, EventArgs e)
         {
-            if(dgvTeacherInformation.Rows[e.RowIndex].Cells["teacherId"].Value == null)
+            if (ofdLoadTeacher.ShowDialog() == DialogResult.OK)
             {
-                Console.WriteLine("hello");
+                DataManager.LoadTeacherFromExcel(ofdLoadTeacher.FileName);
+                dgvTeacherInformation.Columns.Clear();
+                dgvTeacherInformation.Columns.Add("teacherId", "老师工号");
+                dgvTeacherInformation.Columns.Add("teacherName", "老师姓名");
+                dgvTeacherInformation.Columns.Add("teacherPassword", "老师密码");
+                for (int i = 0; i < DataManager.Teachers.teacher.Count; ++i)
+                {
+                    DataGridViewRow dataGridViewRow = new DataGridViewRow();
+                    DataGridViewTextBoxCell dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
+                    dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].id;
+                    dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
+                    dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
+                    dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].name;
+                    dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
+                    dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
+                    dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].password;
+                    dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
+                    dgvTeacherInformation.Rows.Add(dataGridViewRow);
+                }
             }
+        }
+
+        private void btClearTeacher_Click(object sender, EventArgs e)
+        {
+            dgvTeacherInformation.Columns.Clear();
+            DataManager.ClearTeacher();
         }
     }
 }

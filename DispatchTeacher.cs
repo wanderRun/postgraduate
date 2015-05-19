@@ -116,6 +116,7 @@ namespace Server
             cbTeacherId.SelectedIndex = 0;
             tbTeacherId.Text = "";
             tbTeacherName.Text = "";
+            MessageBox.Show("分配老师成功");
         }
 
         private void cbStudentGroups_SelectedIndexChanged(object sender, EventArgs e)
