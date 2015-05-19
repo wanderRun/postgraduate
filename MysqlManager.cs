@@ -31,5 +31,10 @@ namespace Server
             }
             return data;
         }
+
+        public static void InsertData(string database)
+        {
+
+        }
     }
 }
