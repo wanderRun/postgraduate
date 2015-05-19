@@ -155,8 +155,8 @@ message ResStudentInfo
 }
 
 // 教师打分
-// c --> s
-message ReqTeacherScore
+// c <--> s
+message TeacherScore
 {
 	optional string number = 1;
 	optional int32 introduction_score = 2;// 自我介绍（本科阶段综合表现与申请材料）10分
@@ -171,6 +171,13 @@ message ReqTeacherScore
 message ResTeacherScore
 {
 	optional bool result = 1;// true-成功
+}
+
+// 请求老师打分修改
+// c --> s
+message ReqModifyTeacherScore
+{
+	optional string number = 1;
 }
 
 // 老师信息
