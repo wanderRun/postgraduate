@@ -1081,9 +1081,6 @@ namespace Server
                 {
                     professionalMasterGroup[group][i].teacher_id.Add(teacherId);
                     professionalMasterGroup[group][i].teacher_name.Add(teacherName);
-                    int index = students.student.FindIndex(s => s.number == professionalMasterGroup[group][i].number);
-                    students.student[index].teacher_id.Add(teacherId);
-                    students.student[index].teacher_name.Add(teacherName);
                 }
             }
             else if(type == 2)
@@ -1092,9 +1089,6 @@ namespace Server
                 {
                     academicMasterGroup[group][i].teacher_id.Add(teacherId);
                     academicMasterGroup[group][i].teacher_name.Add(teacherName);
-                    int index = students.student.FindIndex(s => s.number == academicMasterGroup[group][i].number);
-                    students.student[index].teacher_id.Add(teacherId);
-                    students.student[index].teacher_name.Add(teacherName);
                 }
             }
         }

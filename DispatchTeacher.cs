@@ -97,7 +97,7 @@ namespace Server
                 MessageBox.Show("老师姓名为空无法分配老师");
                 return;
             }
-            DataManager.DispatchTeacher(cbStudentType.SelectedIndex, cbStudentGroups.SelectedIndex - 1, cbAssignId.SelectedIndex.ToString(), cbAssignName.SelectedItem.ToString());
+            DataManager.DispatchTeacher(cbStudentType.SelectedIndex, cbStudentGroups.SelectedIndex - 1, cbAssignId.SelectedItem.ToString(), cbAssignName.SelectedItem.ToString());
             if (cbStudentType.SelectedIndex == 1)
             {
                 cbTeacherId.Items.Clear();

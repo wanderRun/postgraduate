@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgvShowStudent = new System.Windows.Forms.DataGridView();
             this.btManagerTeacher = new System.Windows.Forms.Button();
             this.btAdjustStudent = new System.Windows.Forms.Button();
             this.btDispatchTeacher = new System.Windows.Forms.Button();
@@ -36,24 +37,25 @@
             this.tbGroupNumber = new System.Windows.Forms.TextBox();
             this.cbStudentType = new System.Windows.Forms.ComboBox();
             this.btSeparate = new System.Windows.Forms.Button();
-            this.lvShowStudent = new System.Windows.Forms.ListView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openSchoolTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
-            this.openSchoolTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdLoadSchoolType = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvShowStudent)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dgvShowStudent);
             this.groupBox1.Controls.Add(this.btManagerTeacher);
             this.groupBox1.Controls.Add(this.btAdjustStudent);
             this.groupBox1.Controls.Add(this.btDispatchTeacher);
@@ -61,17 +63,29 @@
             this.groupBox1.Controls.Add(this.tbGroupNumber);
             this.groupBox1.Controls.Add(this.cbStudentType);
             this.groupBox1.Controls.Add(this.btSeparate);
-            this.groupBox1.Controls.Add(this.lvShowStudent);
             this.groupBox1.Location = new System.Drawing.Point(12, 53);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(651, 359);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "客户端连接监听";
+            this.groupBox1.Text = "服务器管理";
+            // 
+            // dgvShowStudent
+            // 
+            this.dgvShowStudent.AllowUserToAddRows = false;
+            this.dgvShowStudent.AllowUserToDeleteRows = false;
+            this.dgvShowStudent.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgvShowStudent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvShowStudent.Location = new System.Drawing.Point(8, 66);
+            this.dgvShowStudent.Name = "dgvShowStudent";
+            this.dgvShowStudent.RowTemplate.Height = 23;
+            this.dgvShowStudent.Size = new System.Drawing.Size(637, 287);
+            this.dgvShowStudent.TabIndex = 27;
+            this.dgvShowStudent.Visible = false;
             // 
             // btManagerTeacher
             // 
-            this.btManagerTeacher.Location = new System.Drawing.Point(470, 33);
+            this.btManagerTeacher.Location = new System.Drawing.Point(389, 33);
             this.btManagerTeacher.Name = "btManagerTeacher";
             this.btManagerTeacher.Size = new System.Drawing.Size(75, 23);
             this.btManagerTeacher.TabIndex = 26;
@@ -93,7 +107,7 @@
             // 
             // btDispatchTeacher
             // 
-            this.btDispatchTeacher.Location = new System.Drawing.Point(389, 33);
+            this.btDispatchTeacher.Location = new System.Drawing.Point(470, 33);
             this.btDispatchTeacher.Name = "btDispatchTeacher";
             this.btDispatchTeacher.Size = new System.Drawing.Size(75, 23);
             this.btDispatchTeacher.TabIndex = 24;
@@ -146,17 +160,6 @@
             this.btSeparate.Visible = false;
             this.btSeparate.Click += new System.EventHandler(this.btSeparate_Click);
             // 
-            // lvShowStudent
-            // 
-            this.lvShowStudent.GridLines = true;
-            this.lvShowStudent.Location = new System.Drawing.Point(8, 66);
-            this.lvShowStudent.Name = "lvShowStudent";
-            this.lvShowStudent.Size = new System.Drawing.Size(637, 287);
-            this.lvShowStudent.TabIndex = 20;
-            this.lvShowStudent.UseCompatibleStateImageBehavior = false;
-            this.lvShowStudent.View = System.Windows.Forms.View.Details;
-            this.lvShowStudent.Visible = false;
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -182,23 +185,30 @@
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.openFileToolStripMenuItem.Text = "打开文件";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
             // 
             // saveFileToolStripMenuItem
             // 
             this.saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
-            this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.saveFileToolStripMenuItem.Text = "保存文件";
             this.saveFileToolStripMenuItem.Click += new System.EventHandler(this.saveFileToolStripMenuItem_Click);
             // 
             // clearFileToolStripMenuItem
             // 
             this.clearFileToolStripMenuItem.Name = "clearFileToolStripMenuItem";
-            this.clearFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearFileToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.clearFileToolStripMenuItem.Text = "清空文件";
             this.clearFileToolStripMenuItem.Click += new System.EventHandler(this.clearFileToolStripMenuItem_Click);
+            // 
+            // openSchoolTypeToolStripMenuItem
+            // 
+            this.openSchoolTypeToolStripMenuItem.Name = "openSchoolTypeToolStripMenuItem";
+            this.openSchoolTypeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.openSchoolTypeToolStripMenuItem.Text = "打开学校类型";
+            this.openSchoolTypeToolStripMenuItem.Click += new System.EventHandler(this.openSchoolTypeToolStripMenuItem_Click);
             // 
             // serverToolStripMenuItem
             // 
@@ -230,13 +240,6 @@
     "a;*.xlt;*.xlm;*.xlw";
             this.sfdSaveFile.RestoreDirectory = true;
             // 
-            // openSchoolTypeToolStripMenuItem
-            // 
-            this.openSchoolTypeToolStripMenuItem.Name = "openSchoolTypeToolStripMenuItem";
-            this.openSchoolTypeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.openSchoolTypeToolStripMenuItem.Text = "打开学校类型";
-            this.openSchoolTypeToolStripMenuItem.Click += new System.EventHandler(this.openSchoolTypeToolStripMenuItem_Click);
-            // 
             // ofdLoadSchoolType
             // 
             this.ofdLoadSchoolType.Filter = "Excel 文件(*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xla;*.xlt;*.xlm;" +
@@ -254,10 +257,9 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ServerMain";
             this.Text = "研究生复试系统服务器";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmServerMain_FormClosing);
-            this.Load += new System.EventHandler(this.ServerMain_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvShowStudent)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -268,7 +270,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ListView lvShowStudent;
         private System.Windows.Forms.Button btSeparate;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsmiFile;
@@ -285,6 +286,7 @@
         private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openServerToolStripMenuItem;
         private System.Windows.Forms.Button btManagerTeacher;
+        private System.Windows.Forms.DataGridView dgvShowStudent;
         private System.Windows.Forms.ToolStripMenuItem openSchoolTypeToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog ofdLoadSchoolType;
     }
