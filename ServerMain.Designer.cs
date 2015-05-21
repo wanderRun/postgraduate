@@ -46,6 +46,8 @@
             this.openServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
+            this.openSchoolTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ofdLoadSchoolType = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -171,7 +173,8 @@
             this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openFileToolStripMenuItem,
             this.saveFileToolStripMenuItem,
-            this.clearFileToolStripMenuItem});
+            this.clearFileToolStripMenuItem,
+            this.openSchoolTypeToolStripMenuItem});
             this.tsmiFile.Name = "tsmiFile";
             this.tsmiFile.Size = new System.Drawing.Size(44, 21);
             this.tsmiFile.Text = "文件";
@@ -227,6 +230,19 @@
     "a;*.xlt;*.xlm;*.xlw";
             this.sfdSaveFile.RestoreDirectory = true;
             // 
+            // openSchoolTypeToolStripMenuItem
+            // 
+            this.openSchoolTypeToolStripMenuItem.Name = "openSchoolTypeToolStripMenuItem";
+            this.openSchoolTypeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openSchoolTypeToolStripMenuItem.Text = "打开学校类型";
+            this.openSchoolTypeToolStripMenuItem.Click += new System.EventHandler(this.openSchoolTypeToolStripMenuItem_Click);
+            // 
+            // ofdLoadSchoolType
+            // 
+            this.ofdLoadSchoolType.Filter = "Excel 文件(*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xla;*.xlt;*.xlm;" +
+    "*.xlw;)|*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xla;*.xlt;*.xlm;" +
+    "*.xlw";
+            // 
             // ServerMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -269,6 +285,8 @@
         private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openServerToolStripMenuItem;
         private System.Windows.Forms.Button btManagerTeacher;
+        private System.Windows.Forms.ToolStripMenuItem openSchoolTypeToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog ofdLoadSchoolType;
     }
 }
 

@@ -21,6 +21,10 @@ namespace Server
             cbStudentType.Items.Add("专业硕士");
             cbStudentType.Items.Add("学术硕士");
             cbGroupNumber.Items.Add("学生分组");
+            if(DataManager.LoadSchoolTypeFromExcel(System.Environment.CurrentDirectory + "\\高校类型列表.xls") == -1)
+            {
+                MessageBox.Show("高校类型列表打开失败请自行打开");
+            }
         }
 
         /// <summary>
@@ -639,6 +643,15 @@ namespace Server
             TeacherManager teacherManager = new TeacherManager();
             teacherManager.ShowDialog();
             Console.WriteLine("管理老师结束");
+        }
+
+        private void openSchoolTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(ofdLoadSchoolType.ShowDialog() == DialogResult.OK)
+            {
+                DataManager.LoadSchoolTypeFromExcel(ofdLoadSchoolType.FileName);
+                MessageBox.Show("高校类型加载成功");
+            }
         }
     }
 }

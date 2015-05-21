@@ -12,12 +12,20 @@ namespace Server
 {
     class DataManager
     {
+        public struct SchoolType
+        {
+            public string name;
+            public string type;
+            public uint score;
+        }
+
         private static message.Students students = new message.Students();
         private static List<message.StudentInfo> academicMaster = new List<message.StudentInfo>();// 学硕
         private static List<message.StudentInfo> professionalMaster = new List<message.StudentInfo>();// 专硕
         private static List<List<message.StudentInfo>> academicMasterGroup = new List<List<message.StudentInfo>>();// 学硕分组
         private static List<List<message.StudentInfo>> professionalMasterGroup = new List<List<message.StudentInfo>>();// 专硕分组
         private static message.Teachers teachers = new message.Teachers();
+        private static Dictionary<string, SchoolType> schoolTypeList = new Dictionary<string, SchoolType>();// 学校类型
 
         public static message.Students Students
         {
@@ -46,6 +54,11 @@ namespace Server
         public static message.Teachers Teachers
         {
             get { return teachers; }
+        }
+
+        public static Dictionary<string, SchoolType> SchoolTypeList
+        {
+            get { return schoolTypeList; }
         }
 
         private static int ExcelInstalled()
@@ -1236,6 +1249,46 @@ namespace Server
         public static void ClearTeacher()
         {
             teachers.teacher.Clear();
+        }
+
+        public static int LoadSchoolTypeFromExcel(string path)
+        {
+            try
+            {
+                if(!File.Exists(path))
+                {
+                    return -1;
+                }
+                Application excel = new Application();
+                Workbook book = excel.Workbooks.Open(path);
+                Worksheet sheet = book.Worksheets.Item[1];
+                sheet.Visible = XlSheetVisibility.xlSheetVisible;
+                for (int i = 2; i <= sheet.UsedRange.Rows.Count; ++i)
+                {
+                    SchoolType schoolType = new SchoolType();
+                    Range range = (Range)sheet.Cells[i, 1];
+                    schoolType.name = (string)range.Text;
+                    range = (Range)sheet.Cells[i, 2];
+                    schoolType.type = (string)range.Text;
+                    range = (Range)sheet.Cells[i, 3];
+                    schoolType.score = Convert.ToUInt32(range.Text);
+                    if(!schoolTypeList.ContainsKey(schoolType.name))
+                    {
+                        schoolTypeList.Add(schoolType.name, schoolType);
+                    }
+                }
+                excel.Quit();
+                Marshal.ReleaseComObject(sheet);
+                Marshal.ReleaseComObject(book);
+                Marshal.ReleaseComObject(excel);
+                GC.Collect();
+                Console.WriteLine("load school type from excel compelete");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("{0}", ex.Message);
+            }
+            return 0;
         }
 
         //public static void 
