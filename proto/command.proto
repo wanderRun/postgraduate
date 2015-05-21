@@ -111,25 +111,8 @@ message StudentInfo
 	optional uint32 topic_score = 87;// TOPIC20分
 	optional uint32 answer_score = 88;// 回答提问30分
 	optional uint32 result_score = 89;// 面试(总评分)
-	
-//	optional string name = 3;// 考生姓名
-//	optional string school = 4;// 毕业学校名称
-//	optional string type = 5;// 学校类型
-//	optional int32 foreign = 6;// 外国语
-//	optional int32 political = 7;// 政治
-//	optional int32 business_one = 8;// 业务课一
-//	optional string business_two_name = 9;// 业务课二
-//	optional int32 business_two = 10;// 业务课二
-//	optional int32 score = 11;// 初试总分
-//	optional float operation = 12;// 上机成绩百分制
-//	optional float hear = 13;// 听力
-//	optional bool is_first = 14;// 是否一志愿
-//	optional int32 school_score = 15;// 本科院校 985或211院校30分 省重点院校20分 其他10分
-//	optional int32 introduction_score = 16;// 自我介绍（本科阶段综合表现与申请材料）10分
-//	optional int32 translation_score = 17;// 翻译10分
-//	optional int32 topic_score = 18;// TOPIC20分
-//	optional int32 answer_score = 19;// 回答提问30分
-//	optional int32 result_score = 20;// 面试(总评分)
+	optional float operation = 90;// 上机成绩百分制
+	optional string school_type = 91;// 学校类型
 }
 
 message Students
