@@ -102,8 +102,8 @@ message StudentInfo
 	
 	repeated string teacher_id = 79;// 打分老师工号
 	repeated string teacher_name = 80;// 打分老师姓名
-	optional float operation = 81;// 上机成绩百分制
-	optional float hear = 82;// 听力
+	optional uint32 operation = 81;// 上机成绩百分制
+	optional uint32 hear = 82;// 听力
 	optional bool is_first = 83;// 是否一志愿
 	optional uint32 school_score = 84;// 本科院校 985或211院校30分 省重点院校20分 其他10分
 	optional uint32 introduction_score = 85;// 自我介绍（本科阶段综合表现与申请材料）10分
@@ -111,8 +111,7 @@ message StudentInfo
 	optional uint32 topic_score = 87;// TOPIC20分
 	optional uint32 answer_score = 88;// 回答提问30分
 	optional uint32 result_score = 89;// 面试(总评分)
-	optional float operation = 90;// 上机成绩百分制
-	optional string school_type = 91;// 学校类型
+	optional string school_type = 90;// 学校类型
 }
 
 message Students

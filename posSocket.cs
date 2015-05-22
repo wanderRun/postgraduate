@@ -161,15 +161,15 @@ namespace Server
                     students.name.Add(DataManager.Students.student[i].name);
                     students.number.Add(DataManager.Students.student[i].number);
                     students.school_name.Add(DataManager.Students.student[i].school_name);
-                    students.school_type.Add("");
+                    students.school_type.Add(DataManager.Students.student[i].school_type);
                     students.political_score.Add(DataManager.Students.student[i].political_score);
                     students.foreign_score.Add(DataManager.Students.student[i].foreign_score);
                     students.business_one_score.Add(DataManager.Students.student[i].business_one_score);
                     students.business_two_name.Add(DataManager.Students.student[i].business_two_name);
                     students.business_two_score.Add(DataManager.Students.student[i].business_two_score);
                     students.result_score.Add(DataManager.Students.student[i].result_score);
-                    students.computer_score.Add(0);
-                    students.listen_score.Add(0);
+                    students.computer_score.Add(DataManager.Students.student[i].operation);
+                    students.listen_score.Add(DataManager.Students.student[i].hear);
                 }
             }
             SendProtoMsg(socket, students, students.GetType().ToString());

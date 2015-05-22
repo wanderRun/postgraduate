@@ -25,6 +25,10 @@ namespace Server
             {
                 MessageBox.Show("高校类型列表打开失败请自行打开");
             }
+            if (DataManager.LoadComputerAndListenScoreFromExcel(System.Environment.CurrentDirectory + "\\kssjhtl.xls") == -1)
+            {
+                MessageBox.Show("上机成绩和听力成绩打开失败请自行打开");
+            }
         }
 
         /// <summary>
@@ -120,6 +124,11 @@ namespace Server
         {
             if(ofdOpenFile.ShowDialog() == DialogResult.OK)
             {
+                if(DataManager.SchoolTypeList.Count == 0 || DataManager.ComputerAndListenScoreList.Count == 0)
+                {
+                    MessageBox.Show("学校类型或者上机听力成绩还没导入，请先导入");
+                    return;
+                }
                 string name = ofdOpenFile.FileName;
                 DataManager.Load(name);
                 this.dgvShowStudent.Visible = true;
@@ -131,6 +140,7 @@ namespace Server
                 this.btDispatchTeacher.Visible = true;
                 this.btAdjustStudent.Visible = true;
                 this.btManagerTeacher.Visible = true;
+                this.btScoreManager.Visible = true;
                 MessageBox.Show("数据加载成功");
             }
         }
@@ -147,9 +157,9 @@ namespace Server
 
         private void btSeparate_Click(object sender, EventArgs e)
         {
-            if(tbGroupNumber.Text == "" || tbGroupNumber.Text == "0")
+            if(tbGroupNumber.Text == "")
             {
-                MessageBox.Show("分组不能为零或空");
+                MessageBox.Show("分组不能或空");
                 return;
             }
             if(cbStudentType.SelectedIndex == 0)
@@ -158,7 +168,7 @@ namespace Server
                 return;
             }
             int number = Convert.ToInt32(tbGroupNumber.Text);
-            if((cbStudentType.SelectedIndex == 1 && number > DataManager.ProfessionalMaster.Count) || (cbStudentType.SelectedIndex == 2 && number > DataManager.AcademicMaster.Count))
+            if(number <= 0 || (cbStudentType.SelectedIndex == 1 && number > DataManager.ProfessionalMaster.Count) || (cbStudentType.SelectedIndex == 2 && number > DataManager.AcademicMaster.Count))
             {
                 MessageBox.Show("分组数量超过学生数量");
                 return;
@@ -167,7 +177,7 @@ namespace Server
             if(cbStudentType.SelectedIndex == 1)
             {
                 cbGroupNumber.Items.Clear();
-                cbGroupNumber.Items.Add("全部学生");
+                cbGroupNumber.Items.Add("全部分组");
                 for(int i = 1; i <= DataManager.ProfessionalMasterGroup.Count; ++i)
                 {
                     cbGroupNumber.Items.Add("第" + i + "组");
@@ -177,7 +187,7 @@ namespace Server
             else if (cbStudentType.SelectedIndex == 2)
             {
                 cbGroupNumber.Items.Clear();
-                cbGroupNumber.Items.Add("全部学生");
+                cbGroupNumber.Items.Add("全部分组");
                 for (int i = 1; i <= DataManager.AcademicMasterGroup.Count; ++i)
                 {
                     cbGroupNumber.Items.Add("第" + i + "组");
@@ -189,6 +199,10 @@ namespace Server
 
         private void cbStudentType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(cbStudentType.SelectedIndex == -1)
+            {
+                return;
+            }
             Console.WriteLine("大类选择的序号是{0}", cbStudentType.SelectedIndex);
             cbGroupNumber.Items.Clear();
             cbGroupNumber.Items.Add("学生分组");
@@ -301,6 +315,10 @@ namespace Server
 
         private void cbGroupNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(cbGroupNumber.SelectedIndex == -1)
+            {
+                return;
+            }
             Console.WriteLine("小类选择的序号是{0}", cbGroupNumber.SelectedIndex);
             List<message.StudentInfo> student = null;
             if (cbGroupNumber.SelectedIndex == 0)
@@ -448,6 +466,10 @@ namespace Server
             this.cbStudentType.Visible = false;
             this.btDispatchTeacher.Visible = false;
             this.btAdjustStudent.Visible = false;
+            this.btManagerTeacher.Visible = false;
+            this.btScoreManager.Visible = false;
+            this.cbStudentType.SelectedIndex = -1;
+            this.cbGroupNumber.SelectedIndex = -1;
         }
 
         private void openServerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -484,6 +506,22 @@ namespace Server
                 DataManager.LoadSchoolTypeFromExcel(ofdLoadSchoolType.FileName);
                 MessageBox.Show("高校类型加载成功");
             }
+        }
+
+        private void openComputerAndListenScoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ofdLoadComputerAndListenScore.ShowDialog() == DialogResult.OK)
+            {
+                DataManager.LoadComputerAndListenScoreFromExcel(ofdLoadComputerAndListenScore.FileName);
+                MessageBox.Show("上机成绩和听力成绩加载成功");
+            }
+        }
+
+        private void btScoreManager_Click(object sender, EventArgs e)
+        {
+            ScoreManager scoreManager = new ScoreManager();
+            scoreManager.ShowDialog();
+            Console.WriteLine("学生分数管理结束");
         }
     }
 }

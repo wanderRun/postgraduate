@@ -1,6 +1,6 @@
 ﻿using System;
-//using Microsoft.Office.Interop.Excel;
-using Excel;
+using Microsoft.Office.Interop.Excel;
+//using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -19,6 +19,14 @@ namespace Server
             public uint score;
         }
 
+        public struct ComputerAndListenScore
+        {
+            public string number;
+            public string name;
+            public uint computer;
+            public uint listen;
+        }
+
         private static message.Students students = new message.Students();
         private static List<message.StudentInfo> academicMaster = new List<message.StudentInfo>();// 学硕
         private static List<message.StudentInfo> professionalMaster = new List<message.StudentInfo>();// 专硕
@@ -26,6 +34,7 @@ namespace Server
         private static List<List<message.StudentInfo>> professionalMasterGroup = new List<List<message.StudentInfo>>();// 专硕分组
         private static message.Teachers teachers = new message.Teachers();
         private static Dictionary<string, SchoolType> schoolTypeList = new Dictionary<string, SchoolType>();// 学校类型
+        private static Dictionary<string, ComputerAndListenScore> computerAndListenScoreList = new Dictionary<string, ComputerAndListenScore>();// 上机和听力成绩
 
         public static message.Students Students
         {
@@ -59,6 +68,11 @@ namespace Server
         public static Dictionary<string, SchoolType> SchoolTypeList
         {
             get { return schoolTypeList; }
+        }
+
+        public static Dictionary<string, ComputerAndListenScore> ComputerAndListenScoreList
+        {
+            get { return computerAndListenScoreList; }
         }
 
         private static int ExcelInstalled()
@@ -866,6 +880,19 @@ namespace Server
                     }
                 }
             }
+            foreach(message.StudentInfo student in students.student)
+            {
+                if(schoolTypeList.ContainsKey(student.school_name))
+                {
+                    student.school_type = schoolTypeList[student.school_name].type;
+                    student.school_score = schoolTypeList[student.school_name].score;
+                }
+                if(computerAndListenScoreList.ContainsKey(student.number))
+                {
+                    student.operation = System.Convert.ToUInt32(computerAndListenScoreList[student.number].computer * 0.7);
+                    student.hear = computerAndListenScoreList[student.number].listen;
+                }
+            }
             foreach (message.StudentInfo student in students.student)
             {
                 if (student.apply_major_code.Equals("081200") || student.apply_major_code.Equals("083500"))
@@ -1285,6 +1312,61 @@ namespace Server
             return 0;
         }
 
-        //public static void 
+        public static int LoadComputerAndListenScoreFromExcel(string path)
+        {
+            try
+            {
+                if (!File.Exists(path))
+                {
+                    return -1;
+                }
+                Application excel = new Application();
+                Workbook book = excel.Workbooks.Open(path);
+                Worksheet sheet = book.Worksheets.Item[1];
+                sheet.Visible = XlSheetVisibility.xlSheetVisible;
+                for (int i = 2; i <= sheet.UsedRange.Rows.Count; ++i)
+                {
+                    ComputerAndListenScore computerAndListenScore = new ComputerAndListenScore();
+                    Range range = (Range)sheet.Cells[i, 1];
+                    computerAndListenScore.number = (string)range.Text;
+                    range = (Range)sheet.Cells[i, 2];
+                    computerAndListenScore.name = (string)range.Text;
+                    range = (Range)sheet.Cells[i, 3];
+                    computerAndListenScore.computer = Convert.ToUInt32(range.Text);
+                    range = (Range)sheet.Cells[i, 4];
+                    computerAndListenScore.listen = Convert.ToUInt32(range.Text);
+                    if (!schoolTypeList.ContainsKey(computerAndListenScore.number))
+                    {
+                        computerAndListenScoreList.Add(computerAndListenScore.number, computerAndListenScore);
+                    }
+                }
+                excel.Quit();
+                Marshal.ReleaseComObject(sheet);
+                Marshal.ReleaseComObject(book);
+                Marshal.ReleaseComObject(excel);
+                GC.Collect();
+                Console.WriteLine("load computer and listen score from excel compelete");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("{0}", ex.Message);
+            }
+            return 0;
+        }
+
+        public static int RemoveTeacherByIndex(int index)
+        {
+            if(index >= teachers.teacher.Count || index < 0)
+            {
+                return 0;
+            }
+            teachers.teacher.RemoveAt(index);
+            return 1;
+        }
+
+        public static int RemoveTeacherByName(string name)
+        {
+            return teachers.teacher.RemoveAll(t => t.name == name);
+        }
     }
 }

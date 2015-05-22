@@ -28,106 +28,89 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbTeacherId = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tbTeacherName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tbTeacherId1 = new System.Windows.Forms.TextBox();
+            this.tbTeacherName1 = new System.Windows.Forms.TextBox();
             this.btAddTeacher = new System.Windows.Forms.Button();
             this.tbTeacherPassword = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.dgvTeacherInformation = new System.Windows.Forms.DataGridView();
             this.btGetTeacher = new System.Windows.Forms.Button();
             this.btExcelTeacher = new System.Windows.Forms.Button();
             this.ofdLoadTeacher = new System.Windows.Forms.OpenFileDialog();
             this.btClearTeacher = new System.Windows.Forms.Button();
+            this.btDeleteTeacher = new System.Windows.Forms.Button();
+            this.tbTeacherName2 = new System.Windows.Forms.TextBox();
+            this.tbTeacherId2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeacherInformation)).BeginInit();
             this.SuspendLayout();
             // 
-            // tbTeacherId
+            // tbTeacherId1
             // 
-            this.tbTeacherId.Location = new System.Drawing.Point(107, 21);
-            this.tbTeacherId.Name = "tbTeacherId";
-            this.tbTeacherId.Size = new System.Drawing.Size(121, 21);
-            this.tbTeacherId.TabIndex = 31;
+            this.tbTeacherId1.Location = new System.Drawing.Point(12, 12);
+            this.tbTeacherId1.Name = "tbTeacherId1";
+            this.tbTeacherId1.Size = new System.Drawing.Size(121, 21);
+            this.tbTeacherId1.TabIndex = 2;
+            this.tbTeacherId1.Text = "老师工号";
+            this.tbTeacherId1.Enter += new System.EventHandler(this.tbTeacherId1_Enter);
+            this.tbTeacherId1.Leave += new System.EventHandler(this.tbTeacherId1_Leave);
             // 
-            // label5
+            // tbTeacherName1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(48, 24);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 30;
-            this.label5.Text = "老师工号";
-            // 
-            // tbTeacherName
-            // 
-            this.tbTeacherName.Location = new System.Drawing.Point(107, 48);
-            this.tbTeacherName.Name = "tbTeacherName";
-            this.tbTeacherName.Size = new System.Drawing.Size(121, 21);
-            this.tbTeacherName.TabIndex = 33;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(48, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "老师姓名";
+            this.tbTeacherName1.Location = new System.Drawing.Point(139, 12);
+            this.tbTeacherName1.Name = "tbTeacherName1";
+            this.tbTeacherName1.Size = new System.Drawing.Size(121, 21);
+            this.tbTeacherName1.TabIndex = 3;
+            this.tbTeacherName1.Text = "老师姓名";
+            this.tbTeacherName1.Enter += new System.EventHandler(this.tbTeacherName1_Enter);
+            this.tbTeacherName1.Leave += new System.EventHandler(this.tbTeacherName1_Leave);
             // 
             // btAddTeacher
             // 
-            this.btAddTeacher.Location = new System.Drawing.Point(107, 102);
+            this.btAddTeacher.Location = new System.Drawing.Point(393, 10);
             this.btAddTeacher.Name = "btAddTeacher";
-            this.btAddTeacher.Size = new System.Drawing.Size(121, 23);
-            this.btAddTeacher.TabIndex = 34;
+            this.btAddTeacher.Size = new System.Drawing.Size(75, 23);
+            this.btAddTeacher.TabIndex = 1;
             this.btAddTeacher.Text = "添加老师";
             this.btAddTeacher.UseVisualStyleBackColor = true;
             this.btAddTeacher.Click += new System.EventHandler(this.btAddTeacher_Click);
             // 
             // tbTeacherPassword
             // 
-            this.tbTeacherPassword.Location = new System.Drawing.Point(107, 75);
+            this.tbTeacherPassword.Location = new System.Drawing.Point(266, 12);
             this.tbTeacherPassword.Name = "tbTeacherPassword";
             this.tbTeacherPassword.Size = new System.Drawing.Size(121, 21);
-            this.tbTeacherPassword.TabIndex = 36;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 78);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "老师密码";
+            this.tbTeacherPassword.TabIndex = 4;
+            this.tbTeacherPassword.Text = "老师密码";
+            this.tbTeacherPassword.Enter += new System.EventHandler(this.tbTeacherPassword_Enter);
+            this.tbTeacherPassword.Leave += new System.EventHandler(this.tbTeacherPassword_Leave);
             // 
             // dgvTeacherInformation
             // 
             this.dgvTeacherInformation.AllowUserToAddRows = false;
+            this.dgvTeacherInformation.AllowUserToDeleteRows = false;
             this.dgvTeacherInformation.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvTeacherInformation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTeacherInformation.Location = new System.Drawing.Point(12, 151);
+            this.dgvTeacherInformation.Location = new System.Drawing.Point(12, 66);
             this.dgvTeacherInformation.Name = "dgvTeacherInformation";
             this.dgvTeacherInformation.RowTemplate.Height = 23;
-            this.dgvTeacherInformation.Size = new System.Drawing.Size(290, 150);
+            this.dgvTeacherInformation.Size = new System.Drawing.Size(460, 233);
             this.dgvTeacherInformation.TabIndex = 37;
             // 
             // btGetTeacher
             // 
-            this.btGetTeacher.Location = new System.Drawing.Point(13, 308);
+            this.btGetTeacher.Location = new System.Drawing.Point(12, 305);
             this.btGetTeacher.Name = "btGetTeacher";
             this.btGetTeacher.Size = new System.Drawing.Size(75, 23);
-            this.btGetTeacher.TabIndex = 38;
+            this.btGetTeacher.TabIndex = 8;
             this.btGetTeacher.Text = "数据库导入";
             this.btGetTeacher.UseVisualStyleBackColor = true;
             this.btGetTeacher.Click += new System.EventHandler(this.btGetTeacher_Click);
             // 
             // btExcelTeacher
             // 
-            this.btExcelTeacher.Location = new System.Drawing.Point(94, 308);
+            this.btExcelTeacher.Location = new System.Drawing.Point(93, 305);
             this.btExcelTeacher.Name = "btExcelTeacher";
             this.btExcelTeacher.Size = new System.Drawing.Size(75, 23);
-            this.btExcelTeacher.TabIndex = 39;
+            this.btExcelTeacher.TabIndex = 9;
             this.btExcelTeacher.Text = "表格导入";
             this.btExcelTeacher.UseVisualStyleBackColor = true;
             this.btExcelTeacher.Click += new System.EventHandler(this.btExcelTeacher_Click);
@@ -140,33 +123,63 @@
             // 
             // btClearTeacher
             // 
-            this.btClearTeacher.Location = new System.Drawing.Point(175, 308);
+            this.btClearTeacher.Location = new System.Drawing.Point(174, 305);
             this.btClearTeacher.Name = "btClearTeacher";
             this.btClearTeacher.Size = new System.Drawing.Size(75, 23);
-            this.btClearTeacher.TabIndex = 40;
+            this.btClearTeacher.TabIndex = 10;
             this.btClearTeacher.Text = "清空老师";
             this.btClearTeacher.UseVisualStyleBackColor = true;
             this.btClearTeacher.Click += new System.EventHandler(this.btClearTeacher_Click);
             // 
-            // AddTeacher
+            // btDeleteTeacher
+            // 
+            this.btDeleteTeacher.Location = new System.Drawing.Point(393, 37);
+            this.btDeleteTeacher.Name = "btDeleteTeacher";
+            this.btDeleteTeacher.Size = new System.Drawing.Size(75, 23);
+            this.btDeleteTeacher.TabIndex = 5;
+            this.btDeleteTeacher.Text = "删除老师";
+            this.btDeleteTeacher.UseVisualStyleBackColor = true;
+            this.btDeleteTeacher.Click += new System.EventHandler(this.btDeleteTeacher_Click);
+            // 
+            // tbTeacherName2
+            // 
+            this.tbTeacherName2.Location = new System.Drawing.Point(139, 39);
+            this.tbTeacherName2.Name = "tbTeacherName2";
+            this.tbTeacherName2.Size = new System.Drawing.Size(121, 21);
+            this.tbTeacherName2.TabIndex = 7;
+            this.tbTeacherName2.Text = "老师姓名";
+            this.tbTeacherName2.Enter += new System.EventHandler(this.tbTeacherName2_Enter);
+            this.tbTeacherName2.Leave += new System.EventHandler(this.tbTeacherName2_Leave);
+            // 
+            // tbTeacherId2
+            // 
+            this.tbTeacherId2.Location = new System.Drawing.Point(13, 39);
+            this.tbTeacherId2.Name = "tbTeacherId2";
+            this.tbTeacherId2.Size = new System.Drawing.Size(121, 21);
+            this.tbTeacherId2.TabIndex = 6;
+            this.tbTeacherId2.Text = "老师工号";
+            this.tbTeacherId2.Enter += new System.EventHandler(this.tbTeacherId2_Enter);
+            this.tbTeacherId2.Leave += new System.EventHandler(this.tbTeacherId2_Leave);
+            // 
+            // TeacherManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 351);
+            this.ClientSize = new System.Drawing.Size(484, 338);
+            this.Controls.Add(this.btDeleteTeacher);
+            this.Controls.Add(this.tbTeacherName2);
+            this.Controls.Add(this.tbTeacherId2);
             this.Controls.Add(this.btClearTeacher);
             this.Controls.Add(this.btExcelTeacher);
             this.Controls.Add(this.btGetTeacher);
             this.Controls.Add(this.dgvTeacherInformation);
             this.Controls.Add(this.tbTeacherPassword);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.btAddTeacher);
-            this.Controls.Add(this.tbTeacherName);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tbTeacherId);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.tbTeacherName1);
+            this.Controls.Add(this.tbTeacherId1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "AddTeacher";
-            this.Text = "AddTeacher";
+            this.Name = "TeacherManager";
+            this.Text = "老师管理";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeacherInformation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -175,17 +188,17 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox tbTeacherId;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbTeacherName;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbTeacherId1;
+        private System.Windows.Forms.TextBox tbTeacherName1;
         private System.Windows.Forms.Button btAddTeacher;
         private System.Windows.Forms.TextBox tbTeacherPassword;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvTeacherInformation;
         private System.Windows.Forms.Button btGetTeacher;
         private System.Windows.Forms.Button btExcelTeacher;
         private System.Windows.Forms.OpenFileDialog ofdLoadTeacher;
         private System.Windows.Forms.Button btClearTeacher;
+        private System.Windows.Forms.Button btDeleteTeacher;
+        private System.Windows.Forms.TextBox tbTeacherName2;
+        private System.Windows.Forms.TextBox tbTeacherId2;
     }
 }

@@ -23,6 +23,7 @@ namespace Server
 
         private void cbStudentType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cbAdjustGroups.Items.Clear();
             if (cbStudentType.SelectedIndex == 0)
             {
                 cbStudentGroups.Items.Clear();
@@ -33,7 +34,6 @@ namespace Server
             {
                 cbStudentGroups.Items.Clear();
                 cbStudentGroups.Items.Add("全部学生");
-                cbAdjustGroups.Items.Clear();
                 for (int i = 1; i <= DataManager.ProfessionalMasterGroup.Count; ++i)
                 {
                     cbStudentGroups.Items.Add("第" + i + "组");
@@ -45,7 +45,6 @@ namespace Server
             {
                 cbStudentGroups.Items.Clear();
                 cbStudentGroups.Items.Add("全部学生");
-                cbAdjustGroups.Items.Clear();
                 for (int i = 1; i <= DataManager.AcademicMasterGroup.Count; ++i)
                 {
                     cbStudentGroups.Items.Add("第" + i + "组");
@@ -150,6 +149,7 @@ namespace Server
                 }
                 cbStudentGroups.SelectedIndex = 0;
             }
+            MessageBox.Show("调整学生完成");
         }
     }
 }

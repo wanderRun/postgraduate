@@ -48,6 +48,9 @@
             this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.ofdLoadSchoolType = new System.Windows.Forms.OpenFileDialog();
+            this.openComputerAndListenScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ofdLoadComputerAndListenScore = new System.Windows.Forms.OpenFileDialog();
+            this.btScoreManager = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShowStudent)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -55,6 +58,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btScoreManager);
             this.groupBox1.Controls.Add(this.dgvShowStudent);
             this.groupBox1.Controls.Add(this.btManagerTeacher);
             this.groupBox1.Controls.Add(this.btAdjustStudent);
@@ -177,7 +181,8 @@
             this.openFileToolStripMenuItem,
             this.saveFileToolStripMenuItem,
             this.clearFileToolStripMenuItem,
-            this.openSchoolTypeToolStripMenuItem});
+            this.openSchoolTypeToolStripMenuItem,
+            this.openComputerAndListenScoreToolStripMenuItem});
             this.tsmiFile.Name = "tsmiFile";
             this.tsmiFile.Size = new System.Drawing.Size(44, 21);
             this.tsmiFile.Text = "文件";
@@ -185,28 +190,28 @@
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.openFileToolStripMenuItem.Text = "打开文件";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
             // 
             // saveFileToolStripMenuItem
             // 
             this.saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
-            this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.saveFileToolStripMenuItem.Text = "保存文件";
             this.saveFileToolStripMenuItem.Click += new System.EventHandler(this.saveFileToolStripMenuItem_Click);
             // 
             // clearFileToolStripMenuItem
             // 
             this.clearFileToolStripMenuItem.Name = "clearFileToolStripMenuItem";
-            this.clearFileToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.clearFileToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.clearFileToolStripMenuItem.Text = "清空文件";
             this.clearFileToolStripMenuItem.Click += new System.EventHandler(this.clearFileToolStripMenuItem_Click);
             // 
             // openSchoolTypeToolStripMenuItem
             // 
             this.openSchoolTypeToolStripMenuItem.Name = "openSchoolTypeToolStripMenuItem";
-            this.openSchoolTypeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.openSchoolTypeToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.openSchoolTypeToolStripMenuItem.Text = "打开学校类型";
             this.openSchoolTypeToolStripMenuItem.Click += new System.EventHandler(this.openSchoolTypeToolStripMenuItem_Click);
             // 
@@ -221,7 +226,7 @@
             // openServerToolStripMenuItem
             // 
             this.openServerToolStripMenuItem.Name = "openServerToolStripMenuItem";
-            this.openServerToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.openServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openServerToolStripMenuItem.Text = "开启服务器";
             this.openServerToolStripMenuItem.Click += new System.EventHandler(this.openServerToolStripMenuItem_Click);
             // 
@@ -245,6 +250,24 @@
             this.ofdLoadSchoolType.Filter = "Excel 文件(*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xla;*.xlt;*.xlm;" +
     "*.xlw;)|*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xla;*.xlt;*.xlm;" +
     "*.xlw";
+            // 
+            // openComputerAndListenScoreToolStripMenuItem
+            // 
+            this.openComputerAndListenScoreToolStripMenuItem.Name = "openComputerAndListenScoreToolStripMenuItem";
+            this.openComputerAndListenScoreToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.openComputerAndListenScoreToolStripMenuItem.Text = "打开上机和听力成绩";
+            this.openComputerAndListenScoreToolStripMenuItem.Click += new System.EventHandler(this.openComputerAndListenScoreToolStripMenuItem_Click);
+            // 
+            // btScoreManager
+            // 
+            this.btScoreManager.Location = new System.Drawing.Point(551, 33);
+            this.btScoreManager.Name = "btScoreManager";
+            this.btScoreManager.Size = new System.Drawing.Size(75, 23);
+            this.btScoreManager.TabIndex = 28;
+            this.btScoreManager.Text = "修改分数";
+            this.btScoreManager.UseVisualStyleBackColor = true;
+            this.btScoreManager.Visible = false;
+            this.btScoreManager.Click += new System.EventHandler(this.btScoreManager_Click);
             // 
             // ServerMain
             // 
@@ -289,6 +312,9 @@
         private System.Windows.Forms.DataGridView dgvShowStudent;
         private System.Windows.Forms.ToolStripMenuItem openSchoolTypeToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog ofdLoadSchoolType;
+        private System.Windows.Forms.ToolStripMenuItem openComputerAndListenScoreToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog ofdLoadComputerAndListenScore;
+        private System.Windows.Forms.Button btScoreManager;
     }
 }
 
