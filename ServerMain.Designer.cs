@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btScoreManager = new System.Windows.Forms.Button();
             this.dgvShowStudent = new System.Windows.Forms.DataGridView();
             this.btManagerTeacher = new System.Windows.Forms.Button();
             this.btAdjustStudent = new System.Windows.Forms.Button();
@@ -43,14 +44,15 @@
             this.saveFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSchoolTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openComputerAndListenScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.readDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.ofdLoadSchoolType = new System.Windows.Forms.OpenFileDialog();
-            this.openComputerAndListenScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdLoadComputerAndListenScore = new System.Windows.Forms.OpenFileDialog();
-            this.btScoreManager = new System.Windows.Forms.Button();
+            this.writeDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShowStudent)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -73,6 +75,17 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "服务器管理";
+            // 
+            // btScoreManager
+            // 
+            this.btScoreManager.Location = new System.Drawing.Point(551, 33);
+            this.btScoreManager.Name = "btScoreManager";
+            this.btScoreManager.Size = new System.Drawing.Size(75, 23);
+            this.btScoreManager.TabIndex = 28;
+            this.btScoreManager.Text = "修改分数";
+            this.btScoreManager.UseVisualStyleBackColor = true;
+            this.btScoreManager.Visible = false;
+            this.btScoreManager.Click += new System.EventHandler(this.btScoreManager_Click);
             // 
             // dgvShowStudent
             // 
@@ -215,10 +228,19 @@
             this.openSchoolTypeToolStripMenuItem.Text = "打开学校类型";
             this.openSchoolTypeToolStripMenuItem.Click += new System.EventHandler(this.openSchoolTypeToolStripMenuItem_Click);
             // 
+            // openComputerAndListenScoreToolStripMenuItem
+            // 
+            this.openComputerAndListenScoreToolStripMenuItem.Name = "openComputerAndListenScoreToolStripMenuItem";
+            this.openComputerAndListenScoreToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.openComputerAndListenScoreToolStripMenuItem.Text = "打开上机和听力成绩";
+            this.openComputerAndListenScoreToolStripMenuItem.Click += new System.EventHandler(this.openComputerAndListenScoreToolStripMenuItem_Click);
+            // 
             // serverToolStripMenuItem
             // 
             this.serverToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openServerToolStripMenuItem});
+            this.openServerToolStripMenuItem,
+            this.readDatabaseToolStripMenuItem,
+            this.writeDatabaseToolStripMenuItem});
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
             this.serverToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
             this.serverToolStripMenuItem.Text = "服务器";
@@ -229,6 +251,13 @@
             this.openServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openServerToolStripMenuItem.Text = "开启服务器";
             this.openServerToolStripMenuItem.Click += new System.EventHandler(this.openServerToolStripMenuItem_Click);
+            // 
+            // readDatabaseToolStripMenuItem
+            // 
+            this.readDatabaseToolStripMenuItem.Name = "readDatabaseToolStripMenuItem";
+            this.readDatabaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.readDatabaseToolStripMenuItem.Text = "读取数据库";
+            this.readDatabaseToolStripMenuItem.Click += new System.EventHandler(this.readDatabaseToolStripMenuItem_Click);
             // 
             // ofdOpenFile
             // 
@@ -251,23 +280,12 @@
     "*.xlw;)|*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xla;*.xlt;*.xlm;" +
     "*.xlw";
             // 
-            // openComputerAndListenScoreToolStripMenuItem
+            // writeDatabaseToolStripMenuItem
             // 
-            this.openComputerAndListenScoreToolStripMenuItem.Name = "openComputerAndListenScoreToolStripMenuItem";
-            this.openComputerAndListenScoreToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.openComputerAndListenScoreToolStripMenuItem.Text = "打开上机和听力成绩";
-            this.openComputerAndListenScoreToolStripMenuItem.Click += new System.EventHandler(this.openComputerAndListenScoreToolStripMenuItem_Click);
-            // 
-            // btScoreManager
-            // 
-            this.btScoreManager.Location = new System.Drawing.Point(551, 33);
-            this.btScoreManager.Name = "btScoreManager";
-            this.btScoreManager.Size = new System.Drawing.Size(75, 23);
-            this.btScoreManager.TabIndex = 28;
-            this.btScoreManager.Text = "修改分数";
-            this.btScoreManager.UseVisualStyleBackColor = true;
-            this.btScoreManager.Visible = false;
-            this.btScoreManager.Click += new System.EventHandler(this.btScoreManager_Click);
+            this.writeDatabaseToolStripMenuItem.Name = "writeDatabaseToolStripMenuItem";
+            this.writeDatabaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.writeDatabaseToolStripMenuItem.Text = "写入数据库";
+            this.writeDatabaseToolStripMenuItem.Click += new System.EventHandler(this.writeDatabaseToolStripMenuItem_Click);
             // 
             // ServerMain
             // 
@@ -315,6 +333,8 @@
         private System.Windows.Forms.ToolStripMenuItem openComputerAndListenScoreToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog ofdLoadComputerAndListenScore;
         private System.Windows.Forms.Button btScoreManager;
+        private System.Windows.Forms.ToolStripMenuItem readDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem writeDatabaseToolStripMenuItem;
     }
 }
 

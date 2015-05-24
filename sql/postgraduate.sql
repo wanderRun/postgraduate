@@ -118,10 +118,10 @@ CREATE TABLE IF NOT EXISTS `student_information` (
 
 CREATE TABLE IF NOT EXISTS `teacher_information` (
 `id` int(11) NOT NULL,
-  `teacher_id` varchar(16) COLLATE utf8_bin DEFAULT NULL,
-  `teacher_name` varchar(32) COLLATE utf8_bin DEFAULT NULL,
-  `teacher_password` varchar(32) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+  `teacher_id` varchar(16) NOT NULL DEFAULT '',
+  `teacher_name` varchar(32) NOT NULL DEFAULT '',
+  `teacher_password` varchar(32) NOT NULL DEFAULT ''
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 转存表中的数据 `teacher_information`
@@ -160,7 +160,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `teacher_information`
 --
 ALTER TABLE `teacher_information`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

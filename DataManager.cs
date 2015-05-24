@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.Office.Interop.Excel;
-//using Excel;
+//using Microsoft.Office.Interop.Excel;
+using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -887,6 +887,11 @@ namespace Server
                     student.school_type = schoolTypeList[student.school_name].type;
                     student.school_score = schoolTypeList[student.school_name].score;
                 }
+                else
+                {
+                    student.school_type = "其它";
+                    student.school_score = 10;
+                }
                 if(computerAndListenScoreList.ContainsKey(student.number))
                 {
                     student.operation = System.Convert.ToUInt32(computerAndListenScoreList[student.number].computer * 0.7);
@@ -1124,14 +1129,10 @@ namespace Server
         {
             if (type == 1)
             {
-                int index = 0;
-                for (int i = 0; i < professionalMasterGroup[group][0].teacher_id.Count; ++i)
+                int index = professionalMasterGroup[group][0].teacher_id.FindIndex(t => t == teacherId);
+                if(index == -1)
                 {
-                    if(professionalMasterGroup[group][0].teacher_id[i] == teacherId)
-                    {
-                        index = i;
-                        break;
-                    }
+                    return;
                 }
                 for (int i = 0; i < professionalMasterGroup[group].Count; ++i)
                 {
@@ -1139,20 +1140,14 @@ namespace Server
                     int tmp1 = students.student[tmp].teacher_id.FindIndex(t => t == professionalMasterGroup[group][i].teacher_id[index]);
                     students.student[tmp].teacher_id.RemoveAt(tmp1);
                     students.student[tmp].teacher_name.RemoveAt(tmp1);
-                    professionalMasterGroup[group][i].teacher_id.RemoveAt(index);
-                    professionalMasterGroup[group][i].teacher_name.RemoveAt(index);
                 }
             }
             else if (type == 2)
             {
-                int index = 0;
-                for (int i = 0; i < academicMasterGroup[group][0].teacher_id.Count; ++i)
+                int index = academicMasterGroup[group][0].teacher_id.FindIndex(t => t == teacherId);
+                if(index == -1)
                 {
-                    if (academicMasterGroup[group][0].teacher_id[i] == teacherId)
-                    {
-                        index = i;
-                        break;
-                    }
+                    return;
                 }
                 for (int i = 0; i < academicMasterGroup[group].Count; ++i)
                 {
@@ -1160,8 +1155,6 @@ namespace Server
                     int tmp1 = students.student[tmp].teacher_id.FindIndex(t => t == academicMasterGroup[group][i].teacher_id[index]);
                     students.student[tmp].teacher_id.RemoveAt(tmp1);
                     students.student[tmp].teacher_name.RemoveAt(tmp1);
-                    academicMasterGroup[group][i].teacher_id.RemoveAt(index);
-                    academicMasterGroup[group][i].teacher_name.RemoveAt(index);
                 }
             }
         }
@@ -1367,6 +1360,107 @@ namespace Server
         public static int RemoveTeacherByName(string name)
         {
             return teachers.teacher.RemoveAll(t => t.name == name);
+        }
+
+        public static void LoadStudentFromSQL(System.Data.DataTable dataTable)
+        {
+            students.student.Clear();
+            academicMaster.Clear();
+            professionalMaster.Clear();
+            for (int i = 0; i <= dataTable.Rows.Count; ++i)
+            {
+                message.StudentInfo studentInfo = new message.StudentInfo();
+                studentInfo.apply_place = dataTable.Rows[i]["apply_place"].ToString();
+                studentInfo.aplly_number = dataTable.Rows[i]["aplly_number"].ToString();
+                studentInfo.name = dataTable.Rows[i]["name"].ToString();
+                studentInfo.name_spell = dataTable.Rows[i]["name_spell"].ToString();
+                studentInfo.number = dataTable.Rows[i]["number"].ToString();
+                studentInfo.card_type = dataTable.Rows[i]["card_type"].ToString();
+                studentInfo.card_number = dataTable.Rows[i]["card_number"].ToString();
+                studentInfo.birth = dataTable.Rows[i]["birth"].ToString();
+                studentInfo.nation = dataTable.Rows[i]["nation"].ToString();
+                studentInfo.gender = dataTable.Rows[i]["gender"].ToString();
+                studentInfo.marriage = dataTable.Rows[i]["marriage"].ToString();
+                studentInfo.soldier = dataTable.Rows[i]["soldier"].ToString();
+                studentInfo.politics_status = dataTable.Rows[i]["politics_status"].ToString();
+                studentInfo.native_place = dataTable.Rows[i]["native_place"].ToString();
+                studentInfo.birth_place = dataTable.Rows[i]["birth_place"].ToString();
+                studentInfo.register_place = dataTable.Rows[i]["register_place"].ToString();
+                studentInfo.register_address = dataTable.Rows[i]["register_address"].ToString();
+                studentInfo.record_place = dataTable.Rows[i]["record_place"].ToString();
+                studentInfo.record_ministry = dataTable.Rows[i]["record_ministry"].ToString();
+                studentInfo.record_address = dataTable.Rows[i]["record_address"].ToString();
+                studentInfo.record_place_postcode = dataTable.Rows[i]["record_place_postcode"].ToString();
+                studentInfo.work_place = dataTable.Rows[i]["work_place"].ToString();
+                studentInfo.work_experience = dataTable.Rows[i]["work_experience"].ToString();
+                studentInfo.reward_punishment = dataTable.Rows[i]["reward_punishment"].ToString();
+                studentInfo.family = dataTable.Rows[i]["family"].ToString();
+                studentInfo.contact_address = dataTable.Rows[i]["contact_address"].ToString();
+                studentInfo.contact_postcode = dataTable.Rows[i]["contact_postcode"].ToString();
+                studentInfo.fixed_line_phone = dataTable.Rows[i]["fixed_line_phone"].ToString();
+                studentInfo.mobile_phone = dataTable.Rows[i]["mobile_phone"].ToString();
+                studentInfo.email = dataTable.Rows[i]["email"].ToString();
+                studentInfo.source = dataTable.Rows[i]["source"].ToString();
+                studentInfo.same_education = dataTable.Rows[i]["same_education"].ToString();
+                studentInfo.school_code = dataTable.Rows[i]["school_code"].ToString();
+                studentInfo.school_name = dataTable.Rows[i]["school_name"].ToString();
+                studentInfo.major_name = dataTable.Rows[i]["major_name"].ToString();
+                studentInfo.study_type = dataTable.Rows[i]["study_type"].ToString();
+                studentInfo.last_education = dataTable.Rows[i]["last_education"].ToString();
+                studentInfo.diploma_number = dataTable.Rows[i]["diploma_number"].ToString();
+                studentInfo.graduate_date = dataTable.Rows[i]["graduate_date"].ToString();
+                studentInfo.register_number = dataTable.Rows[i]["register_number"].ToString();
+                studentInfo.last_degree = dataTable.Rows[i]["last_degree"].ToString();
+                studentInfo.graduate_number = dataTable.Rows[i]["graduate_number"].ToString();
+                studentInfo.adjust_major_code = dataTable.Rows[i]["adjust_major_code"].ToString();
+                studentInfo.adjust_major_name = dataTable.Rows[i]["adjust_major_name"].ToString();
+                studentInfo.apply_place_code = dataTable.Rows[i]["apply_place_code"].ToString();
+                studentInfo.apply_faculty = dataTable.Rows[i]["apply_faculty"].ToString();
+                studentInfo.apply_faculty_name = dataTable.Rows[i]["apply_faculty_name"].ToString();
+                studentInfo.apply_major_code = dataTable.Rows[i]["apply_major_code"].ToString();
+                studentInfo.apply_major_code = dataTable.Rows[i]["apply_major_code"].ToString();
+                studentInfo.apply_work_direction = dataTable.Rows[i]["apply_work_direction"].ToString();
+                studentInfo.apply_work_direction_name = dataTable.Rows[i]["apply_work_direction_name"].ToString();
+                studentInfo.exam_type = dataTable.Rows[i]["exam_type"].ToString();
+                studentInfo.special_plan = dataTable.Rows[i]["special_plan"].ToString();
+                studentInfo.apply_type = dataTable.Rows[i]["apply_type"].ToString();
+                studentInfo.orientation_train_place_code = dataTable.Rows[i]["orientation_train_place_code"].ToString();
+                studentInfo.orientation_train_place = dataTable.Rows[i]["orientation_train_place"].ToString();
+                studentInfo.standby_information = dataTable.Rows[i]["standby_information"].ToString();
+                studentInfo.standby_information_one = dataTable.Rows[i]["standby_information_one"].ToString();
+                studentInfo.standby_information_two = dataTable.Rows[i]["standby_information_two"].ToString();
+                studentInfo.standby_information_three = dataTable.Rows[i]["standby_information_three"].ToString();
+                studentInfo.political_code = dataTable.Rows[i]["political_code"].ToString();
+                studentInfo.political_name = dataTable.Rows[i]["political_name"].ToString();
+                studentInfo.foreign_code = dataTable.Rows[i]["foreign_code"].ToString();
+                studentInfo.foreign_name = dataTable.Rows[i]["foreign_name"].ToString();
+                studentInfo.business_one_code = dataTable.Rows[i]["business_one_code"].ToString();
+                studentInfo.business_one_name = dataTable.Rows[i]["business_one_name"].ToString();
+                studentInfo.business_two_code = dataTable.Rows[i]["business_two_code"].ToString();
+                studentInfo.business_two_name = dataTable.Rows[i]["business_two_name"].ToString();
+                studentInfo.political_score = System.Convert.ToUInt32(dataTable.Rows[i]["political_score"].ToString());
+                studentInfo.foreign_score = System.Convert.ToUInt32(dataTable.Rows[i]["foreign_score"].ToString());
+                studentInfo.business_one_score = System.Convert.ToUInt32(dataTable.Rows[i]["business_one_score"].ToString());
+                studentInfo.business_two_score = System.Convert.ToUInt32(dataTable.Rows[i]["business_two_score"].ToString());
+                studentInfo.total_score = System.Convert.ToUInt32(dataTable.Rows[i]["total_score"].ToString());
+                studentInfo.volunteer_type = dataTable.Rows[i]["volunteer_type"].ToString();
+                studentInfo.tutor = dataTable.Rows[i]["tutor"].ToString();
+                studentInfo.student_confirm_status = dataTable.Rows[i]["student_confirm_status"].ToString();
+                studentInfo.student_confirm_time = dataTable.Rows[i]["student_confirm_time"].ToString();
+                studentInfo.student_confirm_time = dataTable.Rows[i]["student_reexamine"].ToString();
+                students.student.Add(studentInfo);
+            }
+            foreach (message.StudentInfo student in students.student)
+            {
+                if (student.apply_major_code.Equals("081200") || student.apply_major_code.Equals("083500"))
+                {
+                    academicMaster.Add(student);
+                }
+                else if (student.apply_major_code.Equals("085211") || student.apply_major_code.Equals("085212"))
+                {
+                    professionalMaster.Add(student);
+                }
+            }
         }
     }
 }

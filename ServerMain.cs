@@ -523,5 +523,21 @@ namespace Server
             scoreManager.ShowDialog();
             Console.WriteLine("学生分数管理结束");
         }
+
+        private void readDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // 老师信息
+            DataTable dataTable = MysqlManager.SelectData("teacher_information");
+            DataManager.LoadTeacherFromSQL(dataTable);
+            // 学生信息
+            dataTable = MysqlManager.SelectData("student_information");
+            DataManager.LoadStudentFromSQL(dataTable);
+            MessageBox.Show("数据库连接成功");
+        }
+
+        private void writeDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataManager.LoadStudentFromSQL()
+        }
     }
 }

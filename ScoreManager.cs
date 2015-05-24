@@ -20,7 +20,7 @@ namespace Server
 
         private void btSearch_Click(object sender, EventArgs e)
         {
-            if(tbStudentNumber.Text == "" && tbStudentName.Text == "")
+            if(tbStudentNumber.Text == "学生编号" && tbStudentName.Text == "学生姓名")
             {
                 MessageBox.Show("学生编号或者学生姓名有一个不能为空");
                 return;
@@ -97,7 +97,7 @@ namespace Server
         {
             if (tbStudentName.Text == "学生姓名")
             {
-                tbStudentNumber.Text = "";
+                tbStudentName.Text = "";
             }
         }
 
@@ -105,7 +105,7 @@ namespace Server
         {
             if (tbStudentName.Text == "")
             {
-                tbStudentNumber.Text = "学生姓名";
+                tbStudentName.Text = "学生姓名";
             }
         }
 

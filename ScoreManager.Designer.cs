@@ -43,7 +43,7 @@
             this.dgvStudentScore.AllowUserToDeleteRows = false;
             this.dgvStudentScore.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvStudentScore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStudentScore.Location = new System.Drawing.Point(12, 97);
+            this.dgvStudentScore.Location = new System.Drawing.Point(12, 39);
             this.dgvStudentScore.Name = "dgvStudentScore";
             this.dgvStudentScore.RowTemplate.Height = 23;
             this.dgvStudentScore.Size = new System.Drawing.Size(449, 247);
@@ -101,7 +101,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 356);
+            this.ClientSize = new System.Drawing.Size(473, 308);
             this.Controls.Add(this.btClear);
             this.Controls.Add(this.btSearch);
             this.Controls.Add(this.tbStudentName);

@@ -35,42 +35,42 @@ namespace Server
             if(cbStudentType.SelectedIndex == 0)
             {
                 cbStudentGroups.Items.Clear();
-                cbStudentGroups.Items.Add("全部学生");
+                cbStudentGroups.Items.Add("全部分组");
                 cbStudentGroups.SelectedIndex = 0;
                 cbTeacherId.Items.Clear();
-                cbTeacherId.Items.Add("全部老师");
+                cbTeacherId.Items.Add("全部工号");
                 cbTeacherName.Items.Clear();
-                cbTeacherName.Items.Add("全部老师");
+                cbTeacherName.Items.Add("全部姓名");
                 cbTeacherId.SelectedIndex = 0;
             }
             else if(cbStudentType.SelectedIndex == 1)
             {
                 cbStudentGroups.Items.Clear();
-                cbStudentGroups.Items.Add("全部学生");
+                cbStudentGroups.Items.Add("全部分组");
                 for(int i = 1; i <= DataManager.ProfessionalMasterGroup.Count; ++i)
                 {
                     cbStudentGroups.Items.Add("第" + i + "组");
                 }
                 cbStudentGroups.SelectedIndex = 0;
                 cbTeacherId.Items.Clear();
-                cbTeacherId.Items.Add("全部老师");
+                cbTeacherId.Items.Add("全部工号");
                 cbTeacherName.Items.Clear();
-                cbTeacherName.Items.Add("全部老师");
+                cbTeacherName.Items.Add("全部姓名");
                 cbTeacherId.SelectedIndex = 0;
             }
             else if(cbStudentType.SelectedIndex == 2)
             {
                 cbStudentGroups.Items.Clear();
-                cbStudentGroups.Items.Add("全部学生");
+                cbStudentGroups.Items.Add("全部分组");
                 for(int i = 1; i <= DataManager.AcademicMasterGroup.Count; ++i)
                 {
                     cbStudentGroups.Items.Add("第" + i + "组");
                 }
                 cbStudentGroups.SelectedIndex = 0;
                 cbTeacherId.Items.Clear();
-                cbTeacherId.Items.Add("全部老师");
+                cbTeacherId.Items.Add("全部工号");
                 cbTeacherName.Items.Clear();
-                cbTeacherName.Items.Add("全部老师");
+                cbTeacherName.Items.Add("全部姓名");
                 cbTeacherId.SelectedIndex = 0;
             }
         }
@@ -101,9 +101,9 @@ namespace Server
             if (cbStudentType.SelectedIndex == 1)
             {
                 cbTeacherId.Items.Clear();
-                cbTeacherId.Items.Add("全部老师");
+                cbTeacherId.Items.Add("全部工号");
                 cbTeacherName.Items.Clear();
-                cbTeacherName.Items.Add("全部老师");
+                cbTeacherName.Items.Add("全部姓名");
                 for (int i = 0; i < DataManager.ProfessionalMasterGroup[cbStudentGroups.SelectedIndex - 1][0].teacher_id.Count; ++i)
                 {
                     cbTeacherId.Items.Add(DataManager.ProfessionalMasterGroup[cbStudentGroups.SelectedIndex - 1][0].teacher_id[i]);
@@ -113,9 +113,9 @@ namespace Server
             else if (cbStudentType.SelectedIndex == 2)
             {
                 cbTeacherId.Items.Clear();
-                cbTeacherId.Items.Add("全部老师");
+                cbTeacherId.Items.Add("全部工号");
                 cbTeacherName.Items.Clear();
-                cbTeacherName.Items.Add("全部老师");
+                cbTeacherName.Items.Add("全部姓名");
                 for (int i = 0; i < DataManager.AcademicMasterGroup[cbStudentGroups.SelectedIndex - 1][0].teacher_id.Count; ++i)
                 {
                     cbTeacherId.Items.Add(DataManager.AcademicMasterGroup[cbStudentGroups.SelectedIndex - 1][0].teacher_id[i]);
@@ -131,18 +131,18 @@ namespace Server
             if(cbStudentGroups.SelectedIndex == 0)
             {
                 cbTeacherId.Items.Clear();
-                cbTeacherId.Items.Add("全部老师");
+                cbTeacherId.Items.Add("全部工号");
                 cbTeacherName.Items.Clear();
-                cbTeacherName.Items.Add("全部老师");
+                cbTeacherName.Items.Add("全部姓名");
                 cbTeacherId.SelectedIndex = 0;
                 return;
             }
             if(cbStudentType.SelectedIndex == 1)
             {
                 cbTeacherId.Items.Clear();
-                cbTeacherId.Items.Add("全部老师");
+                cbTeacherId.Items.Add("全部工号");
                 cbTeacherName.Items.Clear();
-                cbTeacherName.Items.Add("全部老师");
+                cbTeacherName.Items.Add("全部姓名");
                 for(int i = 0; i < DataManager.ProfessionalMasterGroup[cbStudentGroups.SelectedIndex - 1][0].teacher_id.Count; ++i)
                 {
                     cbTeacherId.Items.Add(DataManager.ProfessionalMasterGroup[cbStudentGroups.SelectedIndex - 1][0].teacher_id[i]);
@@ -152,9 +152,9 @@ namespace Server
             else if(cbStudentType.SelectedIndex == 2)
             {
                 cbTeacherId.Items.Clear();
-                cbTeacherId.Items.Add("全部老师");
+                cbTeacherId.Items.Add("全部工号");
                 cbTeacherName.Items.Clear();
-                cbTeacherName.Items.Add("全部老师");
+                cbTeacherName.Items.Add("全部姓名");
                 for (int i = 0; i < DataManager.AcademicMasterGroup[cbStudentGroups.SelectedIndex - 1][0].teacher_id.Count; ++i)
                 {
                     cbTeacherId.Items.Add(DataManager.AcademicMasterGroup[cbStudentGroups.SelectedIndex - 1][0].teacher_id[i]);
@@ -175,9 +175,9 @@ namespace Server
             if (cbStudentType.SelectedIndex == 1)
             {
                 cbTeacherId.Items.Clear();
-                cbTeacherId.Items.Add("全部老师");
+                cbTeacherId.Items.Add("全部工号");
                 cbTeacherName.Items.Clear();
-                cbTeacherName.Items.Add("全部老师");
+                cbTeacherName.Items.Add("全部姓名");
                 for (int i = 0; i < DataManager.ProfessionalMasterGroup[cbStudentGroups.SelectedIndex - 1][0].teacher_id.Count; ++i)
                 {
                     cbTeacherId.Items.Add(DataManager.ProfessionalMasterGroup[cbStudentGroups.SelectedIndex - 1][0].teacher_id[i]);
@@ -187,9 +187,9 @@ namespace Server
             else if (cbStudentType.SelectedIndex == 2)
             {
                 cbTeacherId.Items.Clear();
-                cbTeacherId.Items.Add("全部老师");
+                cbTeacherId.Items.Add("全部工号");
                 cbTeacherName.Items.Clear();
-                cbTeacherName.Items.Add("全部老师");
+                cbTeacherName.Items.Add("全部姓名");
                 for (int i = 0; i < DataManager.AcademicMasterGroup[cbStudentGroups.SelectedIndex - 1][0].teacher_id.Count; ++i)
                 {
                     cbTeacherId.Items.Add(DataManager.AcademicMasterGroup[cbStudentGroups.SelectedIndex - 1][0].teacher_id[i]);
@@ -197,6 +197,7 @@ namespace Server
                 }
             }
             cbTeacherId.SelectedIndex = 0;
+            MessageBox.Show("移除老师成功");
         }
 
         private void cbTeacherId_SelectedIndexChanged(object sender, EventArgs e)

@@ -42,13 +42,17 @@
             this.cbTeacherName = new System.Windows.Forms.ComboBox();
             this.cbAssignId = new System.Windows.Forms.ComboBox();
             this.cbAssignName = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbStudentType
             // 
             this.cbStudentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStudentType.FormattingEnabled = true;
-            this.cbStudentType.Location = new System.Drawing.Point(71, 33);
+            this.cbStudentType.Location = new System.Drawing.Point(91, 12);
             this.cbStudentType.Name = "cbStudentType";
             this.cbStudentType.Size = new System.Drawing.Size(121, 20);
             this.cbStudentType.TabIndex = 0;
@@ -58,7 +62,7 @@
             // 
             this.cbStudentGroups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStudentGroups.FormattingEnabled = true;
-            this.cbStudentGroups.Location = new System.Drawing.Point(71, 59);
+            this.cbStudentGroups.Location = new System.Drawing.Point(91, 38);
             this.cbStudentGroups.Name = "cbStudentGroups";
             this.cbStudentGroups.Size = new System.Drawing.Size(121, 20);
             this.cbStudentGroups.TabIndex = 1;
@@ -67,7 +71,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 36);
+            this.label1.Location = new System.Drawing.Point(32, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 2;
@@ -76,7 +80,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 62);
+            this.label2.Location = new System.Drawing.Point(32, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 3;
@@ -85,7 +89,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 88);
+            this.label3.Location = new System.Drawing.Point(20, 23);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 5;
@@ -95,7 +99,7 @@
             // 
             this.cbTeacherId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTeacherId.FormattingEnabled = true;
-            this.cbTeacherId.Location = new System.Drawing.Point(71, 85);
+            this.cbTeacherId.Location = new System.Drawing.Point(79, 20);
             this.cbTeacherId.Name = "cbTeacherId";
             this.cbTeacherId.Size = new System.Drawing.Size(121, 20);
             this.cbTeacherId.TabIndex = 4;
@@ -104,7 +108,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 169);
+            this.label4.Location = new System.Drawing.Point(20, 23);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 6;
@@ -113,7 +117,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 195);
+            this.label5.Location = new System.Drawing.Point(20, 49);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 27;
@@ -121,7 +125,7 @@
             // 
             // btDispatchTeacher
             // 
-            this.btDispatchTeacher.Location = new System.Drawing.Point(71, 220);
+            this.btDispatchTeacher.Location = new System.Drawing.Point(79, 74);
             this.btDispatchTeacher.Name = "btDispatchTeacher";
             this.btDispatchTeacher.Size = new System.Drawing.Size(121, 23);
             this.btDispatchTeacher.TabIndex = 29;
@@ -131,7 +135,7 @@
             // 
             // btRemoveTeacher
             // 
-            this.btRemoveTeacher.Location = new System.Drawing.Point(71, 137);
+            this.btRemoveTeacher.Location = new System.Drawing.Point(79, 72);
             this.btRemoveTeacher.Name = "btRemoveTeacher";
             this.btRemoveTeacher.Size = new System.Drawing.Size(121, 23);
             this.btRemoveTeacher.TabIndex = 30;
@@ -142,7 +146,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 114);
+            this.label6.Location = new System.Drawing.Point(20, 49);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 32;
@@ -152,7 +156,7 @@
             // 
             this.cbTeacherName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTeacherName.FormattingEnabled = true;
-            this.cbTeacherName.Location = new System.Drawing.Point(71, 111);
+            this.cbTeacherName.Location = new System.Drawing.Point(79, 46);
             this.cbTeacherName.Name = "cbTeacherName";
             this.cbTeacherName.Size = new System.Drawing.Size(121, 20);
             this.cbTeacherName.TabIndex = 31;
@@ -162,7 +166,7 @@
             // 
             this.cbAssignId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAssignId.FormattingEnabled = true;
-            this.cbAssignId.Location = new System.Drawing.Point(71, 166);
+            this.cbAssignId.Location = new System.Drawing.Point(79, 20);
             this.cbAssignId.Name = "cbAssignId";
             this.cbAssignId.Size = new System.Drawing.Size(121, 20);
             this.cbAssignId.TabIndex = 33;
@@ -172,27 +176,47 @@
             // 
             this.cbAssignName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAssignName.FormattingEnabled = true;
-            this.cbAssignName.Location = new System.Drawing.Point(71, 192);
+            this.cbAssignName.Location = new System.Drawing.Point(79, 46);
             this.cbAssignName.Name = "cbAssignName";
             this.cbAssignName.Size = new System.Drawing.Size(121, 20);
             this.cbAssignName.TabIndex = 34;
             this.cbAssignName.SelectedIndexChanged += new System.EventHandler(this.cbAssignName_SelectedIndexChanged);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.cbTeacherId);
+            this.groupBox1.Controls.Add(this.btRemoveTeacher);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.cbTeacherName);
+            this.groupBox1.Location = new System.Drawing.Point(12, 64);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(256, 100);
+            this.groupBox1.TabIndex = 35;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "移除老师";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cbAssignId);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.cbAssignName);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.btDispatchTeacher);
+            this.groupBox2.Location = new System.Drawing.Point(12, 170);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(256, 100);
+            this.groupBox2.TabIndex = 36;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "分配老师";
+            // 
             // DispatchTeacher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(215, 270);
-            this.Controls.Add(this.cbAssignName);
-            this.Controls.Add(this.cbAssignId);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.cbTeacherName);
-            this.Controls.Add(this.btRemoveTeacher);
-            this.Controls.Add(this.btDispatchTeacher);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.cbTeacherId);
+            this.ClientSize = new System.Drawing.Size(280, 287);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbStudentType);
@@ -200,6 +224,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "DispatchTeacher";
             this.Text = "分配老师";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,5 +249,7 @@
         private System.Windows.Forms.ComboBox cbTeacherName;
         private System.Windows.Forms.ComboBox cbAssignId;
         private System.Windows.Forms.ComboBox cbAssignName;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
