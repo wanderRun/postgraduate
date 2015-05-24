@@ -54,6 +54,7 @@
             this.ofdLoadComputerAndListenScore = new System.Windows.Forms.OpenFileDialog();
             this.clientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginTeacherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.studentScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShowStudent)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -272,7 +273,8 @@
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loginTeacherToolStripMenuItem});
+            this.loginTeacherToolStripMenuItem,
+            this.studentScoreToolStripMenuItem});
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
             this.clientToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
             this.clientToolStripMenuItem.Text = "客户端";
@@ -283,6 +285,13 @@
             this.loginTeacherToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.loginTeacherToolStripMenuItem.Text = "教师登录";
             this.loginTeacherToolStripMenuItem.Click += new System.EventHandler(this.loginTeacherToolStripMenuItem_Click);
+            // 
+            // studentScoreToolStripMenuItem
+            // 
+            this.studentScoreToolStripMenuItem.Name = "studentScoreToolStripMenuItem";
+            this.studentScoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.studentScoreToolStripMenuItem.Text = "学生分数";
+            this.studentScoreToolStripMenuItem.Click += new System.EventHandler(this.studentScoreToolStripMenuItem_Click);
             // 
             // ServerMain
             // 
@@ -332,6 +341,7 @@
         private System.Windows.Forms.ToolStripMenuItem writeDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loginTeacherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem studentScoreToolStripMenuItem;
     }
 }
 

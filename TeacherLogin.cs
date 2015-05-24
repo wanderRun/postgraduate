@@ -19,6 +19,7 @@ namespace Server
 
         private void ShowTeacherLogin()
         {
+            lvTeacherLogin.BeginUpdate();
             lvTeacherLogin.Columns.Add("教师工号");
             lvTeacherLogin.Columns.Add("教师姓名");
             foreach(message.TeacherInfo teacherInfo in DataManager.TeachersLogin.teacher)
@@ -28,6 +29,7 @@ namespace Server
                 lvi.SubItems.Add(teacherInfo.name);
                 this.lvTeacherLogin.Items.Add(lvi);
             }
+            lvTeacherLogin.EndUpdate();
         }
     }
 }

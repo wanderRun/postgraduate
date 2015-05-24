@@ -539,5 +539,11 @@ namespace Server
             TeacherLogin teacherLogin = new TeacherLogin();
             teacherLogin.ShowDialog();
         }
+
+        private void studentScoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StudentScore studentScore = new StudentScore();
+            studentScore.ShowDialog();
+        }
     }
 }

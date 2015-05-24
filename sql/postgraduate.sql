@@ -106,7 +106,7 @@ CREATE TABLE `student_information` (
   `student_confirm_status` varchar(20) NOT NULL DEFAULT '',
   `student_confirm_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `student_reexamine` varchar(200) NOT NULL DEFAULT '',
-  `teacher_id` varchar(30) NOT NULL DEFAULT ''
+  `teacher_id` varchar(300) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
