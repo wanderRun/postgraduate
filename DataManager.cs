@@ -35,6 +35,7 @@ namespace Server
         private static message.Teachers teachers = new message.Teachers();
         private static Dictionary<string, SchoolType> schoolTypeList = new Dictionary<string, SchoolType>();// 学校类型
         private static Dictionary<string, ComputerAndListenScore> computerAndListenScoreList = new Dictionary<string, ComputerAndListenScore>();// 上机和听力成绩
+        private static message.Teachers teachersLogin = new message.Teachers();// 教师登录
 
         public static message.Students Students
         {
@@ -73,6 +74,11 @@ namespace Server
         public static Dictionary<string, ComputerAndListenScore> ComputerAndListenScoreList
         {
             get { return computerAndListenScoreList; }
+        }
+
+        public static message.Teachers TeachersLogin
+        {
+            get { return teachersLogin; }
         }
 
         private static int ExcelInstalled()
@@ -1236,6 +1242,22 @@ namespace Server
             }
         }
 
+        public static void SaveTeacherToSQL()
+        {
+            List<KeyValuePair<string, string>> data = new List<KeyValuePair<string, string>>();
+            foreach (message.TeacherInfo teacherInfo in teachers.teacher)
+            {
+                data.Clear();
+                KeyValuePair<string, string> kvp = new KeyValuePair<string, string>("teacher_id", teacherInfo.id);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("teacher_name", teacherInfo.name);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("teacher_password", teacherInfo.password);
+                data.Add(kvp);
+                MysqlManager.InsertData("teacher_information", data);
+            }
+        }
+
         public static void AddTeacher(string id, string name, string password="dhu@123")
         {
             message.TeacherInfo teacherInfo = new message.TeacherInfo();
@@ -1367,7 +1389,7 @@ namespace Server
             students.student.Clear();
             academicMaster.Clear();
             professionalMaster.Clear();
-            for (int i = 0; i <= dataTable.Rows.Count; ++i)
+            for (int i = 0; i < dataTable.Rows.Count; ++i)
             {
                 message.StudentInfo studentInfo = new message.StudentInfo();
                 studentInfo.apply_place = dataTable.Rows[i]["apply_place"].ToString();
@@ -1418,7 +1440,7 @@ namespace Server
                 studentInfo.apply_faculty = dataTable.Rows[i]["apply_faculty"].ToString();
                 studentInfo.apply_faculty_name = dataTable.Rows[i]["apply_faculty_name"].ToString();
                 studentInfo.apply_major_code = dataTable.Rows[i]["apply_major_code"].ToString();
-                studentInfo.apply_major_code = dataTable.Rows[i]["apply_major_code"].ToString();
+                studentInfo.apply_major_name = dataTable.Rows[i]["apply_major_name"].ToString();
                 studentInfo.apply_work_direction = dataTable.Rows[i]["apply_work_direction"].ToString();
                 studentInfo.apply_work_direction_name = dataTable.Rows[i]["apply_work_direction_name"].ToString();
                 studentInfo.exam_type = dataTable.Rows[i]["exam_type"].ToString();
@@ -1461,6 +1483,187 @@ namespace Server
                     professionalMaster.Add(student);
                 }
             }
+        }
+
+        public static void SaveStudentToSQL()
+        {
+            List<KeyValuePair<string, string>> data = new List<KeyValuePair<string, string>>();
+            foreach (message.StudentInfo student in students.student)
+            {
+                data.Clear();
+                KeyValuePair<string, string> kvp = new KeyValuePair<string, string>("apply_place", student.apply_place);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("aplly_number", student.aplly_number);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("name", student.name);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("name_spell", student.name_spell);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("number", student.number);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("card_type", student.card_type);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("card_number", student.card_number);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("birth", student.birth);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("nation", student.nation);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("gender", student.gender);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("marriage", student.marriage);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("soldier", student.soldier);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("politics_status", student.politics_status);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("native_place", student.native_place);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("birth_place", student.birth_place);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("register_place", student.register_place);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("register_address", student.register_address);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("record_place", student.record_place);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("record_ministry", student.record_ministry);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("record_address", student.record_address);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("record_place_postcode", student.record_place_postcode);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("work_place", student.work_place);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("work_experience", student.work_experience);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("reward_punishment", student.reward_punishment);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("family", student.family);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("contact_address", student.contact_address);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("contact_postcode", student.contact_postcode);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("fixed_line_phone", student.fixed_line_phone);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("mobile_phone", student.mobile_phone);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("email", student.email);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("source", student.source);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("same_education", student.same_education);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("school_code", student.school_code);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("school_name", student.school_name);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("major_name", student.major_name);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("study_type", student.study_type);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("last_education", student.last_education);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("diploma_number", student.diploma_number);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("graduate_date", student.graduate_date);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("register_number", student.register_number);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("last_degree", student.last_degree);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("graduate_number", student.graduate_number);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("adjust_major_code", student.adjust_major_code);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("adjust_major_name", student.adjust_major_name);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("apply_place_code", student.apply_place_code);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("apply_faculty", student.apply_faculty);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("apply_faculty_name", student.apply_faculty_name);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("apply_major_code", student.apply_major_code);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("apply_major_name", student.apply_major_name);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("apply_work_direction", student.apply_work_direction);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("apply_work_direction_name", student.apply_work_direction_name);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("exam_type", student.exam_type);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("special_plan", student.special_plan);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("apply_type", student.apply_type);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("orientation_train_place_code", student.orientation_train_place_code);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("orientation_train_place", student.orientation_train_place);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("standby_information", student.standby_information);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("standby_information_one", student.standby_information_one);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("standby_information_two", student.standby_information_two);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("standby_information_three", student.standby_information_three);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("political_code", student.political_code);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("political_name", student.political_name);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("foreign_code", student.foreign_code);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("foreign_name", student.foreign_name);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("business_one_code", student.business_one_code);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("business_one_name", student.business_one_name);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("business_two_code", student.business_two_code);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("business_two_name", student.business_two_name);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("political_score", student.political_score.ToString());
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("foreign_score", student.foreign_score.ToString());
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("business_one_score", student.business_one_score.ToString());
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("business_two_score", student.business_two_score.ToString());
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("total_score", student.total_score.ToString());
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("volunteer_type", student.volunteer_type);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("tutor", student.tutor);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("student_confirm_status", student.student_confirm_status);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("student_confirm_time", student.student_confirm_time);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("student_reexamine", student.student_reexamine);
+                data.Add(kvp);
+                MysqlManager.InsertData("student_information", data);
+            }
+        }
+
+        public static uint CheckTeacherLogin(message.Login login)
+        {
+            int index = teachers.teacher.FindIndex(t => t.id == login.name);
+            if (index == -1)
+            {
+                return 2;
+            }
+            if (teachers.teacher[index].password != login.password)
+            {
+                return 3;
+            }
+            teachersLogin.teacher.Add(teachers.teacher[index]);
+            return 1;
         }
     }
 }

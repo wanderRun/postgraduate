@@ -15,6 +15,7 @@ namespace Server
         public TeacherManager()
         {
             InitializeComponent();
+            this.ShowTeacherInformationList();
         }
 
         private void btAddTeacher_Click(object sender, EventArgs e)
@@ -32,24 +33,7 @@ namespace Server
             {
                 DataManager.AddTeacher(tbTeacherId1.Text, tbTeacherName1.Text, tbTeacherPassword.Text);
             }
-            dgvTeacherInformation.Columns.Clear();
-            dgvTeacherInformation.Columns.Add("teacherId", "老师工号");
-            dgvTeacherInformation.Columns.Add("teacherName", "老师姓名");
-            dgvTeacherInformation.Columns.Add("teacherPassword", "老师密码");
-            for (int i = 0; i < DataManager.Teachers.teacher.Count; ++i)
-            {
-                DataGridViewRow dataGridViewRow = new DataGridViewRow();
-                DataGridViewTextBoxCell dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].id;
-                dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
-                dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].name;
-                dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
-                dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].password;
-                dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
-                dgvTeacherInformation.Rows.Add(dataGridViewRow);
-            }
+            this.ShowTeacherInformationList();
             tbTeacherId1.Text = "老师工号";
             tbTeacherName1.Text = "老师姓名";
             tbTeacherPassword.Text = "老师密码";
@@ -58,26 +42,9 @@ namespace Server
 
         private void btGetTeacher_Click(object sender, EventArgs e)
         {
-            dgvTeacherInformation.Columns.Clear();
-            dgvTeacherInformation.Columns.Add("teacherId", "老师工号");
-            dgvTeacherInformation.Columns.Add("teacherName", "老师姓名");
-            dgvTeacherInformation.Columns.Add("teacherPassword", "老师密码");
             DataTable dataTable = MysqlManager.SelectData("teacher_information");
             DataManager.LoadTeacherFromSQL(dataTable);
-            for (int i = 0; i < DataManager.Teachers.teacher.Count; ++i)
-            {
-                DataGridViewRow dataGridViewRow = new DataGridViewRow();
-                DataGridViewTextBoxCell dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].id;
-                dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
-                dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].name;
-                dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
-                dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].password;
-                dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
-                dgvTeacherInformation.Rows.Add(dataGridViewRow);
-            }
+            this.ShowTeacherInformationList();
         }
 
         private void btExcelTeacher_Click(object sender, EventArgs e)
@@ -85,24 +52,7 @@ namespace Server
             if (ofdLoadTeacher.ShowDialog() == DialogResult.OK)
             {
                 DataManager.LoadTeacherFromExcel(ofdLoadTeacher.FileName);
-                dgvTeacherInformation.Columns.Clear();
-                dgvTeacherInformation.Columns.Add("teacherId", "老师工号");
-                dgvTeacherInformation.Columns.Add("teacherName", "老师姓名");
-                dgvTeacherInformation.Columns.Add("teacherPassword", "老师密码");
-                for (int i = 0; i < DataManager.Teachers.teacher.Count; ++i)
-                {
-                    DataGridViewRow dataGridViewRow = new DataGridViewRow();
-                    DataGridViewTextBoxCell dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                    dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].id;
-                    dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
-                    dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                    dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].name;
-                    dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
-                    dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                    dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].password;
-                    dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
-                    dgvTeacherInformation.Rows.Add(dataGridViewRow);
-                }
+                this.ShowTeacherInformationList();
                 MessageBox.Show("老师导入完成");
             }
         }
@@ -239,6 +189,28 @@ namespace Server
             tbTeacherId2.Text = "老师工号";
             tbTeacherName2.Text = "老师姓名";
             MessageBox.Show("一共删除老师" + number + "个");
+        }
+
+        private void ShowTeacherInformationList()
+        {
+            dgvTeacherInformation.Columns.Clear();
+            dgvTeacherInformation.Columns.Add("teacherId", "老师工号");
+            dgvTeacherInformation.Columns.Add("teacherName", "老师姓名");
+            dgvTeacherInformation.Columns.Add("teacherPassword", "老师密码");
+            for (int i = 0; i < DataManager.Teachers.teacher.Count; ++i)
+            {
+                DataGridViewRow dataGridViewRow = new DataGridViewRow();
+                DataGridViewTextBoxCell dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
+                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].id;
+                dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
+                dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
+                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].name;
+                dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
+                dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
+                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].password;
+                dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
+                dgvTeacherInformation.Rows.Add(dataGridViewRow);
+            }
         }
     }
 }

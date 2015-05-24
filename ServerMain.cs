@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Threading;//引入线程的命名空间
 using System.Net.Sockets;
 using System.Net;
+using Microsoft.VisualBasic;
 
 namespace Server
 {
@@ -21,6 +22,7 @@ namespace Server
             cbStudentType.Items.Add("专业硕士");
             cbStudentType.Items.Add("学术硕士");
             cbGroupNumber.Items.Add("学生分组");
+            cbStudentType.SelectedIndex = 0;
             if(DataManager.LoadSchoolTypeFromExcel(System.Environment.CurrentDirectory + "\\高校类型列表.xls") == -1)
             {
                 MessageBox.Show("高校类型列表打开失败请自行打开");
@@ -31,9 +33,6 @@ namespace Server
             }
         }
 
-        /// <summary>
-        /// 初始化列表
-        /// </summary>
         private void InitializeListView()
         {
             dgvShowStudent.Columns.Clear();
@@ -131,16 +130,15 @@ namespace Server
                 }
                 string name = ofdOpenFile.FileName;
                 DataManager.Load(name);
-                this.dgvShowStudent.Visible = true;
-                this.btSeparate.Visible = true;
-                this.tbGroupNumber.Visible = true;
-                this.cbGroupNumber.Visible = true;
-                this.cbStudentType.Visible = true;
                 this.cbStudentType.SelectedIndex = 0;
-                this.btDispatchTeacher.Visible = true;
-                this.btAdjustStudent.Visible = true;
-                this.btManagerTeacher.Visible = true;
-                this.btScoreManager.Visible = true;
+                //this.dgvShowStudent.Visible = true;
+                //this.btSeparate.Visible = true;
+                //this.cbGroupNumber.Visible = true;
+                //this.cbStudentType.Visible = true;
+                //this.btDispatchTeacher.Visible = true;
+                //this.btAdjustStudent.Visible = true;
+                //this.btManagerTeacher.Visible = true;
+                //this.btScoreManager.Visible = true;
                 MessageBox.Show("数据加载成功");
             }
         }
@@ -157,17 +155,23 @@ namespace Server
 
         private void btSeparate_Click(object sender, EventArgs e)
         {
-            if(tbGroupNumber.Text == "")
+            if(DataManager.Students.student.Count == 0)
+            {
+                MessageBox.Show("没有学生信息无法分组");
+                return;
+            }
+            string input = Interaction.InputBox("分组数目", "学生信息分组", "", 0, 0).Trim();
+            if(input == "")
             {
                 MessageBox.Show("分组不能或空");
                 return;
             }
-            if(cbStudentType.SelectedIndex == 0)
+            if(cbStudentType.SelectedIndex <= 0)
             {
                 MessageBox.Show("全部学生不能分组");
                 return;
             }
-            int number = Convert.ToInt32(tbGroupNumber.Text);
+            int number = Convert.ToInt32(input);
             if(number <= 0 || (cbStudentType.SelectedIndex == 1 && number > DataManager.ProfessionalMaster.Count) || (cbStudentType.SelectedIndex == 2 && number > DataManager.AcademicMaster.Count))
             {
                 MessageBox.Show("分组数量超过学生数量");
@@ -459,17 +463,16 @@ namespace Server
         private void clearFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataManager.ClearData();
-            this.dgvShowStudent.Visible = false;
-            this.btSeparate.Visible = false;
-            this.tbGroupNumber.Visible = false;
-            this.cbGroupNumber.Visible = false;
-            this.cbStudentType.Visible = false;
-            this.btDispatchTeacher.Visible = false;
-            this.btAdjustStudent.Visible = false;
-            this.btManagerTeacher.Visible = false;
-            this.btScoreManager.Visible = false;
-            this.cbStudentType.SelectedIndex = -1;
-            this.cbGroupNumber.SelectedIndex = -1;
+            //this.dgvShowStudent.Visible = false;
+            //this.btSeparate.Visible = false;
+            //this.cbGroupNumber.Visible = false;
+            //this.cbStudentType.Visible = false;
+            //this.btDispatchTeacher.Visible = false;
+            //this.btAdjustStudent.Visible = false;
+            //this.btManagerTeacher.Visible = false;
+            //this.btScoreManager.Visible = false;
+            //this.cbStudentType.SelectedIndex = -1;
+            //this.cbGroupNumber.SelectedIndex = -1;
         }
 
         private void openServerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -479,44 +482,13 @@ namespace Server
             MessageBox.Show("服务器开启成功，端口号为" + port);
         }
 
-        private void tbGroupNumber_Enter(object sender, EventArgs e)
-        {
-            tbGroupNumber.Text = "";
-        }
-
-        private void tbGroupNumber_Leave(object sender, EventArgs e)
-        {
-            if(tbGroupNumber.Text == "")
-            {
-                tbGroupNumber.Text = "分组数目";
-            }
-        }
-
         private void btManagerTeacher_Click(object sender, EventArgs e)
         {
             TeacherManager teacherManager = new TeacherManager();
             teacherManager.ShowDialog();
             Console.WriteLine("管理老师结束");
         }
-
-        private void openSchoolTypeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if(ofdLoadSchoolType.ShowDialog() == DialogResult.OK)
-            {
-                DataManager.LoadSchoolTypeFromExcel(ofdLoadSchoolType.FileName);
-                MessageBox.Show("高校类型加载成功");
-            }
-        }
-
-        private void openComputerAndListenScoreToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ofdLoadComputerAndListenScore.ShowDialog() == DialogResult.OK)
-            {
-                DataManager.LoadComputerAndListenScoreFromExcel(ofdLoadComputerAndListenScore.FileName);
-                MessageBox.Show("上机成绩和听力成绩加载成功");
-            }
-        }
-
+        
         private void btScoreManager_Click(object sender, EventArgs e)
         {
             ScoreManager scoreManager = new ScoreManager();
@@ -532,12 +504,40 @@ namespace Server
             // 学生信息
             dataTable = MysqlManager.SelectData("student_information");
             DataManager.LoadStudentFromSQL(dataTable);
-            MessageBox.Show("数据库连接成功");
+            cbStudentType.SelectedIndex = -1;
+            cbStudentType.SelectedIndex = 0;
+            MessageBox.Show("读取数据库完成");
         }
 
         private void writeDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataManager.LoadStudentFromSQL()
+            DataManager.SaveTeacherToSQL();
+            DataManager.SaveStudentToSQL();
+            MessageBox.Show("写入数据库完成");
+        }
+
+        private void readSchoolTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ofdLoadSchoolType.ShowDialog() == DialogResult.OK)
+            {
+                DataManager.LoadSchoolTypeFromExcel(ofdLoadSchoolType.FileName);
+                MessageBox.Show("高校类型加载成功");
+            }
+        }
+
+        private void readComputerAndListenScoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ofdLoadSchoolType.ShowDialog() == DialogResult.OK)
+            {
+                DataManager.LoadComputerAndListenScoreFromExcel(ofdLoadSchoolType.FileName);
+                MessageBox.Show("上机成绩和听力成绩加载成功");
+            }
+        }
+
+        private void loginTeacherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TeacherLogin teacherLogin = new TeacherLogin();
+            teacherLogin.ShowDialog();
         }
     }
 }

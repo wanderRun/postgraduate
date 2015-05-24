@@ -133,22 +133,10 @@ namespace Server
         {
             message.ResponseLogin send = new message.ResponseLogin();
             message.Login rec = ProtoBuf.Serializer.Deserialize<message.Login>(memStream);
-            int index = DataManager.Teachers.teacher.FindIndex(t => t.id == rec.name);
-            if(index == -1)
-            {
-                send.ret = 2;
-                SendProtoMsg(socket, send, send.GetType().ToString());
-                return;
-            }
-            if(DataManager.Teachers.teacher[index].password != rec.password)
-            {
-                send.ret = 3;
-                SendProtoMsg(socket, send, send.GetType().ToString());
-                return;
-            }
-            send.ret = 1;
+            send.ret = DataManager.CheckTeacherLogin(rec);
             SendProtoMsg(socket, send, send.GetType().ToString());
         }
+		
         public void OnMessageReqStudentInfo(MemoryStream memStream, Socket socket)
         {
             message.ReqStudentInfo rec = ProtoBuf.Serializer.Deserialize<message.ReqStudentInfo>(memStream);
