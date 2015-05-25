@@ -130,6 +130,7 @@ namespace Server
                 }
                 string name = ofdOpenFile.FileName;
                 DataManager.Load(name);
+                this.cbStudentType.SelectedIndex = -1;
                 this.cbStudentType.SelectedIndex = 0;
                 //this.dgvShowStudent.Visible = true;
                 //this.btSeparate.Visible = true;
@@ -463,6 +464,7 @@ namespace Server
         private void clearFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataManager.ClearData();
+            MessageBox.Show("清空数据完成");
             //this.dgvShowStudent.Visible = false;
             //this.btSeparate.Visible = false;
             //this.cbGroupNumber.Visible = false;

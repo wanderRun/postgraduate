@@ -40,13 +40,6 @@ namespace Server
             MessageBox.Show("添加老师完成");
         }
 
-        private void btGetTeacher_Click(object sender, EventArgs e)
-        {
-            DataTable dataTable = MysqlManager.SelectData("teacher_information");
-            DataManager.LoadTeacherFromSQL(dataTable);
-            this.ShowTeacherInformationList();
-        }
-
         private void btExcelTeacher_Click(object sender, EventArgs e)
         {
             if (ofdLoadTeacher.ShowDialog() == DialogResult.OK)
@@ -168,24 +161,7 @@ namespace Server
                 }
                 number = DataManager.RemoveTeacherByName(tbTeacherName2.Text);
             }
-            dgvTeacherInformation.Columns.Clear();
-            dgvTeacherInformation.Columns.Add("teacherId", "老师工号");
-            dgvTeacherInformation.Columns.Add("teacherName", "老师姓名");
-            dgvTeacherInformation.Columns.Add("teacherPassword", "老师密码");
-            for (int i = 0; i < DataManager.Teachers.teacher.Count; ++i)
-            {
-                DataGridViewRow dataGridViewRow = new DataGridViewRow();
-                DataGridViewTextBoxCell dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].id;
-                dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
-                dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].name;
-                dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
-                dataGridViewTextBoxCell = new DataGridViewTextBoxCell();
-                dataGridViewTextBoxCell.Value = DataManager.Teachers.teacher[i].password;
-                dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
-                dgvTeacherInformation.Rows.Add(dataGridViewRow);
-            }
+            this.ShowTeacherInformationList();
             tbTeacherId2.Text = "老师工号";
             tbTeacherName2.Text = "老师姓名";
             MessageBox.Show("一共删除老师" + number + "个");
@@ -211,6 +187,13 @@ namespace Server
                 dataGridViewRow.Cells.Add(dataGridViewTextBoxCell);
                 dgvTeacherInformation.Rows.Add(dataGridViewRow);
             }
+        }
+
+        private void btDatabaseTeacher_Click(object sender, EventArgs e)
+        {
+            DataTable dataTable = MysqlManager.SelectData("teacher_information");
+            DataManager.LoadTeacherFromSQL(dataTable);
+            this.ShowTeacherInformationList();
         }
     }
 }

@@ -33,13 +33,13 @@
             this.btAddTeacher = new System.Windows.Forms.Button();
             this.tbTeacherPassword = new System.Windows.Forms.TextBox();
             this.dgvTeacherInformation = new System.Windows.Forms.DataGridView();
-            this.btGetTeacher = new System.Windows.Forms.Button();
             this.btExcelTeacher = new System.Windows.Forms.Button();
             this.ofdLoadTeacher = new System.Windows.Forms.OpenFileDialog();
             this.btClearTeacher = new System.Windows.Forms.Button();
             this.btDeleteTeacher = new System.Windows.Forms.Button();
             this.tbTeacherName2 = new System.Windows.Forms.TextBox();
             this.tbTeacherId2 = new System.Windows.Forms.TextBox();
+            this.btDatabaseTeacher = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeacherInformation)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,19 +95,9 @@
             this.dgvTeacherInformation.Size = new System.Drawing.Size(460, 233);
             this.dgvTeacherInformation.TabIndex = 37;
             // 
-            // btGetTeacher
-            // 
-            this.btGetTeacher.Location = new System.Drawing.Point(12, 305);
-            this.btGetTeacher.Name = "btGetTeacher";
-            this.btGetTeacher.Size = new System.Drawing.Size(75, 23);
-            this.btGetTeacher.TabIndex = 8;
-            this.btGetTeacher.Text = "数据库导入";
-            this.btGetTeacher.UseVisualStyleBackColor = true;
-            this.btGetTeacher.Click += new System.EventHandler(this.btGetTeacher_Click);
-            // 
             // btExcelTeacher
             // 
-            this.btExcelTeacher.Location = new System.Drawing.Point(93, 305);
+            this.btExcelTeacher.Location = new System.Drawing.Point(93, 303);
             this.btExcelTeacher.Name = "btExcelTeacher";
             this.btExcelTeacher.Size = new System.Drawing.Size(75, 23);
             this.btExcelTeacher.TabIndex = 9;
@@ -123,7 +113,7 @@
             // 
             // btClearTeacher
             // 
-            this.btClearTeacher.Location = new System.Drawing.Point(174, 305);
+            this.btClearTeacher.Location = new System.Drawing.Point(174, 303);
             this.btClearTeacher.Name = "btClearTeacher";
             this.btClearTeacher.Size = new System.Drawing.Size(75, 23);
             this.btClearTeacher.TabIndex = 10;
@@ -161,17 +151,27 @@
             this.tbTeacherId2.Enter += new System.EventHandler(this.tbTeacherId2_Enter);
             this.tbTeacherId2.Leave += new System.EventHandler(this.tbTeacherId2_Leave);
             // 
+            // btDatabaseTeacher
+            // 
+            this.btDatabaseTeacher.Location = new System.Drawing.Point(12, 303);
+            this.btDatabaseTeacher.Name = "btDatabaseTeacher";
+            this.btDatabaseTeacher.Size = new System.Drawing.Size(75, 23);
+            this.btDatabaseTeacher.TabIndex = 38;
+            this.btDatabaseTeacher.Text = "数据库导入";
+            this.btDatabaseTeacher.UseVisualStyleBackColor = true;
+            this.btDatabaseTeacher.Click += new System.EventHandler(this.btDatabaseTeacher_Click);
+            // 
             // TeacherManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 338);
+            this.Controls.Add(this.btDatabaseTeacher);
             this.Controls.Add(this.btDeleteTeacher);
             this.Controls.Add(this.tbTeacherName2);
             this.Controls.Add(this.tbTeacherId2);
             this.Controls.Add(this.btClearTeacher);
             this.Controls.Add(this.btExcelTeacher);
-            this.Controls.Add(this.btGetTeacher);
             this.Controls.Add(this.dgvTeacherInformation);
             this.Controls.Add(this.tbTeacherPassword);
             this.Controls.Add(this.btAddTeacher);
@@ -193,12 +193,12 @@
         private System.Windows.Forms.Button btAddTeacher;
         private System.Windows.Forms.TextBox tbTeacherPassword;
         private System.Windows.Forms.DataGridView dgvTeacherInformation;
-        private System.Windows.Forms.Button btGetTeacher;
         private System.Windows.Forms.Button btExcelTeacher;
         private System.Windows.Forms.OpenFileDialog ofdLoadTeacher;
         private System.Windows.Forms.Button btClearTeacher;
         private System.Windows.Forms.Button btDeleteTeacher;
         private System.Windows.Forms.TextBox tbTeacherName2;
         private System.Windows.Forms.TextBox tbTeacherId2;
+        private System.Windows.Forms.Button btDatabaseTeacher;
     }
 }

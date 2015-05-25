@@ -15,6 +15,7 @@ namespace Server
         public TeacherLogin()
         {
             InitializeComponent();
+            this.ShowTeacherLogin();
         }
 
         private void ShowTeacherLogin()

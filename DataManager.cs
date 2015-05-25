@@ -1,6 +1,6 @@
 ﻿using System;
-//using Microsoft.Office.Interop.Excel;
-using Excel;
+using Microsoft.Office.Interop.Excel;
+//using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -132,6 +132,9 @@ namespace Server
                 Worksheet sheet = book.Worksheets.Item[1];
                 int count = book.Worksheets.Count;
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
+                LoadDataFromExcel(sheet);
+                Console.WriteLine("total={0}", students.student.Count);
+                book.Close();
                 excel.Quit();
                 Marshal.ReleaseComObject(sheet);
                 Marshal.ReleaseComObject(book);

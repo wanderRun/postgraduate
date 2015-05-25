@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-04-24 21:27:30
--- 服务器版本： 5.6.24
--- PHP Version: 5.6.8
+-- Generation Time: 2015-05-25 13:18:14
+-- 服务器版本： 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,11 +23,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `group_information`
+--
+
+CREATE TABLE IF NOT EXISTS `group_information` (
+  `id` int(1) NOT NULL DEFAULT '0',
+  `group_id` varchar(30) NOT NULL DEFAULT '',
+  `number` varchar(30) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `score_information`
+--
+
+CREATE TABLE IF NOT EXISTS `score_information` (
+  `number` varchar(30) NOT NULL DEFAULT '',
+  `teacher_id` varchar(30) NOT NULL DEFAULT '',
+  `introduction_score` int(11) NOT NULL DEFAULT '0',
+  `translation_score` int(11) NOT NULL DEFAULT '0',
+  `topic_score` int(11) NOT NULL DEFAULT '0',
+  `answer_score` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `student_information`
 --
 
-DROP TABLE IF EXISTS `student_information`;
-CREATE TABLE `student_information` (
+CREATE TABLE IF NOT EXISTS `student_information` (
   `apply_place` varchar(10) NOT NULL DEFAULT '',
   `aplly_number` varchar(20) NOT NULL DEFAULT '',
   `name` varchar(20) NOT NULL DEFAULT '',
@@ -115,8 +141,7 @@ CREATE TABLE `student_information` (
 -- 表的结构 `teacher_information`
 --
 
-DROP TABLE IF EXISTS `teacher_information`;
-CREATE TABLE `teacher_information` (
+CREATE TABLE IF NOT EXISTS `teacher_information` (
   `teacher_id` varchar(30) NOT NULL DEFAULT '',
   `teacher_name` varchar(30) NOT NULL DEFAULT '',
   `teacher_password` varchar(30) NOT NULL DEFAULT ''
@@ -127,16 +152,38 @@ CREATE TABLE `teacher_information` (
 --
 
 --
+-- Indexes for table `group_information`
+--
+ALTER TABLE `group_information`
+ ADD PRIMARY KEY (`id`), ADD KEY `number` (`number`);
+
+--
+-- Indexes for table `score_information`
+--
+ALTER TABLE `score_information`
+ ADD PRIMARY KEY (`number`,`teacher_id`);
+
+--
 -- Indexes for table `student_information`
 --
 ALTER TABLE `student_information`
-  ADD PRIMARY KEY (`number`);
+ ADD PRIMARY KEY (`number`);
 
 --
 -- Indexes for table `teacher_information`
 --
 ALTER TABLE `teacher_information`
-  ADD PRIMARY KEY (`teacher_id`);
+ ADD PRIMARY KEY (`teacher_id`);
+
+--
+-- 限制导出的表
+--
+
+--
+-- 限制表 `group_information`
+--
+ALTER TABLE `group_information`
+ADD CONSTRAINT `group_information_ibfk_1` FOREIGN KEY (`number`) REFERENCES `student_information` (`number`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
