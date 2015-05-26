@@ -195,5 +195,22 @@ namespace Server
                 SendProtoMsg(socket, send, send.GetType().ToString());
             }
         }
+
+        public void OnMessageReqExitSystem(MemoryStream memStream, Socket socket)
+        {
+            message.ReqExitSystem rec = ProtoBuf.Serializer.Deserialize<message.ReqExitSystem>(memStream);
+            int index = DataManager.Students.student.FindIndex(s => s.number == rec.number);
+            if (index != -1)
+            {
+                message.TeacherScore send = new message.TeacherScore();
+                send.number = DataManager.Students.student[index].number;
+                send.introduction_score = DataManager.Students.student[index].introduction_score;
+                send.translation_score = DataManager.Students.student[index].translation_score;
+                send.topic_score = DataManager.Students.student[index].topic_score;
+                send.answer_score = DataManager.Students.student[index].answer_score;
+                send.result_score = DataManager.Students.student[index].result_score;
+                SendProtoMsg(socket, send, send.GetType().ToString());
+            }
+        }
     }
 }

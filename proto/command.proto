@@ -200,3 +200,10 @@ message ResChangePassword
 {
 	optional uint32 ret = 1;// 1-成功 2-找不到用户名 3-密码错误
 }
+
+// 退出系统
+// c -->s
+message ReqExitSystem
+{
+	optional string teacher_id = 1;
+}

@@ -1,6 +1,6 @@
 ﻿using System;
-//using Microsoft.Office.Interop.Excel;
-using Excel;
+using Microsoft.Office.Interop.Excel;
+//using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -1846,6 +1846,16 @@ namespace Server
         public static void LoadGroupFromSQL()
         {
 
+        }
+
+        public static void TeacherExit(string teacherId)
+        {
+            message.TeacherInfo teacher = teachersLogin.teacher.Find(t => t.id == teacherId);
+            if(teacher == null)
+            {
+                return;
+            }
+            teachersLogin.teacher.Remove(teacher);
         }
     }
 }

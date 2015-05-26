@@ -145,7 +145,8 @@ CREATE TABLE IF NOT EXISTS `student_information` (
 CREATE TABLE IF NOT EXISTS `teacher_information` (
   `teacher_id` varchar(30) NOT NULL DEFAULT '',
   `teacher_name` varchar(30) NOT NULL DEFAULT '',
-  `teacher_password` varchar(30) NOT NULL DEFAULT ''
+  `teacher_password` varchar(30) NOT NULL DEFAULT '',
+  `group_id` varchar(30) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
