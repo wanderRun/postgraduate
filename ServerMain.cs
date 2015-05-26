@@ -117,7 +117,6 @@ namespace Server
         }
 
         PosSocket posSocket = new PosSocket();
-        RedisManager redisManager = new RedisManager();
 
         private void OpenFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -515,6 +514,7 @@ namespace Server
         {
             DataManager.SaveTeacherToSQL();
             DataManager.SaveStudentToSQL();
+            DataManager.SaveTeacherScoreToSQL();
             MessageBox.Show("写入数据库完成");
         }
 

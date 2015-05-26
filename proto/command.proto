@@ -148,12 +148,13 @@ message ResStudentInfo
 // c <--> s
 message TeacherScore
 {
-	optional string number = 1;
-	optional uint32 introduction_score = 2;// 自我介绍（本科阶段综合表现与申请材料）10分
-	optional uint32 translation_score = 3;// 翻译10分
-	optional uint32 topic_score = 4;// TOPIC20分
-	optional uint32 answer_score = 5;// 回答提问30分
-	optional uint32 result_score = 6;// 面试(总评分)
+	optional string teacher_id = 1;
+	optional string number = 2;
+	optional uint32 introduction_score = 3;// 自我介绍（本科阶段综合表现与申请材料）10分
+	optional uint32 translation_score = 4;// 翻译10分
+	optional uint32 topic_score = 5;// TOPIC20分
+	optional uint32 answer_score = 6;// 回答提问30分
+	optional uint32 result_score = 7;// 面试(总评分)
 }
 
 // 返回教师打分

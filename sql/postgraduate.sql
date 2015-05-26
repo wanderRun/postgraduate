@@ -27,7 +27,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `group_information` (
-  `id` int(1) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL DEFAULT '0',
+  `student_type` varchar(10) NOT NULL DEFAULT '',
   `group_id` varchar(30) NOT NULL DEFAULT '',
   `number` varchar(30) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

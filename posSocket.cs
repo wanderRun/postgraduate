@@ -166,21 +166,8 @@ namespace Server
         public void OnMessageTeacherScore(MemoryStream memStream, Socket socket)
         {
             message.TeacherScore rec = ProtoBuf.Serializer.Deserialize<message.TeacherScore>(memStream);
-            int index = DataManager.Students.student.FindIndex(s => s.number == rec.number);
             message.ResTeacherScore send = new message.ResTeacherScore();
-            if(index == -1)
-            {
-                send.result = false;
-            }
-            else
-            {
-                send.result = true;
-                DataManager.Students.student[index].introduction_score = rec.introduction_score;
-                DataManager.Students.student[index].translation_score = rec.translation_score;
-                DataManager.Students.student[index].topic_score = rec.topic_score;
-                DataManager.Students.student[index].answer_score = rec.answer_score;
-                DataManager.Students.student[index].result_score = rec.result_score;
-            }
+            send.result = DataManager.TeacherScoreStudent(rec);
             SendProtoMsg(socket, send, send.GetType().ToString());
         }
 

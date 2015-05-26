@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.Office.Interop.Excel;
-//using Excel;
+//using Microsoft.Office.Interop.Excel;
+using Excel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.IO;
@@ -36,6 +36,7 @@ namespace Server
         private static Dictionary<string, SchoolType> schoolTypeList = new Dictionary<string, SchoolType>();// 学校类型
         private static Dictionary<string, ComputerAndListenScore> computerAndListenScoreList = new Dictionary<string, ComputerAndListenScore>();// 上机和听力成绩
         private static message.Teachers teachersLogin = new message.Teachers();// 教师登录
+        private static List<message.TeacherScore> teacherScore = new List<message.TeacherScore>();// 老师打分数
 
         public static message.Students Students
         {
@@ -79,6 +80,11 @@ namespace Server
         public static message.Teachers TeachersLogin
         {
             get { return teachersLogin; }
+        }
+
+        public static List<message.TeacherScore> TeacherScore
+        {
+            get { return teacherScore; }
         }
 
         private static int ExcelInstalled()
@@ -1667,6 +1673,79 @@ namespace Server
             }
             teachersLogin.teacher.Add(teachers.teacher[index]);
             return 1;
+        }
+
+        public static bool TeacherScoreStudent(message.TeacherScore rev)
+        {
+            message.StudentInfo studentInfo = students.student.Find(s => s.number == rev.number);
+            if(studentInfo == null)
+            {
+                return false;
+            }
+            int index = studentInfo.teacher_id.FindIndex(t => t == rev.teacher_id);
+            if(index == -1)
+            {
+                return false;
+            }
+            bool isFind = false;
+            for(int i = 0; i < teacherScore.Count; ++i)
+            {
+                if(teacherScore[i].number == rev.number && teacherScore[i].teacher_id == rev.teacher_id)
+                {
+                    teacherScore[i] = rev;
+                    isFind = true;
+                }
+            }
+            if(!isFind)
+            {
+                teacherScore.Add(rev);
+            }
+            uint count = 0;
+            studentInfo.introduction_score = 0;
+            studentInfo.translation_score = 0;
+            studentInfo.topic_score = 0;
+            studentInfo.answer_score = 0;
+            studentInfo.result_score = 0;
+            foreach(message.TeacherScore score in teacherScore)
+            {
+                if(studentInfo.number == score.number)
+                {
+                    studentInfo.introduction_score += score.introduction_score;
+                    studentInfo.translation_score += score.translation_score; ;
+                    studentInfo.topic_score += score.topic_score;
+                    studentInfo.answer_score += score.answer_score;
+                    studentInfo.result_score += score.result_score;
+                    count++;
+                }
+            }
+            studentInfo.introduction_score /= count;
+            studentInfo.translation_score /= count;
+            studentInfo.topic_score /= count;
+            studentInfo.answer_score /= count;
+            studentInfo.result_score /= count;
+            return true;
+        }
+
+        public static void SaveTeacherScoreToSQL()
+        {
+            List<KeyValuePair<string, string>> data = new List<KeyValuePair<string, string>>();
+            foreach(message.TeacherScore score in teacherScore)
+            {
+                data.Clear();
+                KeyValuePair<string, string>  kvp = new KeyValuePair<string, string>("number", score.number);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("teacher_id", score.teacher_id);
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("introduction_score", score.introduction_score.ToString());
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("translation_score", score.translation_score.ToString());
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("topic_score", score.topic_score.ToString());
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("answer_score", score.answer_score.ToString());
+                data.Add(kvp);
+                MysqlManager.InsertData("score_information", data);
+            }
         }
     }
 }
