@@ -1238,8 +1238,9 @@ namespace Server
             }
         }
 
-        public static void LoadTeacherFromSQL(System.Data.DataTable dataTable)
+        public static void LoadTeacherFromSQL()
         {
+            System.Data.DataTable dataTable = MysqlManager.SelectData("teacher_information");
             message.TeacherInfo teacherInfo;
             for(int i = 0; i < dataTable.Rows.Count; ++i)
             {
@@ -1393,8 +1394,9 @@ namespace Server
             return teachers.teacher.RemoveAll(t => t.name == name);
         }
 
-        public static void LoadStudentFromSQL(System.Data.DataTable dataTable)
+        public static void LoadStudentFromSQL()
         {
+            System.Data.DataTable dataTable = MysqlManager.SelectData("student_information");
             students.student.Clear();
             academicMaster.Clear();
             professionalMaster.Clear();
@@ -1746,6 +1748,104 @@ namespace Server
                 data.Add(kvp);
                 MysqlManager.InsertData("score_information", data);
             }
+        }
+
+        public static void LoadTeacherScoreFromSQL()
+        {
+            System.Data.DataTable dataTable = MysqlManager.SelectData("score_information");
+            teacherScore.Clear();
+            for (int i = 0; i < dataTable.Rows.Count; ++i)
+            {
+                message.TeacherScore score = new message.TeacherScore();
+                score.number = dataTable.Rows[i]["number"].ToString();
+                score.teacher_id = dataTable.Rows[i]["teacher_id"].ToString();
+                score.introduction_score = System.Convert.ToUInt32(dataTable.Rows[i]["introduction_score"]);
+                score.translation_score = System.Convert.ToUInt32(dataTable.Rows[i]["translation_score"]);
+                score.topic_score = System.Convert.ToUInt32(dataTable.Rows[i]["topic_score"]);
+                score.answer_score = System.Convert.ToUInt32(dataTable.Rows[i]["answer_score"]);
+                score.result_score = score.introduction_score + score.translation_score + score.topic_score + score.answer_score;
+                teacherScore.Add(score);
+            }
+            foreach(message.TeacherScore score in teacherScore)
+            {
+                message.StudentInfo student = students.student.Find(s => s.number == score.number);
+                if(student == null)
+                {
+                    continue;
+                }
+                student.introduction_score += score.introduction_score;
+                student.translation_score += score.translation_score;
+                student.topic_score += score.topic_score;
+                student.answer_score += score.answer_score;
+                student.result_score += score.result_score;
+            }
+            foreach(message.StudentInfo student in students.student)
+            {
+                if(student.teacher_id.Count == 0)
+                {
+                    continue;
+                }
+                student.introduction_score /= (uint)student.teacher_id.Count;
+                student.translation_score /= (uint)student.teacher_id.Count;
+                student.topic_score /= (uint)student.teacher_id.Count;
+                student.answer_score /= (uint)student.teacher_id.Count;
+                student.result_score /= (uint)student.teacher_id.Count;
+            }
+        }
+
+        public static void SaveGroupToSQL()
+        {
+            List<KeyValuePair<string, string>> data = new List<KeyValuePair<string, string>>();
+            int group = 0;
+            foreach (List<message.StudentInfo> studentGroup in AcademicMasterGroup)
+            {
+                int index = 0;
+                data.Clear();
+                KeyValuePair<string, string> kvp = new KeyValuePair<string, string>("student_type", "academic");
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("group_id", group.ToString());
+                data.Add(kvp);
+                string number = "";
+                foreach (message.StudentInfo student in studentGroup)
+                {
+                    if(index++ != 0)
+                    {
+                        number += ";";
+                    }
+                    number += student.number;
+                }
+                kvp = new KeyValuePair<string, string>("number", number);
+                data.Add(kvp);
+                group++;
+                MysqlManager.InsertData("group_information", data);
+            }
+            foreach (List<message.StudentInfo> studentGroup in ProfessionalMasterGroup)
+            {
+                int index = 0;
+                data.Clear();
+                KeyValuePair<string, string> kvp = new KeyValuePair<string, string>("student_type", "professional");
+                data.Add(kvp);
+                kvp = new KeyValuePair<string, string>("group_id", group.ToString());
+                data.Add(kvp);
+                string number = "";
+                foreach (message.StudentInfo student in studentGroup)
+                {
+                    if (index++ != 0)
+                    {
+                        number += ";";
+                    }
+                    number += student.number;
+                }
+                kvp = new KeyValuePair<string, string>("number", number);
+                data.Add(kvp);
+                group++;
+                MysqlManager.InsertData("group_information", data);
+            }
+        }
+
+        public static void LoadGroupFromSQL()
+        {
+
         }
     }
 }

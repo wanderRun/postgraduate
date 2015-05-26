@@ -191,8 +191,7 @@ namespace Server
 
         private void btDatabaseTeacher_Click(object sender, EventArgs e)
         {
-            DataTable dataTable = MysqlManager.SelectData("teacher_information");
-            DataManager.LoadTeacherFromSQL(dataTable);
+            DataManager.LoadTeacherFromSQL();
             this.ShowTeacherInformationList();
         }
     }

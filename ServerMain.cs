@@ -500,13 +500,13 @@ namespace Server
         private void readDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // 老师信息
-            DataTable dataTable = MysqlManager.SelectData("teacher_information");
-            DataManager.LoadTeacherFromSQL(dataTable);
+            DataManager.LoadTeacherFromSQL();
             // 学生信息
-            dataTable = MysqlManager.SelectData("student_information");
-            DataManager.LoadStudentFromSQL(dataTable);
+            DataManager.LoadStudentFromSQL();
             cbStudentType.SelectedIndex = -1;
             cbStudentType.SelectedIndex = 0;
+            DataManager.LoadGroupFromSQL();
+            DataManager.LoadTeacherScoreFromSQL();
             MessageBox.Show("读取数据库完成");
         }
 
@@ -514,6 +514,7 @@ namespace Server
         {
             DataManager.SaveTeacherToSQL();
             DataManager.SaveStudentToSQL();
+            DataManager.SaveGroupToSQL();
             DataManager.SaveTeacherScoreToSQL();
             MessageBox.Show("写入数据库完成");
         }
