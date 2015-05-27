@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeacherManager));
             this.tbTeacherId1 = new System.Windows.Forms.TextBox();
             this.tbTeacherName1 = new System.Windows.Forms.TextBox();
             this.btAddTeacher = new System.Windows.Forms.Button();
@@ -178,6 +179,7 @@
             this.Controls.Add(this.tbTeacherName1);
             this.Controls.Add(this.tbTeacherId1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TeacherManager";
             this.Text = "老师管理";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeacherInformation)).EndInit();

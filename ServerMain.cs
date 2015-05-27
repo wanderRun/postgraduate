@@ -464,6 +464,10 @@ namespace Server
         {
             DataManager.ClearData();
             MessageBox.Show("清空数据完成");
+            this.cbStudentType.SelectedIndex = -1;
+            this.cbGroupNumber.SelectedIndex = -1;
+            this.cbStudentType.SelectedIndex = 0;
+            this.cbGroupNumber.SelectedIndex = 0;
             //this.dgvShowStudent.Visible = false;
             //this.btSeparate.Visible = false;
             //this.cbGroupNumber.Visible = false;
@@ -472,13 +476,16 @@ namespace Server
             //this.btAdjustStudent.Visible = false;
             //this.btManagerTeacher.Visible = false;
             //this.btScoreManager.Visible = false;
-            //this.cbStudentType.SelectedIndex = -1;
-            //this.cbGroupNumber.SelectedIndex = -1;
         }
 
         private void openServerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int port = 1234;
+            string input = Interaction.InputBox("端口号", "开启服务器", "1234", 0, 0).Trim();
+            if(input == "")
+            {
+                return;
+            }
+            int port = System.Convert.ToInt32(input);
             posSocket.StartServer(port);
             MessageBox.Show("服务器开启成功，端口号为" + port);
         }
@@ -503,10 +510,10 @@ namespace Server
             DataManager.LoadTeacherFromSQL();
             // 学生信息
             DataManager.LoadStudentFromSQL();
-            cbStudentType.SelectedIndex = -1;
-            cbStudentType.SelectedIndex = 0;
             DataManager.LoadGroupFromSQL();
             DataManager.LoadTeacherScoreFromSQL();
+            cbStudentType.SelectedIndex = -1;
+            cbStudentType.SelectedIndex = 0;
             MessageBox.Show("读取数据库完成");
         }
 

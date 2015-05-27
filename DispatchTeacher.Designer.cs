@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DispatchTeacher));
             this.cbStudentType = new System.Windows.Forms.ComboBox();
             this.cbStudentGroups = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -222,6 +223,7 @@
             this.Controls.Add(this.cbStudentType);
             this.Controls.Add(this.cbStudentGroups);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DispatchTeacher";
             this.Text = "分配老师";
             this.groupBox1.ResumeLayout(false);

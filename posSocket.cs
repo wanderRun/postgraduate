@@ -199,7 +199,7 @@ namespace Server
         public void OnMessageReqExitSystem(MemoryStream memStream, Socket socket)
         {
             message.ReqExitSystem rec = ProtoBuf.Serializer.Deserialize<message.ReqExitSystem>(memStream);
-            int index = DataManager.Students.student.FindIndex(s => s.number == rec.number);
+            int index = DataManager.Students.student.FindIndex(s => s.number == rec.teacher_id);
             if (index != -1)
             {
                 message.TeacherScore send = new message.TeacherScore();

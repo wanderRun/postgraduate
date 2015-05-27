@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerMain));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btScoreManager = new System.Windows.Forms.Button();
             this.dgvShowStudent = new System.Windows.Forms.DataGridView();
@@ -48,13 +49,13 @@
             this.openServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writeDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loginTeacherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.studentScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.ofdLoadSchoolType = new System.Windows.Forms.OpenFileDialog();
             this.ofdLoadComputerAndListenScore = new System.Windows.Forms.OpenFileDialog();
-            this.clientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginTeacherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.studentScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShowStudent)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -249,6 +250,29 @@
             this.writeDatabaseToolStripMenuItem.Text = "写入数据库";
             this.writeDatabaseToolStripMenuItem.Click += new System.EventHandler(this.writeDatabaseToolStripMenuItem_Click);
             // 
+            // clientToolStripMenuItem
+            // 
+            this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loginTeacherToolStripMenuItem,
+            this.studentScoreToolStripMenuItem});
+            this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
+            this.clientToolStripMenuItem.Text = "客户端";
+            // 
+            // loginTeacherToolStripMenuItem
+            // 
+            this.loginTeacherToolStripMenuItem.Name = "loginTeacherToolStripMenuItem";
+            this.loginTeacherToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.loginTeacherToolStripMenuItem.Text = "教师登录";
+            this.loginTeacherToolStripMenuItem.Click += new System.EventHandler(this.loginTeacherToolStripMenuItem_Click);
+            // 
+            // studentScoreToolStripMenuItem
+            // 
+            this.studentScoreToolStripMenuItem.Name = "studentScoreToolStripMenuItem";
+            this.studentScoreToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.studentScoreToolStripMenuItem.Text = "学生分数";
+            this.studentScoreToolStripMenuItem.Click += new System.EventHandler(this.studentScoreToolStripMenuItem_Click);
+            // 
             // ofdOpenFile
             // 
             this.ofdOpenFile.Filter = "所有文件(*.*)|*.*|Excel 文件(*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xl" +
@@ -270,29 +294,6 @@
     "*.xlw;)|*.xl*;*.xlsx;*.xlsm;*.xlsb;*.xlam;*.xltx;*.xltm;*.xls;*.xla;*.xlt;*.xlm;" +
     "*.xlw";
             // 
-            // clientToolStripMenuItem
-            // 
-            this.clientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loginTeacherToolStripMenuItem,
-            this.studentScoreToolStripMenuItem});
-            this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
-            this.clientToolStripMenuItem.Text = "客户端";
-            // 
-            // loginTeacherToolStripMenuItem
-            // 
-            this.loginTeacherToolStripMenuItem.Name = "loginTeacherToolStripMenuItem";
-            this.loginTeacherToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.loginTeacherToolStripMenuItem.Text = "教师登录";
-            this.loginTeacherToolStripMenuItem.Click += new System.EventHandler(this.loginTeacherToolStripMenuItem_Click);
-            // 
-            // studentScoreToolStripMenuItem
-            // 
-            this.studentScoreToolStripMenuItem.Name = "studentScoreToolStripMenuItem";
-            this.studentScoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.studentScoreToolStripMenuItem.Text = "学生分数";
-            this.studentScoreToolStripMenuItem.Click += new System.EventHandler(this.studentScoreToolStripMenuItem_Click);
-            // 
             // ServerMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -301,6 +302,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ServerMain";
             this.Text = "研究生复试系统服务器";

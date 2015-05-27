@@ -1819,6 +1819,7 @@ namespace Server
                 group++;
                 MysqlManager.InsertData("group_information", data);
             }
+            group = 0;
             foreach (List<message.StudentInfo> studentGroup in ProfessionalMasterGroup)
             {
                 int index = 0;
@@ -1845,7 +1846,51 @@ namespace Server
 
         public static void LoadGroupFromSQL()
         {
-
+            System.Data.DataTable dataTable = MysqlManager.SelectData("group_information");
+            academicMasterGroup.Clear();
+            professionalMasterGroup.Clear();
+            for (int i = 0; i < dataTable.Rows.Count; ++i)
+            {
+                if (dataTable.Rows[i]["student_type"].ToString() == "academic" && System.Convert.ToInt32(dataTable.Rows[i]["group_id"].ToString()) >= academicMasterGroup.Count)
+                {
+                    List<message.StudentInfo> master = new List<message.StudentInfo>();
+                    academicMasterGroup.Add(master);
+                }
+                if (dataTable.Rows[i]["student_type"].ToString() == "professional" && System.Convert.ToInt32(dataTable.Rows[i]["group_id"].ToString()) >= professionalMasterGroup.Count)
+                {
+                    List<message.StudentInfo> master = new List<message.StudentInfo>();
+                    professionalMasterGroup.Add(master);
+                }
+            }
+            for (int i = 0; i < dataTable.Rows.Count; ++i)
+            {
+                if (dataTable.Rows[i]["student_type"].ToString() == "academic")
+                {
+                    string num = dataTable.Rows[i]["number"].ToString();
+                    string[] groups = num.Split(new char[] { ';' });
+                    foreach (string number in groups)
+                    {
+                        message.StudentInfo master = academicMaster.Find(a => a.number == number);
+                        if (master != null)
+                        {
+                            academicMasterGroup[System.Convert.ToInt32(dataTable.Rows[i]["group_id"].ToString())].Add(master);
+                        }
+                    }
+                }
+                else if(dataTable.Rows[i]["student_type"].ToString() == "professional")
+                {
+                    string num = dataTable.Rows[i]["number"].ToString();
+                    string[] groups = num.Split(new char[] { ';' });
+                    foreach (string number in groups)
+                    {
+                        message.StudentInfo master = professionalMaster.Find(a => a.number == number);
+                        if (master != null)
+                        {
+                            professionalMasterGroup[System.Convert.ToInt32(dataTable.Rows[i]["group_id"].ToString())].Add(master);
+                        }
+                    }
+                }
+            }
         }
 
         public static void TeacherExit(string teacherId)

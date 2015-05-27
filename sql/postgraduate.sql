@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- 表的结构 `group_information`
 --
 
+DROP TABLE IF EXISTS `group_information`;
 CREATE TABLE IF NOT EXISTS `group_information` (
   `id` int(11) NOT NULL DEFAULT '0',
   `student_type` varchar(20) NOT NULL DEFAULT '',
@@ -39,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `group_information` (
 -- 表的结构 `score_information`
 --
 
+DROP TABLE IF EXISTS `score_information`;
 CREATE TABLE IF NOT EXISTS `score_information` (
   `number` varchar(30) NOT NULL DEFAULT '',
   `teacher_id` varchar(30) NOT NULL DEFAULT '',
@@ -54,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `score_information` (
 -- 表的结构 `student_information`
 --
 
+DROP TABLE IF EXISTS `student_information`;
 CREATE TABLE IF NOT EXISTS `student_information` (
   `apply_place` varchar(10) NOT NULL DEFAULT '',
   `aplly_number` varchar(20) NOT NULL DEFAULT '',
@@ -142,6 +145,7 @@ CREATE TABLE IF NOT EXISTS `student_information` (
 -- 表的结构 `teacher_information`
 --
 
+DROP TABLE IF EXISTS `teacher_information`;
 CREATE TABLE IF NOT EXISTS `teacher_information` (
   `teacher_id` varchar(30) NOT NULL DEFAULT '',
   `teacher_name` varchar(30) NOT NULL DEFAULT '',
@@ -184,9 +188,18 @@ ALTER TABLE `teacher_information`
 --
 -- 限制表 `group_information`
 --
-ALTER TABLE `group_information`
-ADD CONSTRAINT `group_information_ibfk_1` FOREIGN KEY (`number`) REFERENCES `student_information` (`number`);
+#ALTER TABLE `group_information`
+#ADD CONSTRAINT `group_information_ibfk_1` FOREIGN KEY (`number`) REFERENCES `student_information` (`number`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `group_information`
+--
+ALTER TABLE `group_information`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
