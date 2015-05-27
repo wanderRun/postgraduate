@@ -305,6 +305,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "ServerMain";
             this.Text = "研究生复试系统服务器";
             this.groupBox1.ResumeLayout(false);

@@ -224,6 +224,7 @@
             this.Controls.Add(this.cbStudentGroups);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "DispatchTeacher";
             this.Text = "分配老师";
             this.groupBox1.ResumeLayout(false);

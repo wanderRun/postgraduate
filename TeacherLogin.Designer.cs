@@ -49,6 +49,7 @@
             this.Controls.Add(this.lvTeacherLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "TeacherLogin";
             this.Text = "教师登录";
             this.ResumeLayout(false);

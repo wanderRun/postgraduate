@@ -111,6 +111,7 @@
             this.Controls.Add(this.dgvStudentScore);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ScoreManager";
             this.Text = "学生分数管理";
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentScore)).EndInit();

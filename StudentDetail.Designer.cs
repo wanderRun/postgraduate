@@ -31,38 +31,37 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentDetail));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.tbApplyPlace = new System.Windows.Forms.TextBox();
-            this.tbApllyNumber = new System.Windows.Forms.TextBox();
-            this.tbName = new System.Windows.Forms.TextBox();
-            this.tbNameSpell = new System.Windows.Forms.TextBox();
-            this.tbNumber = new System.Windows.Forms.TextBox();
-            this.tbCardType = new System.Windows.Forms.TextBox();
-            this.tbCardNumber = new System.Windows.Forms.TextBox();
-            this.tbBirth = new System.Windows.Forms.TextBox();
-            this.tbNation = new System.Windows.Forms.TextBox();
-            this.tbGender = new System.Windows.Forms.TextBox();
-            this.tbMarriage = new System.Windows.Forms.TextBox();
-            this.tbSoldier = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tbPoliticsStatus = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tbNativePlace = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.tbBirthPlace = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.tbNativePlace = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tbPoliticsStatus = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbSoldier = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbMarriage = new System.Windows.Forms.TextBox();
+            this.tbGender = new System.Windows.Forms.TextBox();
+            this.tbNation = new System.Windows.Forms.TextBox();
+            this.tbBirth = new System.Windows.Forms.TextBox();
+            this.tbCardNumber = new System.Windows.Forms.TextBox();
+            this.tbCardType = new System.Windows.Forms.TextBox();
+            this.tbNumber = new System.Windows.Forms.TextBox();
+            this.tbNameSpell = new System.Windows.Forms.TextBox();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.tbApllyNumber = new System.Windows.Forms.TextBox();
+            this.tbApplyPlace = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.tbMobilePhone = new System.Windows.Forms.TextBox();
@@ -93,6 +92,7 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tbApplyPlaceCode = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.tbAdjustMajorName = new System.Windows.Forms.TextBox();
@@ -255,6 +255,261 @@
             this.tabPage1.Text = "基本信息1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // tbBirthPlace
+            // 
+            this.tbBirthPlace.Location = new System.Drawing.Point(201, 383);
+            this.tbBirthPlace.Name = "tbBirthPlace";
+            this.tbBirthPlace.ReadOnly = true;
+            this.tbBirthPlace.Size = new System.Drawing.Size(203, 21);
+            this.tbBirthPlace.TabIndex = 29;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 386);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(53, 12);
+            this.label15.TabIndex = 28;
+            this.label15.Text = "出生地码";
+            // 
+            // tbNativePlace
+            // 
+            this.tbNativePlace.Location = new System.Drawing.Point(201, 356);
+            this.tbNativePlace.Name = "tbNativePlace";
+            this.tbNativePlace.ReadOnly = true;
+            this.tbNativePlace.Size = new System.Drawing.Size(203, 21);
+            this.tbNativePlace.TabIndex = 27;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 359);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(77, 12);
+            this.label14.TabIndex = 26;
+            this.label14.Text = "籍贯所在地码";
+            // 
+            // tbPoliticsStatus
+            // 
+            this.tbPoliticsStatus.Location = new System.Drawing.Point(201, 329);
+            this.tbPoliticsStatus.Name = "tbPoliticsStatus";
+            this.tbPoliticsStatus.ReadOnly = true;
+            this.tbPoliticsStatus.Size = new System.Drawing.Size(203, 21);
+            this.tbPoliticsStatus.TabIndex = 25;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 332);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(53, 12);
+            this.label13.TabIndex = 24;
+            this.label13.Text = "政治面貌";
+            // 
+            // tbSoldier
+            // 
+            this.tbSoldier.Location = new System.Drawing.Point(201, 303);
+            this.tbSoldier.Name = "tbSoldier";
+            this.tbSoldier.ReadOnly = true;
+            this.tbSoldier.Size = new System.Drawing.Size(203, 21);
+            this.tbSoldier.TabIndex = 23;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 306);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 12);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "现役军人";
+            // 
+            // tbMarriage
+            // 
+            this.tbMarriage.Location = new System.Drawing.Point(201, 276);
+            this.tbMarriage.Name = "tbMarriage";
+            this.tbMarriage.ReadOnly = true;
+            this.tbMarriage.Size = new System.Drawing.Size(203, 21);
+            this.tbMarriage.TabIndex = 21;
+            // 
+            // tbGender
+            // 
+            this.tbGender.Location = new System.Drawing.Point(201, 249);
+            this.tbGender.Name = "tbGender";
+            this.tbGender.ReadOnly = true;
+            this.tbGender.Size = new System.Drawing.Size(203, 21);
+            this.tbGender.TabIndex = 20;
+            // 
+            // tbNation
+            // 
+            this.tbNation.Location = new System.Drawing.Point(201, 222);
+            this.tbNation.Name = "tbNation";
+            this.tbNation.ReadOnly = true;
+            this.tbNation.Size = new System.Drawing.Size(203, 21);
+            this.tbNation.TabIndex = 19;
+            // 
+            // tbBirth
+            // 
+            this.tbBirth.Location = new System.Drawing.Point(201, 195);
+            this.tbBirth.Name = "tbBirth";
+            this.tbBirth.ReadOnly = true;
+            this.tbBirth.Size = new System.Drawing.Size(203, 21);
+            this.tbBirth.TabIndex = 18;
+            // 
+            // tbCardNumber
+            // 
+            this.tbCardNumber.Location = new System.Drawing.Point(201, 168);
+            this.tbCardNumber.Name = "tbCardNumber";
+            this.tbCardNumber.ReadOnly = true;
+            this.tbCardNumber.Size = new System.Drawing.Size(203, 21);
+            this.tbCardNumber.TabIndex = 17;
+            // 
+            // tbCardType
+            // 
+            this.tbCardType.Location = new System.Drawing.Point(201, 141);
+            this.tbCardType.Name = "tbCardType";
+            this.tbCardType.ReadOnly = true;
+            this.tbCardType.Size = new System.Drawing.Size(203, 21);
+            this.tbCardType.TabIndex = 16;
+            // 
+            // tbNumber
+            // 
+            this.tbNumber.Location = new System.Drawing.Point(201, 114);
+            this.tbNumber.Name = "tbNumber";
+            this.tbNumber.ReadOnly = true;
+            this.tbNumber.Size = new System.Drawing.Size(203, 21);
+            this.tbNumber.TabIndex = 15;
+            // 
+            // tbNameSpell
+            // 
+            this.tbNameSpell.Location = new System.Drawing.Point(201, 87);
+            this.tbNameSpell.Name = "tbNameSpell";
+            this.tbNameSpell.ReadOnly = true;
+            this.tbNameSpell.Size = new System.Drawing.Size(203, 21);
+            this.tbNameSpell.TabIndex = 14;
+            // 
+            // tbName
+            // 
+            this.tbName.Location = new System.Drawing.Point(201, 60);
+            this.tbName.Name = "tbName";
+            this.tbName.ReadOnly = true;
+            this.tbName.Size = new System.Drawing.Size(203, 21);
+            this.tbName.TabIndex = 13;
+            // 
+            // tbApllyNumber
+            // 
+            this.tbApllyNumber.Location = new System.Drawing.Point(201, 33);
+            this.tbApllyNumber.Name = "tbApllyNumber";
+            this.tbApllyNumber.ReadOnly = true;
+            this.tbApllyNumber.Size = new System.Drawing.Size(203, 21);
+            this.tbApllyNumber.TabIndex = 12;
+            // 
+            // tbApplyPlace
+            // 
+            this.tbApplyPlace.Location = new System.Drawing.Point(201, 6);
+            this.tbApplyPlace.Name = "tbApplyPlace";
+            this.tbApplyPlace.ReadOnly = true;
+            this.tbApplyPlace.Size = new System.Drawing.Size(203, 21);
+            this.tbApplyPlace.TabIndex = 11;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 36);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "考生报名号";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 63);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 12);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "考生姓名";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 90);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(77, 12);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "考生姓名拼音";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 117);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 12);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "考生编号";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 144);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 12);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "证件类型";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 171);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "证件号码";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 198);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "出生日期";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 225);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 12);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "民族";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 252);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 12);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "性别";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 279);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "婚否";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "报名点代码";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tbEmail);
@@ -294,301 +549,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "基本信息2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.tbApplyPlaceCode);
-            this.tabPage3.Controls.Add(this.label31);
-            this.tabPage3.Controls.Add(this.tbAdjustMajorName);
-            this.tabPage3.Controls.Add(this.label32);
-            this.tabPage3.Controls.Add(this.tbAdjustMajorCode);
-            this.tabPage3.Controls.Add(this.label33);
-            this.tabPage3.Controls.Add(this.tbGraduateNumber);
-            this.tabPage3.Controls.Add(this.label34);
-            this.tabPage3.Controls.Add(this.tbLastDegree);
-            this.tabPage3.Controls.Add(this.tbRegisterNumber);
-            this.tabPage3.Controls.Add(this.tbGraduateDate);
-            this.tabPage3.Controls.Add(this.tbDiplomaNumber);
-            this.tabPage3.Controls.Add(this.tbLastEducation);
-            this.tabPage3.Controls.Add(this.tbStudyType);
-            this.tabPage3.Controls.Add(this.tbMajorName);
-            this.tabPage3.Controls.Add(this.tbSchoolName);
-            this.tabPage3.Controls.Add(this.tbSchoolCode);
-            this.tabPage3.Controls.Add(this.tbSameEducation);
-            this.tabPage3.Controls.Add(this.tbSource);
-            this.tabPage3.Controls.Add(this.label35);
-            this.tabPage3.Controls.Add(this.label36);
-            this.tabPage3.Controls.Add(this.label37);
-            this.tabPage3.Controls.Add(this.label38);
-            this.tabPage3.Controls.Add(this.label39);
-            this.tabPage3.Controls.Add(this.label40);
-            this.tabPage3.Controls.Add(this.label41);
-            this.tabPage3.Controls.Add(this.label42);
-            this.tabPage3.Controls.Add(this.label43);
-            this.tabPage3.Controls.Add(this.label44);
-            this.tabPage3.Controls.Add(this.label45);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(410, 422);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "基本信息3";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "报名点代码";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 279);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "婚否";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 252);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 12);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "性别";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 225);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 12);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "民族";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 198);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "出生日期";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 171);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 12);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "证件号码";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 144);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 12);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "证件类型";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 117);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 12);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "考生编号";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 90);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(77, 12);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "考生姓名拼音";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 63);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 12);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "考生姓名";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 36);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 12);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "考生报名号";
-            // 
-            // tbApplyPlace
-            // 
-            this.tbApplyPlace.Location = new System.Drawing.Point(201, 6);
-            this.tbApplyPlace.Name = "tbApplyPlace";
-            this.tbApplyPlace.ReadOnly = true;
-            this.tbApplyPlace.Size = new System.Drawing.Size(203, 21);
-            this.tbApplyPlace.TabIndex = 11;
-            // 
-            // tbApllyNumber
-            // 
-            this.tbApllyNumber.Location = new System.Drawing.Point(201, 33);
-            this.tbApllyNumber.Name = "tbApllyNumber";
-            this.tbApllyNumber.ReadOnly = true;
-            this.tbApllyNumber.Size = new System.Drawing.Size(203, 21);
-            this.tbApllyNumber.TabIndex = 12;
-            // 
-            // tbName
-            // 
-            this.tbName.Location = new System.Drawing.Point(201, 60);
-            this.tbName.Name = "tbName";
-            this.tbName.ReadOnly = true;
-            this.tbName.Size = new System.Drawing.Size(203, 21);
-            this.tbName.TabIndex = 13;
-            // 
-            // tbNameSpell
-            // 
-            this.tbNameSpell.Location = new System.Drawing.Point(201, 87);
-            this.tbNameSpell.Name = "tbNameSpell";
-            this.tbNameSpell.ReadOnly = true;
-            this.tbNameSpell.Size = new System.Drawing.Size(203, 21);
-            this.tbNameSpell.TabIndex = 14;
-            // 
-            // tbNumber
-            // 
-            this.tbNumber.Location = new System.Drawing.Point(201, 114);
-            this.tbNumber.Name = "tbNumber";
-            this.tbNumber.ReadOnly = true;
-            this.tbNumber.Size = new System.Drawing.Size(203, 21);
-            this.tbNumber.TabIndex = 15;
-            // 
-            // tbCardType
-            // 
-            this.tbCardType.Location = new System.Drawing.Point(201, 141);
-            this.tbCardType.Name = "tbCardType";
-            this.tbCardType.ReadOnly = true;
-            this.tbCardType.Size = new System.Drawing.Size(203, 21);
-            this.tbCardType.TabIndex = 16;
-            // 
-            // tbCardNumber
-            // 
-            this.tbCardNumber.Location = new System.Drawing.Point(201, 168);
-            this.tbCardNumber.Name = "tbCardNumber";
-            this.tbCardNumber.ReadOnly = true;
-            this.tbCardNumber.Size = new System.Drawing.Size(203, 21);
-            this.tbCardNumber.TabIndex = 17;
-            // 
-            // tbBirth
-            // 
-            this.tbBirth.Location = new System.Drawing.Point(201, 195);
-            this.tbBirth.Name = "tbBirth";
-            this.tbBirth.ReadOnly = true;
-            this.tbBirth.Size = new System.Drawing.Size(203, 21);
-            this.tbBirth.TabIndex = 18;
-            // 
-            // tbNation
-            // 
-            this.tbNation.Location = new System.Drawing.Point(201, 222);
-            this.tbNation.Name = "tbNation";
-            this.tbNation.ReadOnly = true;
-            this.tbNation.Size = new System.Drawing.Size(203, 21);
-            this.tbNation.TabIndex = 19;
-            // 
-            // tbGender
-            // 
-            this.tbGender.Location = new System.Drawing.Point(201, 249);
-            this.tbGender.Name = "tbGender";
-            this.tbGender.ReadOnly = true;
-            this.tbGender.Size = new System.Drawing.Size(203, 21);
-            this.tbGender.TabIndex = 20;
-            // 
-            // tbMarriage
-            // 
-            this.tbMarriage.Location = new System.Drawing.Point(201, 276);
-            this.tbMarriage.Name = "tbMarriage";
-            this.tbMarriage.ReadOnly = true;
-            this.tbMarriage.Size = new System.Drawing.Size(203, 21);
-            this.tbMarriage.TabIndex = 21;
-            // 
-            // tbSoldier
-            // 
-            this.tbSoldier.Location = new System.Drawing.Point(201, 303);
-            this.tbSoldier.Name = "tbSoldier";
-            this.tbSoldier.ReadOnly = true;
-            this.tbSoldier.Size = new System.Drawing.Size(203, 21);
-            this.tbSoldier.TabIndex = 23;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 306);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 12);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "现役军人";
-            // 
-            // tbPoliticsStatus
-            // 
-            this.tbPoliticsStatus.Location = new System.Drawing.Point(201, 329);
-            this.tbPoliticsStatus.Name = "tbPoliticsStatus";
-            this.tbPoliticsStatus.ReadOnly = true;
-            this.tbPoliticsStatus.Size = new System.Drawing.Size(203, 21);
-            this.tbPoliticsStatus.TabIndex = 25;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 332);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(53, 12);
-            this.label13.TabIndex = 24;
-            this.label13.Text = "政治面貌";
-            // 
-            // tbNativePlace
-            // 
-            this.tbNativePlace.Location = new System.Drawing.Point(201, 356);
-            this.tbNativePlace.Name = "tbNativePlace";
-            this.tbNativePlace.ReadOnly = true;
-            this.tbNativePlace.Size = new System.Drawing.Size(203, 21);
-            this.tbNativePlace.TabIndex = 27;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 359);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(77, 12);
-            this.label14.TabIndex = 26;
-            this.label14.Text = "籍贯所在地码";
-            // 
-            // tbBirthPlace
-            // 
-            this.tbBirthPlace.Location = new System.Drawing.Point(201, 383);
-            this.tbBirthPlace.Name = "tbBirthPlace";
-            this.tbBirthPlace.ReadOnly = true;
-            this.tbBirthPlace.Size = new System.Drawing.Size(203, 21);
-            this.tbBirthPlace.TabIndex = 29;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 386);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(53, 12);
-            this.label15.TabIndex = 28;
-            this.label15.Text = "出生地码";
             // 
             // tbEmail
             // 
@@ -844,6 +804,46 @@
             this.label30.Size = new System.Drawing.Size(77, 12);
             this.label30.TabIndex = 30;
             this.label30.Text = "户口所在地码";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.tbApplyPlaceCode);
+            this.tabPage3.Controls.Add(this.label31);
+            this.tabPage3.Controls.Add(this.tbAdjustMajorName);
+            this.tabPage3.Controls.Add(this.label32);
+            this.tabPage3.Controls.Add(this.tbAdjustMajorCode);
+            this.tabPage3.Controls.Add(this.label33);
+            this.tabPage3.Controls.Add(this.tbGraduateNumber);
+            this.tabPage3.Controls.Add(this.label34);
+            this.tabPage3.Controls.Add(this.tbLastDegree);
+            this.tabPage3.Controls.Add(this.tbRegisterNumber);
+            this.tabPage3.Controls.Add(this.tbGraduateDate);
+            this.tabPage3.Controls.Add(this.tbDiplomaNumber);
+            this.tabPage3.Controls.Add(this.tbLastEducation);
+            this.tabPage3.Controls.Add(this.tbStudyType);
+            this.tabPage3.Controls.Add(this.tbMajorName);
+            this.tabPage3.Controls.Add(this.tbSchoolName);
+            this.tabPage3.Controls.Add(this.tbSchoolCode);
+            this.tabPage3.Controls.Add(this.tbSameEducation);
+            this.tabPage3.Controls.Add(this.tbSource);
+            this.tabPage3.Controls.Add(this.label35);
+            this.tabPage3.Controls.Add(this.label36);
+            this.tabPage3.Controls.Add(this.label37);
+            this.tabPage3.Controls.Add(this.label38);
+            this.tabPage3.Controls.Add(this.label39);
+            this.tabPage3.Controls.Add(this.label40);
+            this.tabPage3.Controls.Add(this.label41);
+            this.tabPage3.Controls.Add(this.label42);
+            this.tabPage3.Controls.Add(this.label43);
+            this.tabPage3.Controls.Add(this.label44);
+            this.tabPage3.Controls.Add(this.label45);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(410, 422);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "基本信息3";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tbApplyPlaceCode
             // 
@@ -1769,6 +1769,7 @@
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "StudentDetail";
             this.Text = "学生详细信息";
             this.tabControl1.ResumeLayout(false);
