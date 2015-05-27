@@ -936,7 +936,6 @@ namespace Server
                 }
                 Application excel = new Application();
                 Workbook book = excel.Workbooks.Add(Missing.Value);
-                //Worksheet sheet = book.ActiveSheet;
                 Worksheet sheet = book.Sheets[1];
                 sheet.Visible = XlSheetVisibility.xlSheetVisible;
                 for (int i = 1; i <= students.student.Count; ++i)
@@ -1480,7 +1479,7 @@ namespace Server
                 studentInfo.tutor = dataTable.Rows[i]["tutor"].ToString();
                 studentInfo.student_confirm_status = dataTable.Rows[i]["student_confirm_status"].ToString();
                 studentInfo.student_confirm_time = dataTable.Rows[i]["student_confirm_time"].ToString();
-                studentInfo.student_confirm_time = dataTable.Rows[i]["student_reexamine"].ToString();
+                studentInfo.student_reexamine = dataTable.Rows[i]["student_reexamine"].ToString();
                 students.student.Add(studentInfo);
             }
             foreach (message.StudentInfo student in students.student)

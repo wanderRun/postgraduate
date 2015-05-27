@@ -99,6 +99,7 @@
             this.dgvShowStudent.RowTemplate.Height = 23;
             this.dgvShowStudent.Size = new System.Drawing.Size(639, 331);
             this.dgvShowStudent.TabIndex = 27;
+            this.dgvShowStudent.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvShowStudent_RowHeaderMouseDoubleClick);
             // 
             // btManagerTeacher
             // 
@@ -232,21 +233,21 @@
             // openServerToolStripMenuItem
             // 
             this.openServerToolStripMenuItem.Name = "openServerToolStripMenuItem";
-            this.openServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openServerToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.openServerToolStripMenuItem.Text = "开启服务器";
             this.openServerToolStripMenuItem.Click += new System.EventHandler(this.openServerToolStripMenuItem_Click);
             // 
             // readDatabaseToolStripMenuItem
             // 
             this.readDatabaseToolStripMenuItem.Name = "readDatabaseToolStripMenuItem";
-            this.readDatabaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.readDatabaseToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.readDatabaseToolStripMenuItem.Text = "读取数据库";
             this.readDatabaseToolStripMenuItem.Click += new System.EventHandler(this.readDatabaseToolStripMenuItem_Click);
             // 
             // writeDatabaseToolStripMenuItem
             // 
             this.writeDatabaseToolStripMenuItem.Name = "writeDatabaseToolStripMenuItem";
-            this.writeDatabaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.writeDatabaseToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.writeDatabaseToolStripMenuItem.Text = "写入数据库";
             this.writeDatabaseToolStripMenuItem.Click += new System.EventHandler(this.writeDatabaseToolStripMenuItem_Click);
             // 

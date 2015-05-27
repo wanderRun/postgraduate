@@ -160,15 +160,15 @@ namespace Server
                 MessageBox.Show("没有学生信息无法分组");
                 return;
             }
+            if(cbStudentType.SelectedIndex <= 0)
+            {
+                MessageBox.Show("全部学生不能分组");
+                return;
+            }
             string input = Interaction.InputBox("分组数目", "学生信息分组", "", 0, 0).Trim();
             if(input == "")
             {
                 MessageBox.Show("分组不能或空");
-                return;
-            }
-            if(cbStudentType.SelectedIndex <= 0)
-            {
-                MessageBox.Show("全部学生不能分组");
                 return;
             }
             int number = Convert.ToInt32(input);
@@ -554,6 +554,13 @@ namespace Server
         {
             StudentScore studentScore = new StudentScore();
             studentScore.ShowDialog();
+        }
+
+        private void dgvShowStudent_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            Console.WriteLine("{0}", e.RowIndex);
+            StudentDetail studentDetail = new StudentDetail(e.RowIndex);
+            studentDetail.ShowDialog();
         }
     }
 }
