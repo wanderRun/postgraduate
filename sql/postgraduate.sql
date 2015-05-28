@@ -1,44 +1,20 @@
--- phpMyAdmin SQL Dump
--- version 4.2.7.1
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: 2015-05-25 13:18:14
--- 服务器版本： 5.6.20
--- PHP Version: 5.5.15
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Database: `postgraduate`
---
-
--- --------------------------------------------------------
-
---
--- 表的结构 `group_information`
---
+DROP TABLE IF EXISTS `group_teacher_information`;
+CREATE TABLE IF NOT EXISTS `group_teacher_information` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_type` varchar(20) NOT NULL DEFAULT '',
+  `group_id` int(11) NOT NULL DEFAULT '0',
+  `teacher_id` varchar(600) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `group_information`;
 CREATE TABLE IF NOT EXISTS `group_information` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_type` varchar(20) NOT NULL DEFAULT '',
   `group_id` int(11) NOT NULL DEFAULT '0',
-  `number` varchar(600) NOT NULL DEFAULT ''
+  `number` varchar(600) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- 表的结构 `score_information`
---
 
 DROP TABLE IF EXISTS `score_information`;
 CREATE TABLE IF NOT EXISTS `score_information` (
@@ -47,14 +23,9 @@ CREATE TABLE IF NOT EXISTS `score_information` (
   `introduction_score` int(11) NOT NULL DEFAULT '0',
   `translation_score` int(11) NOT NULL DEFAULT '0',
   `topic_score` int(11) NOT NULL DEFAULT '0',
-  `answer_score` int(11) NOT NULL DEFAULT '0'
+  `answer_score` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`number`, `teacher_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- 表的结构 `student_information`
---
 
 DROP TABLE IF EXISTS `student_information`;
 CREATE TABLE IF NOT EXISTS `student_information` (
@@ -136,70 +107,21 @@ CREATE TABLE IF NOT EXISTS `student_information` (
   `student_confirm_status` varchar(20) NOT NULL DEFAULT '',
   `student_confirm_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `student_reexamine` varchar(200) NOT NULL DEFAULT '',
-  `teacher_id` varchar(300) NOT NULL DEFAULT ''
+  `teacher_id` varchar(300) NOT NULL DEFAULT '',
+  PRIMARY KEY (`number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- 表的结构 `teacher_information`
---
 
 DROP TABLE IF EXISTS `teacher_information`;
 CREATE TABLE IF NOT EXISTS `teacher_information` (
   `teacher_id` varchar(30) NOT NULL DEFAULT '',
   `teacher_name` varchar(30) NOT NULL DEFAULT '',
   `teacher_password` varchar(30) NOT NULL DEFAULT '',
-  `group_id` varchar(30) NOT NULL DEFAULT ''
+  PRIMARY KEY (`teacher_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `group_information`
---
-ALTER TABLE `group_information`
- ADD PRIMARY KEY (`id`), ADD KEY `number` (`number`);
-
---
--- Indexes for table `score_information`
---
-ALTER TABLE `score_information`
- ADD PRIMARY KEY (`number`,`teacher_id`);
-
---
--- Indexes for table `student_information`
---
-ALTER TABLE `student_information`
- ADD PRIMARY KEY (`number`);
-
---
--- Indexes for table `teacher_information`
---
-ALTER TABLE `teacher_information`
- ADD PRIMARY KEY (`teacher_id`);
-
---
--- 限制导出的表
---
 
 --
 -- 限制表 `group_information`
 --
 #ALTER TABLE `group_information`
 #ADD CONSTRAINT `group_information_ibfk_1` FOREIGN KEY (`number`) REFERENCES `student_information` (`number`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `group_information`
---
-ALTER TABLE `group_information`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
