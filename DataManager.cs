@@ -895,9 +895,17 @@ namespace Server
                     }
                 }
             }
-            foreach(message.StudentInfo student in students.student)
+            // 去掉重复
+            for (int i = 0; i < students.student.Count; ++i )
             {
-                if(schoolTypeList.ContainsKey(student.school_name))
+                while(students.student.FindLastIndex(s => s.number == students.student[i].number) != i)
+                {
+                    students.student.RemoveAt(students.student.FindLastIndex(s => s.number == students.student[i].number));
+                }
+            }
+            foreach (message.StudentInfo student in students.student)
+            {
+                if (schoolTypeList.ContainsKey(student.school_name))
                 {
                     student.school_type = schoolTypeList[student.school_name].type;
                     student.school_score = schoolTypeList[student.school_name].score;
@@ -907,7 +915,7 @@ namespace Server
                     student.school_type = "其它";
                     student.school_score = 10;
                 }
-                if(computerAndListenScoreList.ContainsKey(student.number))
+                if (computerAndListenScoreList.ContainsKey(student.number))
                 {
                     student.operation = System.Convert.ToUInt32(computerAndListenScoreList[student.number].computer * 0.7);
                     student.hear = computerAndListenScoreList[student.number].listen;
