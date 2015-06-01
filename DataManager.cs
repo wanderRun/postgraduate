@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 using System.Data;
+using System.Text;
 namespace Server
 {
     class DataManager
@@ -1478,11 +1479,11 @@ namespace Server
                 studentInfo.business_one_name = dataTable.Rows[i]["business_one_name"].ToString();
                 studentInfo.business_two_code = dataTable.Rows[i]["business_two_code"].ToString();
                 studentInfo.business_two_name = dataTable.Rows[i]["business_two_name"].ToString();
-                studentInfo.political_score = System.Convert.ToUInt32(dataTable.Rows[i]["political_score"].ToString());
-                studentInfo.foreign_score = System.Convert.ToUInt32(dataTable.Rows[i]["foreign_score"].ToString());
-                studentInfo.business_one_score = System.Convert.ToUInt32(dataTable.Rows[i]["business_one_score"].ToString());
-                studentInfo.business_two_score = System.Convert.ToUInt32(dataTable.Rows[i]["business_two_score"].ToString());
-                studentInfo.total_score = System.Convert.ToUInt32(dataTable.Rows[i]["total_score"].ToString());
+                studentInfo.political_score = System.Convert.ToUInt32(Crypto.Instance.Decrypt(Encoding.ASCII.GetBytes(dataTable.Rows[i]["political_score"].ToString())));
+                studentInfo.foreign_score = System.Convert.ToUInt32(Crypto.Instance.Decrypt(Encoding.ASCII.GetBytes(dataTable.Rows[i]["foreign_score"].ToString())));
+                studentInfo.business_one_score = System.Convert.ToUInt32(Crypto.Instance.Decrypt(Encoding.ASCII.GetBytes(dataTable.Rows[i]["business_one_score"].ToString())));
+                studentInfo.business_two_score = System.Convert.ToUInt32(Crypto.Instance.Decrypt(Encoding.ASCII.GetBytes(dataTable.Rows[i]["business_two_score"].ToString())));
+                studentInfo.total_score = System.Convert.ToUInt32(Crypto.Instance.Decrypt(Encoding.ASCII.GetBytes(dataTable.Rows[i]["total_score"].ToString())));
                 studentInfo.volunteer_type = dataTable.Rows[i]["volunteer_type"].ToString();
                 studentInfo.tutor = dataTable.Rows[i]["tutor"].ToString();
                 studentInfo.student_confirm_status = dataTable.Rows[i]["student_confirm_status"].ToString();
@@ -1645,15 +1646,15 @@ namespace Server
                 data.Add(kvp);
                 kvp = new KeyValuePair<string, string>("business_two_name", student.business_two_name);
                 data.Add(kvp);
-                kvp = new KeyValuePair<string, string>("political_score", student.political_score.ToString());
+                kvp = new KeyValuePair<string, string>("political_score", Encoding.ASCII.GetString(Crypto.Instance.Encrypt(student.political_score.ToString())));
                 data.Add(kvp);
-                kvp = new KeyValuePair<string, string>("foreign_score", student.foreign_score.ToString());
+                kvp = new KeyValuePair<string, string>("foreign_score", Encoding.ASCII.GetString(Crypto.Instance.Encrypt(student.foreign_score.ToString())));
                 data.Add(kvp);
-                kvp = new KeyValuePair<string, string>("business_one_score", student.business_one_score.ToString());
+                kvp = new KeyValuePair<string, string>("business_one_score", Encoding.ASCII.GetString(Crypto.Instance.Encrypt(student.business_one_score.ToString())));
                 data.Add(kvp);
-                kvp = new KeyValuePair<string, string>("business_two_score", student.business_two_score.ToString());
+                kvp = new KeyValuePair<string, string>("business_two_score", Encoding.ASCII.GetString(Crypto.Instance.Encrypt(student.business_two_score.ToString())));
                 data.Add(kvp);
-                kvp = new KeyValuePair<string, string>("total_score", student.total_score.ToString());
+                kvp = new KeyValuePair<string, string>("total_score", Encoding.ASCII.GetString(Crypto.Instance.Encrypt(student.total_score.ToString())));
                 data.Add(kvp);
                 kvp = new KeyValuePair<string, string>("volunteer_type", student.volunteer_type);
                 data.Add(kvp);
