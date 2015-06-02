@@ -169,6 +169,7 @@ message ResTeacherScore
 message ReqModifyTeacherScore
 {
 	optional string number = 1;
+	optional string teacher_id = 2;
 }
 
 // 老师信息
